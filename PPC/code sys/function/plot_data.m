@@ -1,9 +1,9 @@
 function plot_data(test, data_plot, t0, tend)
 ts = 0.002;
-offset = 0.025;
-% k_b = 2.83e-3;
+offset = 0.0236;
+k_b = 2.686e-3;
 
-k_b = 0.0044;
+%k_b = 0.0044;
 
 
 %ind0 = floor(t0/ts)+1;
