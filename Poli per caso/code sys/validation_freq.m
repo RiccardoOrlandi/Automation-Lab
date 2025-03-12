@@ -4,33 +4,7 @@ clc
 
 %%
 addpath('function')
-% Ottieni la cartella di lavoro corrente
-folder = pwd;
-folder = fullfile(folder, '\data\Sine Test');
-
-% Ottieni una lista di tutti i file .mat nella cartella
-files = dir(fullfile(folder, '*.mat'));
-
-% Carica ogni file .mat nel workspace
-for k = 1:length(files)
-    % Costruisci il percorso completo del file
-    filePath = fullfile(folder, files(k).name);
-    
-    % Carica il file .mat nel workspace
-    data = load(filePath);
-    campi = fieldnames(data);
-    nome = campi{1};  % Nome della variabile che vuoi rinominare
-    prova = files(k).name;
-    prova = strrep(prova(1:end-4), ',', '_');
-    assignin('base', prova,  data.(nome));
-    
-    
-    % (Facoltativo) Visualizza il nome del file caricato
-    
-    % disp(['Caricato: ', files(k).name]);
-end
-
-clear campi data filePath folder k nome prova
+add_data('\data\Sine Test');
 
 %% Model Parameters
 
@@ -187,4 +161,5 @@ omega = 345;
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
     num2str((phase2-phase1)/phase2*100) newline];
 
+disp('Tabella che mostra gli errori percentuali tra valori reali e del modello:')
 disp(results)

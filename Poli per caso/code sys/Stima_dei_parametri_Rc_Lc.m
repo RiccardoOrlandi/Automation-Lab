@@ -1,3 +1,9 @@
+clc
+close all
+clear
+
+add_data('\data\Step Test\Step Test with ball')
+
 %Conversion of experimental values into MatLab variables
 t1 = Test_3V(1,:);
 t2 = Test_6V(1,:);
