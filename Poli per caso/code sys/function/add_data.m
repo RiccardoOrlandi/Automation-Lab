@@ -1,7 +1,17 @@
 function add_data(percorso)
-% add_data - questa funzione aggiunge tutti i file 
+% add_data - questa funzione aggiunge tutti i file .mat presenti in una
+%            cartella salvandoli con il loro nome (non con la data) 
+%            nel workspace
+%
+% Syntax
+% add_data(percorso)
+%
+% Input Argument
+% percorso - deve essere una stringa, indica il percorso relativo dove trovare
+%            le misure da inserire (esempio: '\data\Step Test'
 
-% Ottieni la cartella di lavoro corrente
+
+
 folder = pwd;   % pwd serve per recuperare il percorso corrente della cartella matlab
 folder = fullfile(folder, percorso);
 
