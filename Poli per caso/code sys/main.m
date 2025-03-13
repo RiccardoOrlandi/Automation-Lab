@@ -3,7 +3,9 @@ close all
 clc
 
 addpath('function');
-add_data('\data\Step Test\Step Test with ball') % funzione che serve per aggiungere i test di questa cartella
+add_data('data/Step Test/Step Test with ball')
+
+% add_data('\data\Step Test\Step Test with ball') % funzione che serve per aggiungere i test di questa cartella
                                                 % usando un percorso
                                                 % relativo 
 
@@ -38,19 +40,24 @@ Tend_FFD    =       10;
 figure()
 plot(t_FFD, x_FFD(1,:))
 hold on
-plot_data(Test_21V, 'position', 0, Tend_FFD)
+plot_data(Test_23V, 'position', 0, Tend_FFD)
 grid on
 title('Position')
 legend('ideal','real');
 hold off
 
 
-figure()
-plot(t_FFD, x_FFD(2,:))
-hold on
-plot_data(Test_21V, 'current', 0, Tend_FFD)
-grid on
-title('Current')
-legend('ideal','real');
-hold off
+% figure()
+% plot(t_FFD, x_FFD(2,:))
+% hold on
+% plot_data(Test_21V, 'current', 0, Tend_FFD)
+% grid on
+% title('Current')
+% legend('ideal','real');
+% hold off
 
+
+
+
+
+km = Km_nuovo(Test_18V)
