@@ -4,12 +4,21 @@ clear
 
 addpath('function');
 run('Model_Parameter');
+OS = 'Windows';
+
+
+if strcmp(OS, 'Windows')
+    add_data('\data\Step Test\Step Test with ball');
+else
+    add_data('/data/Step Test/Step Test with ball');
+end
+
 
 
 %data =load('C:\Users\riccardoorlandi\Desktop\univerita\5anno\2semsetre\AUTOMATION_LABORATORY\git_Automation-Lab\Poli per caso\code sys\data\Step Test\Step Test with ball\Test_21,3V.mat');
 %load('C:\Users\Student\Desktop\Automation-Lab-main\Automation-Lab-main\PPC\data\Step Test\Step Test with ball\Test_21V.mat');
-add_data('/data/Step Test/Step Test with ball')
-segnale = Test_23V;
+
+segnale = Test_21V;
 %variabili = fieldnames(data);
 %nomeVariabile = variabili{1};
 %segnale = data.(nomeVariabile);
@@ -45,7 +54,12 @@ P = P(1:floor(N/2));             % Spettro positivo
 % xlim([0, fs/2]);          % Mostra solo frequenze positive
 % grid on;
 
-simout = sim('passband_filter');
+simIn = 'passband_filter_2023b';
+load_system(simIn)
+
+stoptime = segnale(1, end);
+set_param(simIn, 'StopTime', num2str(stoptime));
+simout = sim(simIn);
 
 
 m = 0.0657; % kg
@@ -55,4 +69,12 @@ km = Calcolo_Km(simout.acc, 0.0657, 9.81, tempo, posizione, corrente, theta);
 % sys = s / (s + 3);
 % figure();
 % bode(sys);
+ind0 = floor(1/0.002)+1;
+indf = floor(2/0.002)+1;
 
+acc = simout.acc;
+speed = simout.speed;
+figure()
+plot(tempo(1, ind0:indf), acc(ind0:indf, 1)')
+figure()
+plot(tempo(1, ind0:indf), speed(ind0:indf, 1)')

@@ -10,8 +10,8 @@ y0 = theta(4,1);
 % offset = 0.0236;
 % k_b = 2.686e-3;
 Km = zeros(1, length(tempo));
-for i = length(tempo)
-    Km(1,i) = -m*(acc(i)-g)*(y0 - (posizione(i)))^2/corrente(i)^2;
+for i = 1:length(tempo)
+    Km(1,i) = -m*(acc(i)+g)*(y0 - (posizione(i)))^2/corrente(i)^2;
 end
 
 % Selezione dei dati tra 1 e 2 secondi
