@@ -9,18 +9,17 @@ run('Model_Parameter');
 %data =load('C:\Users\riccardoorlandi\Desktop\univerita\5anno\2semsetre\AUTOMATION_LABORATORY\git_Automation-Lab\Poli per caso\code sys\data\Step Test\Step Test with ball\Test_21,3V.mat');
 %load('C:\Users\Student\Desktop\Automation-Lab-main\Automation-Lab-main\PPC\data\Step Test\Step Test with ball\Test_21V.mat');
 add_data('/data/Step Test/Step Test with ball')
-segnale = Test_21V;
+segnale = Test_23V;
 %variabili = fieldnames(data);
 %nomeVariabile = variabili{1};
 %segnale = data.(nomeVariabile);
 
 offset = 0.0236;
 k_b = 2.686e-3;
-posizione = (segnale(2,:)+offset)*k_b;
 
 % Caricamento del segnale
-tempo = segnale(1, :);        % Estrai gli istanti di tempo
-%posizione = segnale(2, :);     % Estrai la posizione
+tempo = segnale(1, :);        % Estrai gli istanti di tempo 
+posizione = (segnale(2,:)+offset)*k_b;
 corrente = segnale(3,:);
 input = [tempo',posizione'];
 % Calcolo della frequenza di campionamento
@@ -51,8 +50,6 @@ simout = sim('passband_filter');
 
 m = 0.0657; % kg
 km = Calcolo_Km(simout.acc, 0.0657, 9.81, tempo, posizione, corrente, theta);
-figure
-plot(tempo, km);
 
 % s = tf('s');
 % sys = s / (s + 3);

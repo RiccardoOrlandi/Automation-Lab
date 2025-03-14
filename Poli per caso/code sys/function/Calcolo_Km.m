@@ -15,13 +15,20 @@ for i = length(tempo)
 end
 
 % Selezione dei dati tra 1 e 2 secondi
-indice_selezionati = tempo >= 1.15 & tempo <= 1.25;
-tempo_selezionato = tempo(indice_selezionati);
-Km_selezionato = Km(indice_selezionati);
+% indice_selezionati = tempo >= 1.15 & tempo <= 1.25;
+% tempo_selezionato = tempo(indice_selezionati);
+% Km_selezionato = Km(indice_selezionati);
 
-% Visualizzazione dei risultati
+% % Visualizzazione dei risultati
+% figure;
+% plot(tempo_selezionato, Km_selezionato);
+% title('Stima di Km nel tempo');
+% xlabel('Tempo [s]');
+% ylabel('Km [unità]');
+% grid on;
+
 figure;
-plot(tempo_selezionato, Km_selezionato);
+plot(tempo, Km);
 title('Stima di Km nel tempo');
 xlabel('Tempo [s]');
 ylabel('Km [unità]');
