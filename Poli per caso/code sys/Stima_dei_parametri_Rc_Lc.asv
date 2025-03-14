@@ -126,7 +126,7 @@ fprintf('Induttanza Lc : %.4f H\n Resistenza Rc: %.2f Ohm\n', Lc,Rc);
 % fprintf('L induttanza stimata è: %.4e H\n', L);
 
 test = Test_21V; %scegli il test
-volt= 21; %metti i volt del test
+volt= 21;
 Rtot= Rc+Rs;
 plot(test(1, :), test(3, :))
 hold on
