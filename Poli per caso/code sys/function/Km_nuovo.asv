@@ -1,4 +1,4 @@
-function [Km,acc]= Km_nuovo(Test)
+function Km = Km_nuovo(Test)
 % Calcolo della costante elettromagnetica Km
 % Test_21V: Struct contenente i dati del test
 % m: Massa della sfera (costante)

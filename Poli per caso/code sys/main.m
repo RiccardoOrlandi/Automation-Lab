@@ -40,24 +40,24 @@ Tend_FFD    =       10;
 figure()
 plot(t_FFD, x_FFD(1,:))
 hold on
-plot_data(Test_23V, 'position', 0, Tend_FFD)
+plot_data(Test_21V, 'position', 0, Tend_FFD)
 grid on
 title('Position')
 legend('ideal','real');
 hold off
 
 
-% figure()
-% plot(t_FFD, x_FFD(2,:))
-% hold on
-% plot_data(Test_21V, 'current', 0, Tend_FFD)
-% grid on
-% title('Current')
-% legend('ideal','real');
-% hold off
+figure()
+plot(t_FFD, x_FFD(2,:))
+hold on
+plot_data(Test_21V, 'current', 0, Tend_FFD)
+grid on
+title('Current')
+legend('ideal','real');
+hold off
 
 
 
 
 
-km = Km_nuovo(Test_18V)
+km = Km_nuovo(Test_21V)

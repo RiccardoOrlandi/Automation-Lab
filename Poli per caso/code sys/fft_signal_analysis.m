@@ -1,20 +1,26 @@
-close all
 clc
+close all
+clear
 
 addpath('function');
+run('Model_Parameter');
 
 
 %data =load('C:\Users\riccardoorlandi\Desktop\univerita\5anno\2semsetre\AUTOMATION_LABORATORY\git_Automation-Lab\Poli per caso\code sys\data\Step Test\Step Test with ball\Test_21,3V.mat');
 %load('C:\Users\Student\Desktop\Automation-Lab-main\Automation-Lab-main\PPC\data\Step Test\Step Test with ball\Test_21V.mat');
-data = load("Test_23V.mat")
-variabili = fieldnames(data);
-nomeVariabile = variabili{1};
-segnale = data.(nomeVariabile);
+add_data('/data/Step Test/Step Test with ball')
+segnale = Test_21V;
+%variabili = fieldnames(data);
+%nomeVariabile = variabili{1};
+%segnale = data.(nomeVariabile);
 
+offset = 0.0236;
+k_b = 2.686e-3;
+posizione = (segnale(2,:)+offset)*k_b;
 
 % Caricamento del segnale
 tempo = segnale(1, :);        % Estrai gli istanti di tempo
-posizione = segnale(2, :);     % Estrai la posizione
+%posizione = segnale(2, :);     % Estrai la posizione
 corrente = segnale(3,:);
 input = [tempo',posizione'];
 % Calcolo della frequenza di campionamento
@@ -32,20 +38,24 @@ f = f(1:floor(N/2));             % Frequenze positive
 P = P(1:floor(N/2));             % Spettro positivo
 
 % Plot dello spettro
-figure;
-plot(f, P);
-title('Spettro del segnale di posizione');
-xlabel('Frequenza (Hz)');
-ylabel('Ampiezza');
-xlim([0, fs/2]);          % Mostra solo frequenze positive
-grid on;
+% figure;
+% plot(f, P);
+% title('Spettro del segnale di posizione');
+% xlabel('Frequenza (Hz)');
+% ylabel('Ampiezza');
+% xlim([0, fs/2]);          % Mostra solo frequenze positive
+% grid on;
+
+simout = sim('passband_filter');
+
 
 m = 0.0657; % kg
-km = Calcolo_Km(out.acc, 0.0657, 9.81, tempo, posizione, corrente);
+km = Calcolo_Km(simout.acc, 0.0657, 9.81, tempo, posizione, corrente, theta);
 figure
 plot(tempo, km);
 
-sym s 
-sys = tf(s, s + 3);
-figure();
-bode(sys);
+% s = tf('s');
+% sys = s / (s + 3);
+% figure();
+% bode(sys);
+
