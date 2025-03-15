@@ -18,23 +18,31 @@ end
 %data =load('C:\Users\riccardoorlandi\Desktop\univerita\5anno\2semsetre\AUTOMATION_LABORATORY\git_Automation-Lab\Poli per caso\code sys\data\Step Test\Step Test with ball\Test_21,3V.mat');
 %load('C:\Users\Student\Desktop\Automation-Lab-main\Automation-Lab-main\PPC\data\Step Test\Step Test with ball\Test_21V.mat');
 
-segnale = Test_21V;
+segnale = Test_21_9V;
 %variabili = fieldnames(data);
 %nomeVariabile = variabili{1};
 %segnale = data.(nomeVariabile);
 
-offset = 0.0236;
-k_b = 2.686e-3;
+
 
 % Caricamento del segnale
 tempo = segnale(1, :);        % Estrai gli istanti di tempo 
-posizione = (segnale(2,:)+offset)*k_b;
+posizione = segnale(2,:);
 corrente = segnale(3,:);
 input = [tempo',posizione'];
+input2 = [tempo',corrente'];
 % Calcolo della frequenza di campionamento
 dt = mean(diff(tempo));  % Intervallo di campionamento medio
 fs = 1/dt;               % Frequenza di campionamento
 
+polo = Rtot/Lc;
+
+% costruisco il filtro
+filter = tf(polo*10, [1 polo*10]);
+filter_d = c2d(filter, 0.002, 'Turstin');
+[num, den] = tfdata(filter_d);
+num = num{1};
+den = den{1};
 % Calcolo della FFT
 N = length(posizione);   % Numero di punti nel segnale
 Y = fft(posizione);       % Trasformata di Fourier del segnale
@@ -63,18 +71,10 @@ simout = sim(simIn);
 
 
 m = 0.0657; % kg
-km = Calcolo_Km(simout.acc, 0.0657, 9.81, tempo, posizione, corrente, theta);
+km = Calcolo_Km(simout, 0.0657, 9.81, tempo, posizione, simout.corrente, theta);
 
 % s = tf('s');
 % sys = s / (s + 3);
 % figure();
 % bode(sys);
-ind0 = floor(1/0.002)+1;
-indf = floor(2/0.002)+1;
 
-acc = simout.acc;
-speed = simout.speed;
-figure()
-plot(tempo(1, ind0:indf), acc(ind0:indf, 1)')
-figure()
-plot(tempo(1, ind0:indf), speed(ind0:indf, 1)')

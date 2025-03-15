@@ -5,8 +5,8 @@ k_mag = 6.5308e-5; % Nm^2/A^2   assumiamo costante ma potremmo validarlo conside
 m = 0.0657; % kg
 y0 = 0.0086; % m
 Rs = 1; % Ohm
-%Rc = 8.14;%Ohm
-Rc = 8.89;
+%Rc = 8.14;%Ohm   ultimo dato salvato
+Rc = 8.89; % ultimo valore che restituiva stima parametri
 
 %Rc2 = 9.14
 %Rc3 = 8.35
