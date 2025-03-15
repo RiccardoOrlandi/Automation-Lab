@@ -10,6 +10,11 @@ function add_data(percorso)
 % percorso - deve essere una stringa, indica il percorso relativo dove trovare
 %            le misure da inserire (esempio: '\data\Step Test'
 
+% parametri sensori
+offset_corrente = 0.016;
+offset_posizione = 0.0236;
+k_b = 2.686e-3;
+
 
 
 folder = pwd;   % pwd serve per recuperare il percorso corrente della cartella matlab
@@ -29,7 +34,13 @@ for k = 1:length(files)
     nome = campi{1};  % Nome della variabile che vuoi rinominare
     prova = files(k).name;
     prova = strrep(prova(1:end-4), ',', '_');
-    assignin('base', prova,  data.(nome));
+    segnale = data.(nome);
+    posizione = (segnale(2,:)+offset_posizione)*k_b;
+    corrente = segnale(3,:)+offset_corrente;
+    segnale = [segnale(1, :); posizione; corrente];
+    
+    %assignin('base', prova,  data.(nome));
+    assignin('base', prova,  segnale);
     
     
     % (Facoltativo) Visualizza il nome del file caricato
