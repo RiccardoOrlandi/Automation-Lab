@@ -63,11 +63,11 @@ modello= zeros(1, length(Test_21V));
 for i = 1:length(Test_21V)
     modello(1, i) = 21/Rtot*(1-exp(1)^(-(Rtot/Lc)*Test_21V(1, i)));
 end
-plot(Test_21V(1, :)+1, modello(1, :))
+plot(Test_21V(1, :), modello(1, :))
 
 
 plot(Test_wb_21V(1, :), Test_wb_21V(3, :))
 
-legend('ideal FFD','real with ball', 'ideal exact', 'real without ball');
+legend('ideal_FFD','real_with_ball', );
 
 %km = Km_nuovo(Test_21V)
