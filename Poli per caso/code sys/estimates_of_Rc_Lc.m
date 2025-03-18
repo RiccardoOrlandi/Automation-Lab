@@ -6,32 +6,34 @@ Rs = 1; % Ohm
 
 addpath('function');
 add_data('/data/Step Test/Step Test without ball');
+add_data('\data\Step Test\18_03_2024\without_ball');
+add_data('\data\Step Test\18_03_2024\with_ball');
 
 
 % Estrazione dei dati e rimozione dell'offset
-t1 = Test_wb_3V(1,:);
-t2 = Test_wb_6V(1,:);
-t3 = Test_wb_9V(1,:);
-t4 = Test_wb_12V(1,:);
-t5 = Test_wb_15V(1,:);
-t6 = Test_wb_18V(1,:);
-t7 = Test_wb_21V(1,:);
-t8 = Test_wb_23V(1,:);
+% t1 = Test_wb_3V(1,:);
+% t2 = Test_wb_6V(1,:);
+% t3 = Test_wb_9V(1,:);
+% t4 = Test_wb_12V(1,:);
+t5 = Test_wb_15V_v(1,:);
+t6 = Test_wb_18V_v(1,:);
+t7 = Test_wb_21V_v(1,:);
+t8 = Test_wb_23V_v(1,:);
 
-C1 = Test_wb_3V(3,:);
-C2 = Test_wb_6V(3,:);
-C3 = Test_wb_9V(3,:);
-C4 = Test_wb_12V(3,:);
-C5 = Test_wb_15V(3,:);
-C6 = Test_wb_18V(3,:);
-C7 = Test_wb_21V(3,:);
-C8 = Test_wb_23V(3,:);
+% C1 = Test_wb_3V(3,:);
+% C2 = Test_wb_6V(3,:);
+% C3 = Test_wb_9V(3,:);
+% C4 = Test_wb_12V(3,:);
+C5 = Test_wb_15V_v(3,:);
+C6 = Test_wb_18V_v(3,:);
+C7 = Test_wb_21V_v(3,:);
+C8 = Test_wb_23V_v(3,:);
 
-% Applico un filtro Savitzky-Golay per ridurre il rumore
-C1_smooth = sgolayfilt(C1, 3, 11);
-C2_smooth = sgolayfilt(C2, 3, 11);
-C3_smooth = sgolayfilt(C3, 3, 11);
-C4_smooth = sgolayfilt(C4, 3, 11);
+% % Applico un filtro Savitzky-Golay per ridurre il rumore
+% C1_smooth = sgolayfilt(C1, 3, 11);
+% C2_smooth = sgolayfilt(C2, 3, 11);
+% C3_smooth = sgolayfilt(C3, 3, 11);
+% C4_smooth = sgolayfilt(C4, 3, 11);
 C5_smooth = sgolayfilt(C5, 3, 11);
 C6_smooth = sgolayfilt(C6, 3, 11);
 C7_smooth = sgolayfilt(C7, 3, 11);
@@ -43,10 +45,10 @@ hold on;
 xlabel('Tempo (s)');
 ylabel('Corrente (A)');
 title('Fit delle risposte a gradino per diverse tensioni');
-plot(t1, C1_smooth, 'DisplayName', 'Misura 3V');
-plot(t2, C2_smooth, 'DisplayName', 'Misura 6V');
-plot(t3, C3_smooth, 'DisplayName', 'Misura 9V');
-plot(t4, C4_smooth, 'DisplayName', 'Misura 12V');
+% plot(t1, C1_smooth, 'DisplayName', 'Misura 3V');
+% plot(t2, C2_smooth, 'DisplayName', 'Misura 6V');
+% plot(t3, C3_smooth, 'DisplayName', 'Misura 9V');
+% plot(t4, C4_smooth, 'DisplayName', 'Misura 12V');
 plot(t5, C5_smooth, 'DisplayName', 'Misura 15V');
 plot(t6, C6_smooth, 'DisplayName', 'Misura 18V');
 plot(t7, C7_smooth, 'DisplayName', 'Misura 21V');
@@ -59,10 +61,13 @@ R_estimates = zeros(1, 8);
 L_estimates = zeros(1, 8);
 taus = zeros(1, 8);
 voltages = [3, 6, 9, 12, 15, 18, 21, 23];
-current_data = {C1_smooth, C2_smooth, C3_smooth, C4_smooth, C5_smooth, C6_smooth, C7_smooth, C8_smooth};
-time_data = {t1, t2, t3, t4, t5, t6, t7, t8};
+voltages = voltages(1, 5:8);
+% current_data = {C1_smooth, C2_smooth, C3_smooth, C4_smooth, C5_smooth, C6_smooth, C7_smooth, C8_smooth};
+current_data = {C5_smooth, C6_smooth, C7_smooth, C8_smooth};
+% time_data = {t1, t2, t3, t4, t5, t6, t7, t8};
+time_data = {t5, t6, t7, t8};
 
-for i = 1:8
+for i = 1:length(voltages)
     t = time_data{i};
     C = current_data{i};
     
