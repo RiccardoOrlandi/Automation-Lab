@@ -1,0 +1,34 @@
+clc
+clear
+close all
+
+%% controllore del circuito elettrico
+run('Model_Parameter.m')
+s = tf('s');
+polo = Rtot/Lc;
+sys = tf([1], [Lc Rtot]);
+% ki= 3.48e+03;
+% kp = 60.5;
+
+% kp = 0;
+% ki = 100;
+% controller = kp + ki/s;
+
+controller = (Lc*s + Rtot)/(s*(s+);
+sys_cl = feedback(controller*sys, 1);
+
+figure()
+step(sys_cl)
+hold on
+step(sys)
+grid on
+legend('cl', 'ol')
+hold off
+
+figure()
+bode(sys)
+hold on
+grid on
+bode(sys_cl)
+
+eig(sys_cl)
