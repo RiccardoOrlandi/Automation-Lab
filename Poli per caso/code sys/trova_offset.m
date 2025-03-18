@@ -1,4 +1,4 @@
-function add_data(percorso)
+function trova_offset(percorso)
 % add_data - questa funzione aggiunge tutti i file .mat presenti in una
 %            cartella salvandoli con il loro nome (non con la data) 
 %            nel workspace
@@ -10,12 +10,9 @@ function add_data(percorso)
 % percorso - deve essere una stringa, indica il percorso relativo dove trovare
 %            le misure da inserire (esempio: '\data\Step Test'
 
-% parametri sensori
-%offset_corrente = 0.016;
-%offset_posizione = 0.0236;
-offset_corrente_volt = -0.0166; %[V]
-offset_posizione_volt = 1.2074; %[V]
-Kb = 0.0027; %[m/V] 
+
+
+
 
 folder = pwd;   % pwd serve per recuperare il percorso corrente della cartella matlab
 folder = fullfile(folder, percorso);
@@ -35,8 +32,8 @@ for k = 1:length(files)
     prova = files(k).name;
     prova = strrep(prova(1:end-4), ',', '_');
     segnale = data.(nome);
-    posizione = (segnale(2,:)-offset_posizione_volt)*Kb;
-    corrente = segnale(3,:)-offset_corrente_volt;
+    posizione = (segnale(2,:));
+    corrente = segnale(3,:);
     segnale = [segnale(1, :); posizione; corrente];
     
     %assignin('base', prova,  data.(nome));

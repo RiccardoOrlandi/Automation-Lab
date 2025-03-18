@@ -56,8 +56,3 @@ title('Current')
 legend('ideal','real');
 hold off
 
-
-
-
-
-km = Km_nuovo(Test_21V)
