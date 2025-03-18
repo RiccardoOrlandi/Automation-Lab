@@ -5,9 +5,18 @@ clc
 %%
 addpath('function')
 add_data('\data\Sine Test');
+add_data('\data\Sine Test\18_03_2025');
 
 %% Model Parameters
 
+% dt = 0:0.002:Test_55Hz(1,end);
+% V = 0.15*sin(55*dt);
+% figure();
+% hold on;
+% plot(dt,V);
+% plot(dt,Test_55Hz(3,:));
+% grid on
+% hold off
 run('Model_Parameter.m')
 %% Electric Model
 sys_el = tf(1, [Lc, Rtot]);
@@ -146,6 +155,68 @@ omega = 345;
 
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
     num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_180radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 180;
+[mag1, phase1] = prova(0.161, 0.01, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_300radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 300;
+[mag1, phase1] = prova(0.12, 0.0072, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_400radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 400;
+[mag1, phase1] = prova(0.078, 0.006, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_55radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 55;
+[mag1, phase1] = prova(0.446, 0.022, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_70radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 70;
+[mag1, phase1] = prova(0.365, 0.019, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+
 
 disp('Tabella che mostra gli errori percentuali tra valori reali e del modello:')
 disp(results)
