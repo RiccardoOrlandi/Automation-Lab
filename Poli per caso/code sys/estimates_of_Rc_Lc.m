@@ -79,7 +79,7 @@ for i = 1:8
     taus(i) = t(idx_rise)-1; %%%%NON MOLTO SICURO
     
     % Stima di R e L
-    R_estimates(i) = (voltages(i) - I_final * Rs) / I_final;
+    R_estimates(i) = (voltages(i)) / I_final;
     L_estimates(i) = taus(i) * (R_estimates(i) + Rs);
 end
 

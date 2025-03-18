@@ -6,12 +6,13 @@ m = 0.0657; % kg
 y0 = 0.0086; % m
 Rs = 1; % Ohm
 %Rc = 8.14;%Ohm   ultimo dato salvato
-Rc = 8.89; % ultimo valore che restituiva stima parametri
+Rc = 8.089; % ultimo valore che restituiva stima parametri
 
 %Rc2 = 9.14
 %Rc3 = 8.35
-Rtot = Rs + Rc; %Ohm
-Lc = 0.3537; % H
+%Rtot = Rs + Rc; %Ohm
+Rtot = 9.089;
+Lc = 0.3935; % H
 %Lc PDB = 0.2934
 %Lc2 = 0.2328
 %Lc3 = 0.3626

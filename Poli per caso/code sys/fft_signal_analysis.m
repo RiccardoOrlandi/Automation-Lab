@@ -4,7 +4,7 @@ clear
 
 addpath('function');
 run('Model_Parameter');
-OS = 'Windows';
+OS = 'Mac';
 
 
 if strcmp(OS, 'Windows')
@@ -18,7 +18,7 @@ end
 %data =load('C:\Users\riccardoorlandi\Desktop\univerita\5anno\2semsetre\AUTOMATION_LABORATORY\git_Automation-Lab\Poli per caso\code sys\data\Step Test\Step Test with ball\Test_21,3V.mat');
 %load('C:\Users\Student\Desktop\Automation-Lab-main\Automation-Lab-main\PPC\data\Step Test\Step Test with ball\Test_21V.mat');
 
-segnale = Test_21_9V;
+segnale = Test_21V;
 %variabili = fieldnames(data);
 %nomeVariabile = variabili{1};
 %segnale = data.(nomeVariabile);
