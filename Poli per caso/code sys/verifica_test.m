@@ -2,6 +2,7 @@ clc
 clear
 close all
 
+addpath('function')
 add_data('\data\Step Test\Step Test with ball');
 add_data('\data\Step Test\Step Test without ball');
 add_data('\data\Step Test\18_03_2024\without_ball');
