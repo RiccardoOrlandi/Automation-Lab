@@ -7,8 +7,6 @@ Rs = 1; % Ohm
 addpath('function');
 add_data('/data/Step Test/Step Test without ball');
 
-% Calcolo dell'offset (assumo sia la media del segnale a 0V)
-offset = mean(Test_wb_0V(3, :));
 
 % Estrazione dei dati e rimozione dell'offset
 t1 = Test_wb_3V(1,:);
@@ -20,14 +18,14 @@ t6 = Test_wb_18V(1,:);
 t7 = Test_wb_21V(1,:);
 t8 = Test_wb_23V(1,:);
 
-C1 = Test_wb_3V(3,:) - offset;
-C2 = Test_wb_6V(3,:) - offset;
-C3 = Test_wb_9V(3,:) - offset;
-C4 = Test_wb_12V(3,:) - offset;
-C5 = Test_wb_15V(3,:) - offset;
-C6 = Test_wb_18V(3,:) - offset;
-C7 = Test_wb_21V(3,:) - offset;
-C8 = Test_wb_23V(3,:) - offset;
+C1 = Test_wb_3V(3,:);
+C2 = Test_wb_6V(3,:);
+C3 = Test_wb_9V(3,:);
+C4 = Test_wb_12V(3,:);
+C5 = Test_wb_15V(3,:);
+C6 = Test_wb_18V(3,:);
+C7 = Test_wb_21V(3,:);
+C8 = Test_wb_23V(3,:);
 
 % Applico un filtro Savitzky-Golay per ridurre il rumore
 C1_smooth = sgolayfilt(C1, 3, 11);
@@ -76,11 +74,11 @@ for i = 1:8
     
     % Calcolo la costante di tempo tau
     idx_rise = find(C > 0.632 * I_final, 1);  % Indice dove la corrente raggiunge il 63.2% del valore finale
-    taus(i) = t(idx_rise)-1; %%%%NON MOLTO SICURO
+    taus(i) = t(idx_rise)-1;
     
     % Stima di R e L
-    R_estimates(i) = (voltages(i)) / I_final;
-    L_estimates(i) = taus(i) * (R_estimates(i) + Rs);
+    R_tot_estimates(i) = (voltages(i)) / I_final;
+    L_estimates(i) = taus(i) * (R_tot_estimates(i));
 end
 
 % Mostro i risultati stimati
@@ -93,5 +91,5 @@ disp(L_estimates);
 disp('Costanti di tempo Tau (s):');
 disp(taus);
 
-R_mean = mean([R_estimates(6), R_estimates(7)]);
+R_mean = mean([R_tot_estimates(6), R_tot_estimates(7)]);
 L_mean = mean([L_estimates(6), L_estimates(7)]);

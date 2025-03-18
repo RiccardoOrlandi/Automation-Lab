@@ -27,7 +27,7 @@ segnale = Test_21V;
 
 % Caricamento del segnale
 tempo = segnale(1, :);        % Estrai gli istanti di tempo 
-posizione = segnale(2,:);
+posizione =segnale(2,:);
 corrente = segnale(3,:);
 input = [tempo',posizione'];
 input2 = [tempo',corrente'];
@@ -36,10 +36,15 @@ dt = mean(diff(tempo));  % Intervallo di campionamento medio
 fs = 1/dt;               % Frequenza di campionamento
 
 
+<<<<<<< HEAD
 
 % costruisco il filtro per la corrente
 polo = Rtot/Lc;
 filter = tf(polo*10, [1 polo*10]);
+=======
+% costruisco il filtro
+filter = tf(polo, [1 polo]);
+>>>>>>> ff6724409591f3dbe19011b99d2cfd4bd0ebd0f5
 filter_d = c2d(filter, 0.002, 'Turstin');
 [num, den] = tfdata(filter_d);
 num = num{1};
@@ -70,11 +75,23 @@ P = P(1:floor(N/2));             % Spettro positivo
 % xlim([0, fs/2]);          % Mostra solo frequenze positive
 % grid on;
 
-simIn = 'passband_filter_2023b';
+simIn = 'passband_filter';
 load_system(simIn)
 
 stoptime = segnale(1, end);
 set_param(simIn, 'StopTime', num2str(stoptime));
 simout = sim(simIn);
 
+<<<<<<< HEAD
 km = Calcolo_Km(simout, 0.0657, 9.81, tempo, posizione, simout.corrente, theta);
+=======
+
+m = 0.0657; % kg
+km = Calcolo_Km(simout, 0.0657, 9.81, tempo, posizione, corrente, theta);
+
+% s = tf('s');
+% sys = s / (s + 3);
+% figure();
+% bode(sys);
+
+>>>>>>> ff6724409591f3dbe19011b99d2cfd4bd0ebd0f5
