@@ -1,9 +1,5 @@
 %% Model Parameters
 
-%offset:
-offset_corrente_volt = -0.0166; %[V]
-offset_posizione_volt = 1.2074; %[V]
-Kb = 0.0027; %[m/V] 
 %other param:
 k_aero = 0;
 k_mag = 6.5308e-5; % Nm^2/A^2   assumiamo costante ma potremmo validarlo considerando  l'area calcolabile tra dai dati del datasheet
