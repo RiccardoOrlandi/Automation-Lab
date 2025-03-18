@@ -5,9 +5,9 @@ close all;
 Rs = 1; % Ohm
 
 addpath('function');
-add_data('/data/Step Test/Step Test without ball');
-add_data('\data\Step Test\18_03_2024\without_ball');
-add_data('\data\Step Test\18_03_2024\with_ball');
+% add_data('/data/Step Test/Step Test without ball');
+add_data('/data/Step Test/18_03_2024/without_ball');
+add_data('/data/Step Test/18_03_2024/with_ball');
 
 
 % Estrazione dei dati e rimozione dell'offset
@@ -96,5 +96,5 @@ disp(L_estimates);
 disp('Costanti di tempo Tau (s):');
 disp(taus);
 
-R_mean = mean([R_tot_estimates(6), R_tot_estimates(7)]);
-L_mean = mean([L_estimates(6), L_estimates(7)]);
+R_mean = mean([R_tot_estimates(1), R_tot_estimates(2),R_tot_estimates(3)]);
+L_mean = mean([L_estimates(1), L_estimates(2),L_estimates(3)]);

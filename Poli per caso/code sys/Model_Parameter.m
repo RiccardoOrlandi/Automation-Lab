@@ -6,7 +6,7 @@ k_mag = 6.5308e-5; % Nm^2/A^2   assumiamo costante ma potremmo validarlo conside
 m = 0.0657; % kg
 y0 = 0.0086; % m
 Rs = 1; % Ohm
-Rtot = 9.089;
-Lc = 0.3545; % H
+Rtot = 9.7585;
+Lc = 0.3708; % H
 
 theta = [k_aero, k_mag, m, y0, Rtot, Lc]';
