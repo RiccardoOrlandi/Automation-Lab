@@ -73,18 +73,10 @@ legend('ideal FFD','real with ball', 'ideal exact', 'real without ball');
 %km = Km_nuovo(Test_21V)
 
 k_mag0 = k_mag;
-k_mag_est_21 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21V, Ts_FFD);
+k_mag_est_21 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21V, Ts_FFD)
 u = 21.3;
-k_mag_est_21_3 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_3V, Ts_FFD);
+k_mag_est_21_3 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_3V, Ts_FFD)
 u = 21.6;
-k_mag_est_21_6 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_6V, Ts_FFD);
+k_mag_est_21_6 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_6V, Ts_FFD)
 u = 21.9;
-k_mag_est_21_9 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_9V, Ts_FFD);
-u=23;
-k_mag_est_23 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_23V, Ts_FFD);
-k_mag_est_21
-k_mag_est_21_3
-k_mag_est_21_6
-k_mag_est_21_9
-k_mag_est_23
-k_mag_est = mean([k_mag_est_21, k_mag_est_21_3, k_mag_est_21_6, k_mag_est_21_9, k_mag_est_23])
+k_mag_est_21_9 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_9V, Ts_FFD)

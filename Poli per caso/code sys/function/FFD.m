@@ -8,7 +8,7 @@ tvec    =       0:Ts:Tend;  % time vector (s)
 N            =       length(tvec);   % number of samples
 x            =       zeros(3,N);     % matrix with states
 uout         =       zeros(1,N);     % matrix with inputs
-y            =       zeros(2,N);     % matrix with forces
+y            =       zeros(3,N);     % matrix with forces
 zdot         =       zeros(3,N-1);
 x(:,1)       =       x0;
 uout(:,1)    =       0;
@@ -45,3 +45,5 @@ for ind=2:N
         uout(:,ind)      =   uout(:,1);
     end
 end
+
+y = [tvec; x(1,:); x(2, :)];
