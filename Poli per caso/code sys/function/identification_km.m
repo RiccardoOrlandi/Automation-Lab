@@ -1,4 +1,4 @@
-function k_mag_est = identification_km(k_mag0,x0, u, Tend_FFD, theta, test, Ts_FFD)
+function k_mag_est = identification_km(k_mag0,x0, u, Tend_FFD, theta, test, Ts_FFD, titolo)
 
 %% k_m identification
 %cost = identification(k_mag, x0, u, Tend_FFD, theta, Test_21V)
@@ -29,5 +29,5 @@ plot(t_FFD, x_FFD(1,:))
 hold on
 plot(test(1,:), test(2, :))
 grid on
-title('Position')
+title(['Position, ', titolo])
 hold off

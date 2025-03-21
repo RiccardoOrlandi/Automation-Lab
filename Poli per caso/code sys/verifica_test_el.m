@@ -16,6 +16,7 @@ plot(Test_wb_15V_v(1, :), Test_wb_15V_v(3, :))
 plot(Test_15V_v(1, :), Test_15V_v(3, :))
 title('15 V')
 legend('with', 'without', 'new wb', 'new ball')
+grid on
 hold off 
 
 figure()
@@ -26,6 +27,7 @@ plot(Test_wb_18V_v(1, :), Test_wb_18V_v(3, :))
 plot(Test_18V_v(1, :), Test_18V_v(3, :))
 title('18 V')
 legend('with', 'without', 'new wb', 'new ball')
+grid on
 hold off
 
 figure()
@@ -36,6 +38,7 @@ plot(Test_wb_21V_v(1, :), Test_wb_21V_v(3, :))
 plot(Test_21V_v(1, :), Test_21V_v(3, :))
 title('21 V')
 legend('with', 'without', 'new wb', 'new ball')
+grid on
 hold off
 
 
@@ -47,4 +50,5 @@ plot(Test_wb_23V_v(1, :), Test_wb_23V_v(3, :))
 plot(Test_23V_v(1, :), Test_23V_v(3, :))
 title('23 V')
 legend('with', 'without', 'new wb', 'new ball')
+grid on
 hold off

@@ -14,8 +14,8 @@ function add_data(percorso)
 %offset_corrente = 0.016;
 %offset_posizione = 0.0236;
 offset_corrente_volt = -0.0166; %[V]
-offset_posizione_volt = -0.0255; %[V]
-Kb = 0.0028; %[m/V] 
+offset_posizione_volt = -0.0231; %[V]
+Kb = 0.0026; %[m/V] 
 
 folder = pwd;   % pwd serve per recuperare il percorso corrente della cartella matlab
 folder = fullfile(folder, percorso);
