@@ -36,15 +36,15 @@ dt = mean(diff(tempo));  % Intervallo di campionamento medio
 fs = 1/dt;               % Frequenza di campionamento
 
 
-<<<<<<< HEAD
+%<<<<<<< HEAD
 
 % costruisco il filtro per la corrente
 polo = Rtot/Lc;
 filter = tf(polo*10, [1 polo*10]);
-=======
+%=======
 % costruisco il filtro
 filter = tf(polo, [1 polo]);
->>>>>>> ff6724409591f3dbe19011b99d2cfd4bd0ebd0f5
+%>>>>>>> ff6724409591f3dbe19011b99d2cfd4bd0ebd0f5
 filter_d = c2d(filter, 0.002, 'Turstin');
 [num, den] = tfdata(filter_d);
 num = num{1};
@@ -82,9 +82,9 @@ stoptime = segnale(1, end);
 set_param(simIn, 'StopTime', num2str(stoptime));
 simout = sim(simIn);
 
-<<<<<<< HEAD
+%<<<<<<< HEAD
 km = Calcolo_Km(simout, 0.0657, 9.81, tempo, posizione, simout.corrente, theta);
-=======
+%=======
 
 m = 0.0657; % kg
 km = Calcolo_Km(simout, 0.0657, 9.81, tempo, posizione, corrente, theta);
@@ -94,4 +94,4 @@ km = Calcolo_Km(simout, 0.0657, 9.81, tempo, posizione, corrente, theta);
 % figure();
 % bode(sys);
 
->>>>>>> ff6724409591f3dbe19011b99d2cfd4bd0ebd0f5
+%>>>>>>> ff6724409591f3dbe19011b99d2cfd4bd0ebd0f5

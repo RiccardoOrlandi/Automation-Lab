@@ -14,8 +14,8 @@ function add_data(percorso)
 %offset_corrente = 0.016;
 %offset_posizione = 0.0236;
 offset_corrente_volt = -0.0166; %[V]
-offset_posizione_volt = -0.0236; %[V]
-Kb = 0.0041; %[m/V] 
+offset_posizione_volt = -0.0255; %[V]
+Kb = 0.0028; %[m/V] 
 
 folder = pwd;   % pwd serve per recuperare il percorso corrente della cartella matlab
 folder = fullfile(folder, percorso);
@@ -34,6 +34,7 @@ for k = 1:length(files)
     nome = campi{1};  % Nome della variabile che vuoi rinominare
     prova = files(k).name;
     prova = strrep(prova(1:end-4), ',', '_');
+    
     segnale = data.(nome);
     posizione = (segnale(2,:)-offset_posizione_volt)*Kb;
     corrente = segnale(3,:)-offset_corrente_volt;

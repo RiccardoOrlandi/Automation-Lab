@@ -16,7 +16,7 @@ options = optimoptions('fmincon', ...
                        'FiniteDifferenceStepSize', 1e-8, ...
                        'Diagnostics', 'on');
 
-[k_mag_est,fxstar,k,exitflag,xsequence] = fmincon(@(k_mag)identification(k_mag, x0, u, Tend_FFD, theta, test, Ts_FFD),k_mag0,[],[],[],[],[1e-10],[1e1],[],options);
+[k_mag_est,fxstar,k,exitflag,xsequence] = fmincon(@(k_mag)identification(k_mag, x0, u, Tend_FFD, theta, test, Ts_FFD),k_mag0,[],[],[],[],[1e-7],[1e-4],[],options);
 
 
 

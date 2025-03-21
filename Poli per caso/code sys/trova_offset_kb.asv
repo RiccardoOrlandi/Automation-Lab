@@ -22,17 +22,14 @@ offset_posizione_volt2 = mean([Test_12V(2,:), Test_15V(2,:), Test_18V(2,:), Test
 
 % Calcolo di kb in modo che quando tocchi il fondo sia a 0.0086 m
 media_21V = mean(Test_21V(2,(end-500):end));
-media_21_3V = mean(Test_21_3V(2,(end-500):end));
-media_21_6V = mean(Test_21_6V(2,(end-500):end));
-media_21_9V = mean(Test_21_9V(2,(end-500):end));
-media_22_5V = mean(Test_22_5V(2,(end-500):end));
-media_23V = mean(Test_23V(2,(end-500):end));
+media_21V = mean(Test_21V(2,(end-500):end));
+media_21V = mean(Test_21V(2,(end-500):end));
+media_21V = mean(Test_21V(2,(end-500):end));
+media_21V = mean(Test_21V(2,(end-500):end));
+media_21V = mean(Test_21V(2,(end-500):end));
 
-% mediatot = [media_21V, media_21_3V, media_21_6V, media_21_9V];
+media = (mean([Test_21V(2,(end-500):end), Test_21_3V(2,(end-500):end), Test_21_6V(2,(end-500):end), Test_21_9V(2,(end-500):end)], 'all');
 
-media = mean([media_21V, media_21_3V, media_21_6V, media_21_9V]);
-
-% media = mean([Test_21V(2,(end-500):end), Test_21_3V(2,(end-500):end), Test_21_6V(2,(end-500):end), Test_21_9V(2,(end-500):end)], 'all');
 
 Kb = 0.0086 /  (media - offset_posizione_volt2);
 
@@ -43,3 +40,5 @@ plot(Test_0V(1, :), Test_0V(2, :))
 
 plot(Test_19V(1,:), Test_19V(2,:))
 close all
+%% 3.178
+%0.0026

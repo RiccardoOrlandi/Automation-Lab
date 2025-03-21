@@ -1,6 +1,6 @@
 %% Model Parameters
 
-%other param:
+% other param:
 k_aero = 0;
 k_mag = 6.5308e-5; % Nm^2/A^2   assumiamo costante ma potremmo validarlo considerando  l'area calcolabile tra dai dati del datasheet
 m = 0.0657; % kg

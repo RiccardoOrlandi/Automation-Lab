@@ -73,7 +73,7 @@ legend('ideal FFD','real with ball', 'ideal exact', 'real without ball');
 %km = Km_nuovo(Test_21V)
 
 k_mag0 = k_mag;
-k_mag_est_21 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21V, Ts_FFD);
+k_mag_est_21 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21V, Ts  _FFD);
 u = 21.3;
 k_mag_est_21_3 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_3V, Ts_FFD);
 u = 21.6;
