@@ -71,8 +71,8 @@ plot(Test_wb_21V(1, :), Test_wb_21V(3, :))
 legend('ideal FFD','real with ball', 'ideal exact', 'real without ball');
 
 %km = Km_nuovo(Test_21V)
+k_mag0 = 6.5308e-5;
 
-k_mag0 = k_mag;
 k_mag_est_21 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21V(:, 501:end), Ts_FFD, 'Test 21V');
 u = 21.3;
 k_mag_est_21_3 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_3V(:, 501:end), Ts_FFD, 'Test_21.3V');

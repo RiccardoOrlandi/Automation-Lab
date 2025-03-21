@@ -27,7 +27,7 @@ theta(2,1) = k_mag_est;
 figure()
 plot(t_FFD, x_FFD(1,:))
 hold on
-plot(test(1,:), test(2, :))
+plot(test(1,:)-1, test(2, :))
 grid on
 title(['Position, ', titolo])
 hold off

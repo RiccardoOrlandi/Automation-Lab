@@ -39,7 +39,7 @@ for ind=2:N
         x(:,ind)     =   x(:,ind-1)+Ts*zdot(:, ind-1);
         y(:,ind)     =   y;
     end
-    if ind >= 501
+    if ind >= 1
         uout(:,ind) = u;
     else
         uout(:,ind)      =   uout(:,1);

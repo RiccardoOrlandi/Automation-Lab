@@ -55,9 +55,8 @@ hold off
 
 
 %% subplot 2
-N = 3000;
 t = 0:0.002:(N-1)*0.002;
-modello3 = zeros(1, N);
+modello3 = zeros(1, N2);
 u =22.5;
 [tvec, x, y] = FFD(Ts, Tend, x0, u, theta);
 
@@ -66,33 +65,33 @@ subplot(3, 1, 1)
 plot(t, Test_22_5V(2, 1:N))
 hold on
 plot(t, Test_with_22_5V(2, 1:N))
-plot(t+1, y(2, 1:N))
+plot(t(delay+1:end), y(2, 1:N2))
 legend('Test 22 5V', 'Test with 22 5V',  'modello22.5')
 grid on
 hold off
 
 u = 21.5;
-modello6 = zeros(1, N);
+modello6 = zeros(1, N2);
 [tvec, x, y] = FFD(Ts, Tend, x0, u, theta);
 
 subplot(3, 1, 2)
 plot(t, Test_with_21_5V(2, 1:N))
 hold on
-plot(t+1, y(2, 1:N))
-legend('Test with 21 5V', 'modello6')
+plot(t(delay+1:end), y(2, 1:N2))
+legend('Test with 21 5V', 'modello21.5')
 grid on
 hold off
 
 
 
 u = 21.9;
-modello19 = zeros(1, N);
+modello19 = zeros(1, N2);
 [tvec, x, y] = FFD(Ts, Tend, x0, u, theta);
 subplot(3, 1, 3)
 
 hold on
 plot(t, Test_21_9V(2, 1:N))
-plot(t+1, y(2, 1:N))
+plot(t(delay+1:end), y(2, 1:N2))
 legend('Test 21 9V', 'modello21.9')
 grid on
 hold off
