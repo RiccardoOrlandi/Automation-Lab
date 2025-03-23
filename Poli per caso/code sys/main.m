@@ -27,6 +27,13 @@ Ts_FFD      =       2e-3;
 Tend_FFD    =       10;
 [t_FFD, x_FFD, sim_FFD ] = FFD(Ts_FFD, Tend_FFD, x0, u, theta);
 %~
+%% Chiamata al modello per trovare l'equilibrio
+x=zeros(3,1);
+zdot=zeros(3,1);
+y = zeros(2,1);
+G = tf([]);
+[zdot, y, G] = model(0, x, 21, theta);
+%%
 
 % %% Plot figures
 % figure

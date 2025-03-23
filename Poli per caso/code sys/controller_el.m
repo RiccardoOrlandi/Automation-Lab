@@ -11,13 +11,17 @@ sys = tf(1, [Lc Rtot]);
 % ki= 3.48e+03;
 % kp = 60.5;
 
+%% ragionamento sul futuro controllore che tiene conto della cascata con il modello dinamico
+%specifiche che vogliamo: 
+% -overshoot < 10%
+% -
 % kp = C.kp;
 % ki = C.ki;
 % kd = C.kd;
 
-
-kp = 40;
-ki = 20;
+primo test: wc=130rad;pm=80,
+kp =46.0161;
+ki = 2117.9265;
 kd = 0;
 controller = kp + ki/s+ kd*s;
 
@@ -39,8 +43,6 @@ bode(sys)
 hold on
 grid on
 bode(controller*sys)
-[gm, pm, wcg, wcp] = margin(controller*sys); %Calcolo margine di gguadagno, di
-%fase, frequenza critica e frequenza quando la fase è -180°. Utile per dopo
 
 eig(sys_cl)
 
