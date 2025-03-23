@@ -19,8 +19,9 @@ function [xdot, y, G] = model(t, x, u, theta)
 
     x2_eq = u/Rtot;
     x3_eq = 0;
-    %x1_eq = y0 - x2_eq * sqrt(k_mag/(m*g));
-    x1_eq = 0.004;
+    x1_eq = y0 - x2_eq * sqrt(k_mag/(m*g));
+    % x1_eq = 0.004;
+    assignin('base', 'x1_eq', x1_eq);
     
 
    

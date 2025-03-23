@@ -19,7 +19,7 @@ sys = tf(1, [Lc Rtot]);
 % ki = C.ki;
 % kd = C.kd;
 
-primo test: wc=130rad;pm=80,
+%% primo test: wc=130rad;pm=80,
 kp =46.0161;
 ki = 2117.9265;
 kd = 0;
@@ -46,3 +46,4 @@ bode(controller*sys)
 
 eig(sys_cl)
 
+margin(controller*sys)

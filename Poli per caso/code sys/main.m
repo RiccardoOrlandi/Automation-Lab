@@ -32,7 +32,7 @@ x=zeros(3,1);
 zdot=zeros(3,1);
 y = zeros(2,1);
 G = tf([]);
-[zdot, y, G] = model(0, x, 21, theta);
+[zdot, y, G] = model(0, x, 10, theta);
 %%
 
 % %% Plot figures
