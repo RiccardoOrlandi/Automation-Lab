@@ -39,7 +39,7 @@ Tend_FFD    =       10;
 % hold off
 
 figure()
-plot(t_FFD, x_FFD(1,:))
+plot(t_FFD+1, x_FFD(1,:))
 hold on
 %plot_data(Test_21V, 'position', 0, Tend_FFD)
 plot(Test_21V(1, :), Test_21V(2, :))
@@ -50,10 +50,10 @@ hold off
 
 
 figure()
-plot(t_FFD, x_FFD(2,:))
+plot(t_FFD+1, x_FFD(2,:))
 hold on
 %plot_data(Test_21V, 'current', 0, Tend_FFD)
-plot(Test_21V(1, :), Test_21V(3, :))
+plot(Test_21V(1, 501:end), Test_21V(3, 501:end))
 grid on
 title('Current')
 
@@ -72,16 +72,16 @@ legend('ideal FFD','real with ball', 'ideal exact', 'real without ball');
 
 %km = Km_nuovo(Test_21V)
 k_mag0 = 6.5308e-5;
-
-k_mag_est_21 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21V(:, 501:end), Ts_FFD, 'Test 21V');
+Tend_FFD =2;
+k_mag_est_21 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21V(:, 501:1001), Ts_FFD, 'Test 21V');
 u = 21.3;
-k_mag_est_21_3 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_3V(:, 501:end), Ts_FFD, 'Test_21.3V');
+k_mag_est_21_3 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_3V(:, 501:1001), Ts_FFD, 'Test_21.3V');
 u = 21.6;
-k_mag_est_21_6 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_6V(:, 501:end), Ts_FFD, 'Test 21.6V');
+k_mag_est_21_6 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_6V(:, 501:1001), Ts_FFD, 'Test 21.6V');
 u = 21.9;
-k_mag_est_21_9 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_9V(:, 501:end), Ts_FFD, 'Test 21.9V');
+k_mag_est_21_9 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_9V(:, 501:1001), Ts_FFD, 'Test 21.9V');
 u=23;
-k_mag_est_23 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_23V(:, 501:end), Ts_FFD, 'Test 23V');
+k_mag_est_23 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_23V(:, 501:1001), Ts_FFD, 'Test 23V');
 k_mag_est_21
 k_mag_est_21_3
 k_mag_est_21_6
