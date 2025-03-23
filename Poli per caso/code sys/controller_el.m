@@ -39,6 +39,8 @@ bode(sys)
 hold on
 grid on
 bode(controller*sys)
+[gm, pm, wcg, wcp] = margin(controller*sys); %Calcolo margine di gguadagno, di
+%fase, frequenza critica e frequenza quando la fase è -180°. Utile per dopo
 
 eig(sys_cl)
 
