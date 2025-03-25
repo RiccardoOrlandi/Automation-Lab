@@ -9,14 +9,16 @@ add_data('\data\Sine Test\18_03_2025');
 
 %% Model Parameters
 
-% dt = 0:0.002:Test_55Hz(1,end);
-% V = 0.15*sin(55*dt);
-% figure();
-% hold on;
-% plot(dt,V);
-% plot(dt,Test_55Hz(3,:));
-% grid on
-% hold off
+dt = 0:0.002:Test_55radS(1,end);
+V = 0.15*sin(55*dt);
+figure();
+hold on;
+plot(dt,V);
+plot(dt,Test_55radS(3,:));
+grid on
+hold off
+
+%%
 run('Model_Parameter.m')
 %% Electric Model
 sys_el = tf(1, [Lc, Rtot]);
@@ -217,6 +219,9 @@ results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '    
     num2str((phase2-phase1)/phase2*100) newline];
 
 
+%%
 
+
+%% nuovi valori vicino ad wc
 disp('Tabella che mostra gli errori percentuali tra valori reali e del modello:')
 disp(results)

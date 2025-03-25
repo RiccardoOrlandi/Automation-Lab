@@ -1,0 +1,30 @@
+function G = mag_lin_corrente(u, theta)
+
+% u è la corrente
+% x1 è la posizione
+% x2 è la velocità
+
+    k_aero = theta(1, 1);
+    k_mag = theta(2, 1);
+    m = theta(3, 1);
+    y0 = theta(4, 1);
+    Rtot = theta(5, 1);
+    Lc = theta(6, 1);
+    g = 9.81;
+
+
+    u0 = u/Rtot;
+    x2_eq = 0;
+    x1_eq = y0 - u0 * sqrt(k_mag/(m*g));
+    assignin('base', 'x1_eq', x1_eq);
+
+    A = [0 1;
+        2*k_mag*u0^2/m*(y0-x1_eq)^(-3), 0];
+    B = [0; 2*k_mag/m*u0/(y0 - x1_eq)];
+    C = [1 0];
+    D = [];
+
+    % Funzione di trasferimento
+    sys = ss(A, B, C, D);
+    G = tf(sys);
+end
