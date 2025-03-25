@@ -1,5 +1,9 @@
 function G = mag_lin(u, theta)
 
+% x2 è la corrente
+% x1 è la posizione
+% x3 è la velocità
+
     k_aero = theta(1, 1);
     k_mag = theta(2, 1);
     m = theta(3, 1);
@@ -7,6 +11,7 @@ function G = mag_lin(u, theta)
     Rtot = theta(5, 1);
     Lc = theta(6, 1);
     g = 9.81;
+
 
     x2_eq = u/Rtot;
     x3_eq = 0;

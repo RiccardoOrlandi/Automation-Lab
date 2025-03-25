@@ -1,0 +1,26 @@
+clear
+close all
+clc
+
+%%
+addpath('function');
+run('Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+
+%% Chiamata al modello per trovare l'equilibrio
+u = 10;
+% theta(2, 1) = 0.9e-6;
+G = mag_lin(u, theta);
+% restituisce un sistema G 2x1 (1 input: tensione, 2 output: posizione e corrente)
+%       a noi interessa primo input e primo output per il controllore
+%       della posizione
+sys = G(1, 1);
+bode(sys)
+grid on
+% wc deve essere <15 rad/s
+s = tf('s');
+controllore = 1/s*(s+10)*(s+10)/(s+5);
+figure()
+rlocus(sys*controllore)
+figure()
+bode(sys*controllore)
+grid on
