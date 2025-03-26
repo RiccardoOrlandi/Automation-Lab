@@ -22,7 +22,7 @@ else
 end
 
 %% Scelta del test in esame
-segnale = Test_with_23V_v2;
+segnale = Test_21V;
 
 %% Costruisco filtri
 % costruisco il filtro per la corrente

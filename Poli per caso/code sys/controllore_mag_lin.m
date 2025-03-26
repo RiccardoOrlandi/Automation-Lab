@@ -14,13 +14,28 @@ G = mag_lin(u, theta);
 %       a noi interessa primo input e primo output per il controllore
 %       della posizione
 sys = G(1, 1);
-bode(sys)
-grid on
-% wc deve essere <15 rad/s
+G2 = mag_lin_corrente(u, theta);
+% bode(sys)
+% grid on
+% % wc deve essere <15 rad/s
 s = tf('s');
-controllore = 1/s*(s+10)*(s+10)/(s+5);
+% controllore = 1/s*(s+10)*(s+10)/(s+5);
+% figure()
+% rlocus(sys*controllore)
+% figure()
+% bode(sys*controllore)
+% grid on
+
 figure()
-rlocus(sys*controllore)
-figure()
-bode(sys*controllore)
+bode(G2)
 grid on
+controllore2 = 1/s*(s+200)/(s+3000)*(s+200);
+
+% *3e5
+figure()
+rlocus(G2*controllore2)
+figure()
+bode(G2*controllore2)
+grid on
+
+% rltool
