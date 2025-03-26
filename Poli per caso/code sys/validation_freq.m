@@ -6,15 +6,16 @@ clc
 addpath('function')
 add_data('\data\Sine Test');
 add_data('\data\Sine Test\18_03_2025');
+add_data('\data\Sine Test\25_03_2025');
 
 %% Model Parameters
 
-% dt = 0:0.002:Test_55Hz(1,end);
-% V = 0.15*sin(55*dt);
+% dt = 0:0.002:Test_140radS(1,end);
+% V = 0.2*sin(140*dt);
 % figure();
 % hold on;
 % plot(dt,V);
-% plot(dt,Test_55Hz(3,:));
+% plot(dt,Test_140radS(3,:));
 % grid on
 % hold off
 run('Model_Parameter.m')
@@ -217,6 +218,76 @@ results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '    
     num2str((phase2-phase1)/phase2*100) newline];
 
 
+%% Test_90radS
 
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 90;
+[mag1, phase1] = prova(0.28, 0.015, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
 disp('Tabella che mostra gli errori percentuali tra valori reali e del modello:')
 disp(results)
+
+%% Test_100radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 100;
+[mag1, phase1] = prova(0.261, 0.013, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_120radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 120;
+[mag1, phase1] = prova(0.218, 0.012, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_130radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 130;
+[mag1, phase1] = prova(0.203, 0.011, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_140radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 140;
+[mag1, phase1] = prova(0.187, 0.01, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% Test_70radS
+
+
+%validation(S_Test_wb_10V_30radS, 10, 30);
+omega = 70;
+[mag1, phase1] = prova(0.365, 0.019, omega);
+
+[mag2, phase2] = bode(sys_el, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
