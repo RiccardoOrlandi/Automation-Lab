@@ -16,12 +16,14 @@ dt = 0:0.002:C_el_10radS(1,end);
 input_voltage = 10*sin(10*dt);
 V = [dt', input_voltage'];
 
-
+T_end = dt(end);
 sim('validation_frequency_controller');
+disp(size(out.ideal_current'));
+
 figure();
 hold on;
-plot(dt,ideal_current);
-plot(dt,C_el_100radS(3,:));
+plot(dt,out.ideal_current');
+plot(dt,C_el_10radS(3,:));
 grid on
 hold off
 %% Electric Model
@@ -34,7 +36,7 @@ controller = kp + ki/s+ kd*s;
 sys_cl = feedback(controller*sys_el, 1);
 freq_max = 1000;
 f = 1:0.1:freq_max; % Vettore di frequenze lineare
-[mag,phase, omega] = bode(sys_el, f); % Calcolo del modulo e della fase
+[mag,phase, omega] = bode(sys_cl, f); % Calcolo del modulo e della fase
 
 mag = squeeze(mag);
 phase = squeeze(phase);
@@ -57,10 +59,10 @@ results = ['rad/s     err%_mag        err%_phase' newline];
 
 
 %validation(S_Test_wb_10V_30radS, 10, 30);
-omega = 30;
-[mag1, phase1] = prova(0.71, 0.031, omega);
+omega = 10;
+[mag1, phase1] = prova(1.031, 0, omega);
 
-[mag2, phase2] = bode(sys_el, omega);
+[mag2, phase2] = bode(sys_cl, omega);
 
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
     num2str((phase2-phase1)/phase2*100) newline];
@@ -71,10 +73,10 @@ results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '    
 %validation(S_Test_wb_10V_20radS, 10, 20);
 %prova(0.84, 0.033, 20)
 
-omega = 20;
-[mag1, phase1] = prova(0.84, 0.033, omega);
+omega = 40;
+[mag1, phase1] = prova(1.065, 0, omega);
 
-[mag2, phase2] = bode(sys_el, omega);
+[mag2, phase2] = bode(sys_cl, omega);
 
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
     num2str((phase2-phase1)/phase2*100) newline];
