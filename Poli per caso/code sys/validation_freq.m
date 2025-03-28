@@ -4,9 +4,9 @@ clc
 
 %%
 addpath('function')
-add_data('\data\Sine Test');
-add_data('\data\Sine Test\18_03_2025');
-add_data('\data\Sine Test\25_03_2025');
+add_data('/data/Sine Test');
+add_data('/data/Sine Test/18_03_2025');
+add_data('/data/Sine Test/25_03_2025');
 
 %% Model Parameters
 
