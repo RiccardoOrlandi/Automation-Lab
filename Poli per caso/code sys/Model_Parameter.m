@@ -2,7 +2,7 @@
 
 % other param:
 k_aero = 0;
-k_mag = 1.0461e-05; % Nm^2/A^2   assumiamo costante ma potremmo validarlo considerando  l'area calcolabile tra dai dati del datasheet
+k_mag = 1.0461e-05; % Nm^2/A^2
 m = 0.0657; % kg
 y0 = 0.0086; % m
 Rs = 1; % Ohm
