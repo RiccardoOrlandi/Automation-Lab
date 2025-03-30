@@ -8,7 +8,7 @@ run('Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri 
 
 %% Chiamata al modello per trovare l'equilibrio
 u = 15;
-% theta(2, 1) = 2e-5;
+% theta(2, 1) = 50e-6;
 G = mag_lin(u, theta);
 % restituisce un sistema G 2x1 (1 input: tensione, 2 output: posizione e corrente)
 %       a noi interessa primo input e primo output per il controllore

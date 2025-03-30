@@ -17,7 +17,7 @@ input_voltage = 10*sin(10*dt);
 V = [dt', input_voltage'];
 
 T_end = dt(end);
-sim('validation_frequency_controller');
+out = sim('validation_frequency_controller');
 disp(size(out.ideal_current'));
 
 figure();

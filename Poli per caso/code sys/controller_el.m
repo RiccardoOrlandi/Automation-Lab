@@ -16,6 +16,11 @@ sys = tf(1, [Lc Rtot]);
 kp = 46.0161;
 ki = 2117.9265;
 kd = 0;
+
+% kp = 199.4;
+% ki = 4572.3;
+% kd = 0;
+
 controller = kp + ki/s+ kd*s;
 
 sys_cl = feedback(controller*sys, 1);

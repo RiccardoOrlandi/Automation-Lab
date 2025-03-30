@@ -30,4 +30,16 @@ hold on
 plot(test(1,:)-1, test(2, :))
 grid on
 title(['Position, ', titolo])
+% hold off
+
+%% da rimuovere
+theta(2,1) = 36e-6;
+[t_FFD, x_FFD, ~ ] = FFD(Ts_FFD, Tend_FFD, x0, u, theta);
+
+% figure()
+plot(t_FFD, x_FFD(1,:))
+% hold on
+plot(test(1,:)-1, test(2, :))
+% grid on
+% title(['Position, ', titolo])
 hold off

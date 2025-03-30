@@ -220,8 +220,6 @@ omega = 70;
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
     num2str((phase2-phase1)/phase2*100) newline];
 
-
-<<<<<<< HEAD
 %% Test_90radS
 
 
@@ -233,12 +231,12 @@ omega = 90;
 
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
     num2str((phase2-phase1)/phase2*100) newline];
-=======
+
 %%
 
 
 %% nuovi valori vicino ad wc
->>>>>>> e7ab82fb3607647bc7037678411f1696c29bac53
+
 disp('Tabella che mostra gli errori percentuali tra valori reali e del modello:')
 disp(results)
 
