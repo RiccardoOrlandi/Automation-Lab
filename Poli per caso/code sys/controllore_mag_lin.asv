@@ -46,7 +46,7 @@ Gdclose = Gdclose{1};
 num_ext = [0.0204 1.4785];
 den_ext = [1 0];
 controllor_track = tf(num_ext, den_ext);
-margin(G_close*controllor_track)
+margin()
 
 %% Controllore con integratore
 num_unico = [2.3311e+03 9.5102e+04 5.9792e+05];

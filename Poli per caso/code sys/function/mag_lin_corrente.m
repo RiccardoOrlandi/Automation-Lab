@@ -20,7 +20,7 @@ function G = mag_lin_corrente(u, theta)
 
     A = [0 1;
         2*k_mag*u0^2/m*(y0-x1_eq)^(-3), 0];
-    B = [0; 2*k_mag/m*u0/(y0 - x1_eq)];
+    B = [0; 2*k_mag/m*u0/((y0 - x1_eq)^2)];
     C = [1 0];
     D = [];
 
