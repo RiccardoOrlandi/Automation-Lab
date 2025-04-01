@@ -8,7 +8,7 @@ run('Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri 
 
 %% Chiamata al modello per trovare l'equilibrio
 u = 15;
-% theta(2, 1) = 50e-6;
+theta(2, 1) = 50e-6;
 G = mag_lin(u, theta);
 % restituisce un sistema G 2x1 (1 input: tensione, 2 output: posizione e corrente)
 %       a noi interessa primo input e primo output per il controllore
@@ -74,6 +74,8 @@ figure()
 step(feedback(prova, 1))
 grid on
 
+close all
+%%
 
 kp = 46.0161;
 ki = 2117.9265;
@@ -82,3 +84,31 @@ controller = kp + ki/s+ kd*s;
 [Celnum, Celden] = tfdata(controller);
 Celnum = Celnum{1};
 Celden = Celden{1};
+
+dist = 0.001;
+
+m_sat = 23/Lc;
+t = 0: 0.001:(1/75.2);
+m_lim = [t' m_sat*t'];
+
+%% stabilizzatore
+num = [7.4435e+04 2.3393e+06];
+den = [1 56.8771];
+controller_stab = tf(num, den);
+figure()
+bode(G2*controller_stab)
+figure()
+margin(G2*controller_stab)
+figure()
+step(feedback(G2*controller_stab,1))
+%% stabilizzatore2
+close all
+num = [5.1784e+04 2.9290e+06];
+den = [1 294.9151];
+controller_stab = tf(num, den);
+figure()
+bode(G2*controller_stab)
+figure()
+margin(G2*controller_stab)
+figure()
+step(feedback(G2*controller_stab,1))

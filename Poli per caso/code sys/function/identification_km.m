@@ -33,7 +33,7 @@ title(['Position, ', titolo])
 % hold off
 
 %% da rimuovere
-theta(2,1) = 36e-6;
+theta(2,1) = 16e-6;
 [t_FFD, x_FFD, ~ ] = FFD(Ts_FFD, Tend_FFD, x0, u, theta);
 
 % figure()

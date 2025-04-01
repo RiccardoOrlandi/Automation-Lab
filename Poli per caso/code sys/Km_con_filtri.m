@@ -22,12 +22,12 @@ else
 end
 
 %% Scelta del test in esame
-segnale = Test_22_5V;
+segnale = Test_with_21_5V;
 
 %% Costruisco filtri
 % costruisco il filtro per la corrente
 polo = Rtot/Lc;
-filter = tf(polo*10, [1 polo*10]);
+filter = tf(polo*100, [1 polo*100]);
 
 filter_d = c2d(filter, 0.002, 'Turstin');
 [num, den] = tfdata(filter_d);
@@ -35,7 +35,7 @@ num = num{1};
 den = den{1};
 
 % costruisco il filtro la derivata posizione
-filter2 = tf([300, 0], [1 300]);
+filter2 = tf([700, 0], [1 700]);
 filter2_d = c2d(filter2, 0.002, 'Turstin');
 [num2, den2] = tfdata(filter2_d);
 num2 = num2{1};

@@ -4,9 +4,9 @@ clc
 
 %%
 addpath('function')
-add_data('\data\Sine Test');
-add_data('\data\Sine Test\18_03_2025');
-add_data('\data\Sine Test\25_03_2025');
+add_data('/data/Sine Test');
+add_data('/data/Sine Test/18_03_2025');
+add_data('/data/Sine Test/25_03_2025');
 
 %% Model Parameters
 
@@ -54,6 +54,55 @@ omega = 30;
 [mag1, phase1] = prova(0.71, 0.031, omega);
 
 [mag2, phase2] = bode(sys_el, omega);
+
+mag1
+mag2
+phase1
+phase2
+
+Fs = 1/0.002;            % Sampling frequency                    
+T = 1/Fs;             % Sampling period       
+L = length(S_Test_wb_10V_30radS(1, :));             % Length of signal
+t = (0:L-1)*T;        % Time vector
+Y = fft(S_Test_wb_10V_30radS(3, :));
+
+P2 = abs(Y/L);
+P1 = P2(1:L/2+1);
+P1(2:end-1) = 2*P1(2:end-1);
+f = Fs/L*(0:(L/2));
+figure()
+
+plot(f,P1,"LineWidth",3) 
+grid on
+title("Single-Sided Amplitude Spectrum of X(t)")
+xlabel("f (Hz)")
+ylabel("|P1(f)|")
+
+% fase
+y = fft(S_Test_wb_10V_30radS(3, :));
+z = fftshift(y);
+
+ly = length(y);
+f = (-ly/2:ly/2-1)/ly*Fs;
+figure()
+stem(f,abs(z))
+title("Double-Sided Amplitude Spectrum of x(t)")
+xlabel("Frequency (Hz)")
+ylabel("|y|")
+grid
+
+tol = 400;
+z(abs(z) < tol) = 0;
+
+theta = angle(z);
+
+figure()
+stem(f,theta/pi)
+title("Phase Spectrum of x(t)")
+xlabel("Frequency (Hz)")
+ylabel("Phase/\pi")
+grid
+
 
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
     num2str((phase2-phase1)/phase2*100) newline];

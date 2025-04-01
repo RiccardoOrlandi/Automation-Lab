@@ -17,6 +17,7 @@ Ts_FFD = 2e-3;
 Tend_FFD = 2;
 
 %% identification
+
 k_mag_est_21 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21V(:, 501:1001), Ts_FFD, 'Test 21V');
 u = 21.3;
 k_mag_est_21_3 = identification_km(k_mag0,x0, u, Tend_FFD, theta, Test_21_3V(:, 501:1001), Ts_FFD, 'Test_21.3V');
