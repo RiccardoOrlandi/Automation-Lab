@@ -12,24 +12,24 @@ run('Model_Parameter.m')
 kp = 46;
 ki = 2118;
 kd = 0;
-dt = 0:0.002:C_el_345radS(1,end);
-input_voltage = 10*sin(345*dt);
+dt = 0:0.002:C_el_300radS(1,end);
+input_voltage = 10*sin(300*dt);
 V = [dt', input_voltage'];
 
 T_end = dt(end);
+
 out = sim('validation_frequency_controller');
 disp(size(out.ideal_current'));
+
 
 
 figure();
 hold on;
 plot(dt, out.ideal_current);
-%plot(dt,input_voltage);
-plot(dt, out.ideal_current1);
+plot(dt,input_voltage);
 
-plot(dt,C_el_345radS(3,:));
+% plot(dt,C_el_140radS(3,:));
 grid on
-legend('saturato', 'non saturato', 'misure');
 hold off
 
 %% Electric Model
@@ -41,7 +41,8 @@ polo = Rtot/Lc;
 
 controller = kp + ki/s+ kd*s;
 
-sys_cl = feedback(controller*sys_el, 1);
+% sys_cl = feedback(controller*sys_el, 1);
+sys_cl = linsys1;
 freq_max = 1000;
 f = 1:0.1:freq_max; % Vettore di frequenze lineare
 [mag,phase, omega] = bode(sys_cl, f); % Calcolo del modulo e della fase
@@ -64,9 +65,6 @@ grid on
 
 results = ['rad/s     err%_mag        err%_phase' newline];
 %% C_el_10radS
-
-
-
 omega = 10;
 [mag1, phase1] = prova(1.031, 0.0048, omega);
 
@@ -74,7 +72,6 @@ omega = 10;
 
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
     num2str((phase2-phase1)/phase2*100) newline];
-
 
 %% C_el_20radS
 
@@ -228,3 +225,42 @@ results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '    
 
 disp('Tabella che mostra gli errori percentuali tra valori reali e del modello:')
 disp(results)
+
+
+%% C_el_140radS (blu)
+omega = 140;
+[mag1, phase1] = prova_blu(0.55, 0.0065, omega);
+
+[mag2, phase2] = bode(sys_cl, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];
+
+%% C_el_150radS (blu)
+omega = 150;
+[mag1, phase1] = prova_blu(0.52, 0.0069, omega);
+
+[mag2, phase2] = bode(sys_cl, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];%% C_el_129radS (blu)
+%% C_el_120radS (blu)
+omega = 120;
+[mag1, phase1] = prova_blu(0.62, 0.0063, omega);
+
+[mag2, phase2] = bode(sys_cl, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];%% C_el_129radS (blu)
+%% C_el_300radS (blu)
+omega = 300;
+[mag1, phase1] = prova_blu(0.24, 0.0034, omega);
+
+[mag2, phase2] = bode(sys_cl, omega);
+
+results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
+    num2str((phase2-phase1)/phase2*100) newline];%% C_el_129radS (blu)
+
+
+
+
