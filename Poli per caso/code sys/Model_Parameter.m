@@ -10,3 +10,5 @@ Rtot = 9.7585;
 Lc = 0.3708; % H
 
 theta = [k_aero, k_mag, m, y0, Rtot, Lc]';
+
+g = 9.81;
