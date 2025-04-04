@@ -5,7 +5,7 @@ clear
 %%
 run('Model_Parameter.m');
 addpath('function');
-add_data('\data\Step Test\Step Test without ball');
+add_data('/data/Step Test/Step Test without ball');
 
 
 result = '';

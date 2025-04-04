@@ -6,7 +6,7 @@ amp_dB = 20*log10(amp);
 deg = -abs(delay*omega*180/pi);
 
 figure(1)
-subplot(2,1,1)
+subplot(2,1,1)          
 hold on;
 plot(omega, amp_dB, 'rx', 'MarkerSize', 7, 'LineWidth', 1);  % Aggiungi la "X"
 hold off;

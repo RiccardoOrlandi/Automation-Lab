@@ -5,10 +5,10 @@ clc
 run('Model_Parameter.m')
 
 addpath('function')
-add_data('\data\Step Test\Step Test with ball');
-add_data('\data\Step Test\18_03_2025_v2\with ball');
-add_data('\data\Step Test\18_03_2024\with_ball');
-
+%add_data('\data\Step Test\Step Test with ball');
+%add_data('\data\Step Test\18_03_2025_v2\with ball');
+%add_data('\data\Step Test\18_03_2024\with_ball');
+add_data('/data/Step Test/04_04_2025')
 %% mostrare diversi plot
 Ts = 0.002;
 x0 = [0 0 0]';
@@ -18,80 +18,238 @@ N = Tend/0.002;
 delay = 1/0.002;
 N2 = N-delay;
 
-%% Plot per 21 V
-t = 0:0.002:(N-1)*0.002;
+%% Plot per 21_3 V
+t = 0:0.002:(N-1)*0.002; % Vettore dei tempi
+u = 21.3;
+soglia = 0.5e-3; % Soglia per trovare il punto di scalino
+
+% Trova l'indice del primo valore che supera la soglia nei dati sperimentali
+indice_scalino = find(T21_3V(2,:) > soglia, 1, 'first');
+
+% Simulazione del modello
+[tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
+
+% Trova l'indice dello scalino nei dati del modello
+indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
+
+% Traslazione del tempo per allineare gli scalini a t=0
+t_exp = t(indice_scalino:indice_scalino+300) - t(indice_scalino);
+t_mod = t(indice_scalino2:indice_scalino2+300) - t(indice_scalino2);
+
+% Plot dei risultati sincronizzati
+figure();
+hold on;
+plot(t_exp, T21_3V(2, indice_scalino:indice_scalino+300), 'b-', 'LineWidth', 1);
+plot(t_mod, y(2, indice_scalino2:indice_scalino2+300), 'r--', 'LineWidth', 1);
+grid on;
+title('Position (21.3V) - Segnali Sincronizzati');
+legend('Test 21.3V', 'Modello');
+xlabel('Tempo rispetto al punto di scalino [s]');
+ylabel('Posizione');
+hold off;
+%% Plot per 21.6V con sincronizzazione
+t = 0:0.002:(N-1)*0.002; % Vettore dei tempi
+u = 21.6;
+soglia = 0.5e-3; % Soglia per trovare il punto di scalino
+
+% Trova l'indice del primo valore che supera la soglia nei dati sperimentali
+indice_scalino = find(T21_6V(2,:) > soglia, 1, 'first');
+
+% Simulazione del modello
+[tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
+
+% Trova l'indice dello scalino nei dati del modello
+indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
+
+% Traslazione del tempo per allineare gli scalini a t=0
+t_exp = t(indice_scalino:indice_scalino+300) - t(indice_scalino);
+t_mod = t(indice_scalino2:indice_scalino2+300) - t(indice_scalino2);
+
+% Plot dei risultati sincronizzati
+figure();
+hold on;
+plot(t_exp, T21_6V(2, indice_scalino:indice_scalino+300), 'b-', 'LineWidth', 1);
+plot(t_mod, y(2, indice_scalino2:indice_scalino2+300), 'r--', 'LineWidth', 1);
+grid on;
+title('Position (21.6V) - Segnali Sincronizzati');
+legend('Test 21.6V', 'Modello');
+xlabel('Tempo rispetto al punto di scalino [s]');
+ylabel('Posizione');
+hold off;
+
+
+%% Plot per 22.5 V
+t = 0:0.002:(N-1)*0.002; % Vettore dei tempi
+u = 22.5;
+soglia = 0.5e-3; % Soglia per trovare il punto di scalino
+
+% Trova l'indice del primo valore che supera la soglia nei dati sperimentali
+indice_scalino = find(T22_5V(2,:) > soglia, 1, 'first');
+
+% Simulazione del modello
+[tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
+
+% Trova l'indice dello scalino nei dati del modello
+indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
+
+% Traslazione del tempo per allineare gli scalini a t=0
+t_exp = t(indice_scalino:indice_scalino+300) - t(indice_scalino);
+t_mod = t(indice_scalino2:indice_scalino2+300) - t(indice_scalino2);
+
+% Plot dei risultati sincronizzati
+figure();
+hold on;
+plot(t_exp, T22_5V(2, indice_scalino:indice_scalino+300), 'b-', 'LineWidth', 1);
+plot(t_mod, y(2, indice_scalino2:indice_scalino2+300), 'r--', 'LineWidth', 1);
+grid on;
+title('Position (22.5V) - Segnali Sincronizzati');
+legend('Test 22.5V', 'Modello');
+xlabel('Tempo rispetto al punto di scalino [s]');
+ylabel('Posizione');
+hold off;
+
+%% Plot per 22 V
+t = 0:0.002:(N-1)*0.002; % Vettore dei tempi
+u = 22;
+soglia = 0.5e-3; % Soglia per trovare il punto di scalino
+
+% Trova l'indice del primo valore che supera la soglia nei dati sperimentali
+indice_scalino = find(T22V_v2(2,:) > soglia, 1, 'first');
+
+% Simulazione del modello
+[tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
+
+% Trova l'indice dello scalino nei dati del modello
+indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
+
+% Traslazione del tempo per allineare gli scalini a t=0
+t_exp = t(indice_scalino:indice_scalino+300) - t(indice_scalino);
+t_mod = t(indice_scalino2:indice_scalino2+300) - t(indice_scalino2);
+
+% Plot dei risultati sincronizzati
+figure();
+hold on;
+plot(t_exp, T22V_v2(2, indice_scalino:indice_scalino+300), 'b-', 'LineWidth', 1);
+plot(t_mod, y(2, indice_scalino2:indice_scalino2+300), 'r--', 'LineWidth', 1);
+grid on;
+title('Position (22V) - Segnali Sincronizzati');
+legend('Test 22V', 'Modello');
+xlabel('Tempo rispetto al punto di scalino [s]');
+ylabel('Posizione');
+hold off;
+%% Plot per T21V_v2 V
+t = 0:0.002:(N-1)*0.002; % Vettore dei tempi
 u = 21;
+soglia = 0.5e-3; % Soglia per trovare il punto di scalino
+
+% Trova l'indice del primo valore che supera la soglia nei dati sperimentali
+indice_scalino = find(T21V_v2(2,:) > soglia, 1, 'first');
+
+% Simulazione del modello
 [tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
 
-figure()
-plot(t, Test_21V(2, 1:N))
-hold on
-plot(t, Test_21V_v(2, 1:N))
-plot(t, Test_with_21V_v2(2, 1:N))
+% Trova l'indice dello scalino nei dati del modello
+indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
 
-plot(t(delay+1:end), y(2, 1:N2))
-grid on
-title('Position (21V)')
-legend('Test 21V','Test 21V v', 'Test with 21V v2', 'modello')
-hold off
+% Traslazione del tempo per allineare gli scalini a t=0
+t_exp = t(indice_scalino:indice_scalino+300) - t(indice_scalino);
+t_mod = t(indice_scalino2:indice_scalino2+300) - t(indice_scalino2);
 
-%% Plot per 23 V
+% Plot dei risultati sincronizzati
+figure();
+hold on;
+plot(t_exp, T21V_v2(2, indice_scalino:indice_scalino+300), 'b-', 'LineWidth', 1);
+plot(t_mod, y(2, indice_scalino2:indice_scalino2+300), 'r--', 'LineWidth', 1);
+grid on;
+title('Position (22V) - Segnali Sincronizzati');
+legend('Test 22V', 'Modello');
+xlabel('Tempo rispetto al punto di scalino [s]');
+ylabel('Posizione');
+hold off;
+%% Plot per T21V_v3 V
+t = 0:0.002:(N-1)*0.002; % Vettore dei tempi
+u = 21;
+soglia = 0.5e-3; % Soglia per trovare il punto di scalino
 
-t = 0:0.002:(N-1)*0.002;
-u = 23;
+% Trova l'indice del primo valore che supera la soglia nei dati sperimentali
+indice_scalino = find(T21V_v3(2,:) > soglia, 1, 'first');
+
+% Simulazione del modello
 [tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
 
-figure()
-plot(t, Test_23V(2, 1:N))
-hold on
-plot(t, Test_23V_v(2, 1:N))
-plot(t, Test_with_23V_v2(2, 1:N))
-plot(t(delay+1:end), y(2, 1:N2))
-grid on
-title('Position (23V)')
-legend('Test 23V','Test 23V v', 'Test with 23V v2', 'modello')
-hold off
+% Trova l'indice dello scalino nei dati del modello
+indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
 
+% Traslazione del tempo per allineare gli scalini a t=0
+t_exp = t(indice_scalino:indice_scalino+300) - t(indice_scalino);
+t_mod = t(indice_scalino2:indice_scalino2+300) - t(indice_scalino2);
 
+% Plot dei risultati sincronizzati
+figure();
+hold on;
+plot(t_exp, T21V_v3(2, indice_scalino:indice_scalino+300), 'b-', 'LineWidth', 1);
+plot(t_mod, y(2, indice_scalino2:indice_scalino2+300), 'r--', 'LineWidth', 1);
+grid on;
+title('Position (21V) - Segnali Sincronizzati');
+legend('Test 21V', 'Modello');
+xlabel('Tempo rispetto al punto di scalino [s]');
+ylabel('Posizione');
+hold off;
+%% Plot per T21V_v2 V
+t = 0:0.002:(N-1)*0.002; % Vettore dei tempi
+u = 21;
+soglia = 0.5e-3; % Soglia per trovare il punto di scalino
 
-%% subplot 2
-t = 0:0.002:(N-1)*0.002;
-modello3 = zeros(1, N2);
-u =22.5;
-[tvec, x, y] = FFD(Ts, Tend, x0, u, theta);
+% Trova l'indice del primo valore che supera la soglia nei dati sperimentali
+indice_scalino = find(T21V_v2(2,:) > soglia, 1, 'first');
 
-figure()
-subplot(3, 1, 1)
-plot(t, Test_22_5V(2, 1:N))
-hold on
-plot(t, Test_with_22_5V(2, 1:N))
-plot(t(delay+1:end), y(2, 1:N2))
-legend('Test 22 5V', 'Test with 22 5V',  'modello22.5')
-grid on
-hold off
+% Simulazione del modello
+[tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
 
-u = 21.5;
-modello6 = zeros(1, N2);
-[tvec, x, y] = FFD(Ts, Tend, x0, u, theta);
+% Trova l'indice dello scalino nei dati del modello
+indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
 
-subplot(3, 1, 2)
-plot(t, Test_with_21_5V(2, 1:N))
-hold on
-plot(t(delay+1:end), y(2, 1:N2))
-legend('Test with 21 5V', 'modello21.5')
-grid on
-hold off
+% Traslazione del tempo per allineare gli scalini a t=0
+t_exp = t(indice_scalino:indice_scalino+300) - t(indice_scalino);
+t_mod = t(indice_scalino2:indice_scalino2+300) - t(indice_scalino2);
 
+% Plot dei risultati sincronizzati
+figure();
+hold on;
+plot(t_exp, T21V_v2(2, indice_scalino:indice_scalino+300), 'b-', 'LineWidth', 1);
+plot(t_mod, y(2, indice_scalino2:indice_scalino2+300), 'r--', 'LineWidth', 1);
+grid on;
+title('Position (22V) - Segnali Sincronizzati');
+legend('Test 22V', 'Modello');
+xlabel('Tempo rispetto al punto di scalino [s]');
+ylabel('Posizione');
+hold off;
+%% Plot per T21V_v4 V
+t = 0:0.002:(N-1)*0.002; % Vettore dei tempi
+u = 21;
+soglia = 0.5e-3; % Soglia per trovare il punto di scalino
 
+% Trova l'indice del primo valore che supera la soglia nei dati sperimentali
+indice_scalino = find(T21V_v4(2,:) > soglia, 1, 'first');
 
-u = 21.9;
-modello19 = zeros(1, N2);
-[tvec, x, y] = FFD(Ts, Tend, x0, u, theta);
-subplot(3, 1, 3)
+% Simulazione del modello
+[tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
+s
+% Trova l'indice dello scalino nei dati del modello
+indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
 
-hold on
-plot(t, Test_21_9V(2, 1:N))
-plot(t(delay+1:end), y(2, 1:N2))
-legend('Test 21 9V', 'modello21.9')
-grid on
-hold off
+% Traslazione del tempo per allineare gli scalini a t=0
+t_exp = t(indice_scalino:indice_scalino+300) - t(indice_scalino);
+t_mod = t(indice_scalino2:indice_scalino2+300) - t(indice_scalino2);
+
+% Plot dei risultati sincronizzati
+figure();
+hold on;
+plot(t_exp, T21V_v4(2, indice_scalino:indice_scalino+300), 'b-', 'LineWidth', 1);
+plot(t_mod, y(2, indice_scalino2:indice_scalino2+300), 'r--', 'LineWidth', 1);
+grid on;
+title('Position (21V) - Segnali Sincronizzati');
+legend('Test 21V', 'Modello');
+xlabel('Tempo rispetto al punto di scalino [s]');
+ylabel('Posizione');
+hold off;

@@ -96,5 +96,5 @@ disp(L_estimates);
 disp('Costanti di tempo Tau (s):');
 disp(taus);
 
-R_mean = mean([R_tot_estimates(1), R_tot_estimates(2),R_tot_estimates(3)]);
+R_mean = mean([R_tot_estimates(1), R_tot_estimates(2),R_tot_estimates(3)]); % con 15V,18V,21V
 L_mean = mean([L_estimates(1), L_estimates(2),L_estimates(3)]);
