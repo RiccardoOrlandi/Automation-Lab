@@ -2,6 +2,7 @@ clear all
 close all
 clc
 
+addpath('function');
 run('Model_Parameter.m')
 %% OFFSET CORRENTE
 % Calcolo offset misura di corrente (valori senza palla e quando tensione
@@ -67,5 +68,5 @@ media3 = mean([media_22_5V, media_21_5V,media_23V_v , media_21V_v]);
 
 media = mean([media1, media2, media3]);
 
-Kb = 0.0086 /  (media - offset_posizione);
+Kb = y0 /  (media - offset_posizione);
 
