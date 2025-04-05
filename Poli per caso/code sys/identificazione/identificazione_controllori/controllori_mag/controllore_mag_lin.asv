@@ -1,0 +1,62 @@
+clear
+close all
+clc
+
+%%
+addpath('function');
+run('Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+
+%% Linearizzazione all'equilibrio
+u = 15;
+
+G2 = mag_lin_corrente(u, theta);
+[Gnum, Gden] = tfdata(G2);
+Gnum = Gnum{1};
+Gden = Gden{1};
+
+%% Controllore Elettrico
+s = tf('s');
+kp = 46.0161;
+ki = 2117.9265;
+kd = 0;
+controller = kp + ki/s+ kd*s;
+[Celnum, Celden] = tfdata(controller);
+Celnum = Celnum{1};
+Celden = Celden{1};
+
+dist = 0.001;
+
+%% Stabilizzatore
+num = [1.3350e+03 1.1747e+05];
+den = [1 437.9395];
+controller_stab = tf(num, den);
+figure()
+bode(G2*controller_stab)
+figure()
+margin(G2*controller_stab)
+figure()
+step(feedback(G2*controller_stab,1))
+
+% reference tracking
+
+G_close = feedback(G2*controller_stab,1);
+[Gnclose, Gdclose] = tfdata(G_close);
+Gnclose = Gnclose{1};
+Gdclose = Gdclose{1};
+num_ext = [0.0204 1.4785];
+den_ext = [1 0];
+controllor_track = tf(num_ext, den_ext);
+margin()
+
+%% Controllore con integratore
+num_unico = [2.3311e+03 9.5102e+04 5.9792e+05];
+den_unico = [1 238.5202 0];
+controller_stab2 = tf(num_unico, den_unico);
+figure()
+bode(G2*controller_stab2)
+figure()
+margin(G2*controller_stab2)
+figure()
+step(feedback(G2*controller_stab2,1))
+
+
