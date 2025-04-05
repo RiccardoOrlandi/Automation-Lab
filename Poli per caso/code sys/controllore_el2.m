@@ -1,0 +1,56 @@
+clc
+clear
+close all
+
+%%
+run('Model_Parameter.m')
+
+%% controllore del circuito elettrico
+
+s = tf('s');
+polo = Rtot/Lc;
+tau = 1/polo;
+sys = tf(1, [Lc Rtot]);
+
+%% primo test: wc=130rad;pm=80,
+kp = 0.15;
+ki = 104;
+kd = 0;
+controller = kp + ki/s+ kd*s;
+
+sys_cl = feedback(controller*sys, 1);
+
+rlocus(sys_cl);
+
+figure()
+step(sys_cl)
+hold on
+step(sys)
+grid on
+legend('cl', 'ol')
+hold off
+
+figure()
+hold on
+bode(sys*controller);
+margin(sys*controller);
+grid on 
+hold off
+
+figure()
+hold on
+bode(sys)
+legend('Anello aperto');
+grid on
+margin(sys)
+hold off
+
+figure()
+hold on
+bode(sys_cl)
+legend('Anello chiuso');
+grid on
+%eig(sys_cl)
+
+margin(sys_cl)
+hold off
