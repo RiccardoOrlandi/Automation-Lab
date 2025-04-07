@@ -2,9 +2,10 @@ clear all
 close all
 clc
 
-<<<<<<< HEAD:Poli per caso/code sys/identificazione/identificazione_parametri/sensori/trova_offset_kb.m
+
 %per Windows
 run('..\..\..\Model_Parameter.m')
+addpath('..\..\..\function')
 add_data_volt('..\..\..\data\Step Test\Step Test without ball');
 add_data_volt('..\..\..\data\Step Test\18_03_2024\without_ball');
 add_data_volt('..\..\..\data\Step Test\18_03_2025_v2\without ball');
@@ -17,6 +18,7 @@ add_data_volt('..\..\..\data\Step Test\18_03_2024\with_ball');
 
 %per Mac
 %run('../../../Model_Parameter.m')
+%addpath('../../../function')
 % add_data_volt('../../../data/Step Test/Step Test without ball');
 % add_data_volt('../../../data/Step Test/18_03_2024/without_ball');
 % add_data_volt('../../../data/Step Test/18_03_2025_v2/without ball');
@@ -27,10 +29,9 @@ add_data_volt('..\..\..\data\Step Test\18_03_2024\with_ball');
 % add_data_volt('../../../data/Step Test/18_03_2025_v2/with ball');
 % add_data_volt('../../../data/Step Test/18_03_2024/with_ball');
 
-=======
-addpath('function');
-run('Model_Parameter.m')
->>>>>>> d7bf046bcb8d8109c3bff90ff3c3bf5de4f6894d:Poli per caso/code sys/trova_offset_kb.m
+
+
+
 %% OFFSET CORRENTE
 % Calcolo offset misura di corrente (valori senza palla e quando tensione
 % nulla (primo secondo di ogni test, ovvero primi 500 dati)
@@ -94,7 +95,4 @@ media3 = mean([media_22_5V, media_21_5V,media_23V_v , media_21V_v]);
 media = mean([media1, media2, media3]);
 
 Kb = y0 /  (media - offset_posizione);
-<<<<<<< HEAD:Poli per caso/code sys/identificazione/identificazione_parametri/sensori/trova_offset_kb.m
-=======
 
->>>>>>> d7bf046bcb8d8109c3bff90ff3c3bf5de4f6894d:Poli per caso/code sys/trova_offset_kb.m
