@@ -1,7 +1,6 @@
-function [amp, deg] = prova(amp, delay, omega)
+function [amp, deg] = prova(amp, delay, omega, R)
 
-run('Model_Parameter.m')
-amp=(amp*Rtot)/10;
+amp=(amp*R)/10;
 amp_dB = 20*log10(amp);
 deg = -abs(delay*omega*180/pi);
 
