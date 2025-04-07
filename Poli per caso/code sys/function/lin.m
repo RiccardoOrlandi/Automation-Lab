@@ -22,7 +22,7 @@ function [G, A, B, C, D] = lin(u, theta)
     B = [0; 1/Lc; 0];
     C = [1 0 0;
         0 1 0];
-    D = 0;
+    D = [0;0];
 
     % Funzione di trasferimento
     sys = ss(A, B, C, D);
