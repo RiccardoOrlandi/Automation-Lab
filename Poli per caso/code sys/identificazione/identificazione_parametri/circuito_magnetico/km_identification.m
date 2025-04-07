@@ -4,18 +4,19 @@ clc
 
 %%
 %per Windows
-addpath('..\..\..\function');
-add_data('..\..\..\data\Step Test\Step Test with ball')
-add_data('..\..\..\data\Step Test\Step Test without ball')
-
-run('..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+% addpath('..\..\..\function');
+% add_data('..\..\..\data\Step Test\Step Test with ball')
+% add_data('..\..\..\data\Step Test\Step Test without ball')
+% 
+% run('..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
 
 %per Mac
-% addpath('../../../function');
-% add_data('../../../data/Step Test/Step Test with ball')
-% add_data('../../../data/Step Test/Step Test without ball')
-% 
-% run('../../../Model_Parameter.m')
+addpath('../../../function');
+add_data('../../../data/Step Test/Step Test with ball')
+add_data('../../../data/Step Test/Step Test without ball')
+add_data('../../../data/Step Test/04_04_2025')
+
+run('../../../Model_Parameter.m')
 %% identification parameter
 x0 = [0, 0, 0]';
 k_mag0 = 6.5308e-5;

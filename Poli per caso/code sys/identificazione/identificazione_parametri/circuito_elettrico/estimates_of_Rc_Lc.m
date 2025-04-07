@@ -5,16 +5,16 @@ close all;
 Rs = 1; % Ohm
 
 %per Windows 
-addpath('..\..\..\function');
-add_data('..\..\..\data\Step Test\Step Test without ball');
-add_data('..\..\..\data\Step Test\18_03_2024\without_ball');
-add_data('..\..\..\data\Step Test\18_03_2024\with_ball');
+% addpath('..\..\..\function');
+% add_data('..\..\..\data\Step Test\Step Test without ball');
+% add_data('..\..\..\data\Step Test\18_03_2024\without_ball');
+% add_data('..\..\..\data\Step Test\18_03_2024\with_ball');
 
 %per Mac
-% addpath('../../../function');
-% add_data('../../../data/Step Test/Step Test without ball');
-% add_data('../../../data/Step Test/18_03_2024/without_ball');
-% add_data('../../../data/Step Test/18_03_2024/with_ball');
+addpath('../../../function');
+add_data('../../../data/Step Test/Step Test without ball');
+add_data('../../../data/Step Test/18_03_2024/without_ball');
+add_data('../../../data/Step Test/18_03_2024/with_ball');
 
 % Estrazione dei dati e rimozione dell'offset
 % t1 = Test_wb_3V(1,:);

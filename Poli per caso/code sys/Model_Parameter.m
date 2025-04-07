@@ -2,7 +2,7 @@
 
 % other param:
 k_aero = 0;
-k_mag = 2.4405e-05; % Nm^2/A^2
+k_mag = 9e-05;%2.4405e-05; % Nm^2/A^2
 m = 0.0657; % kg
 y0 = 0.012; % m
 Rs = 1; % Ohm
