@@ -4,26 +4,26 @@ clc
 
 %%
 %per Windows
-addpath('..\..\function');
-add_data('..\..\data\Step Test\Step Test with ball')
-add_data('..\..\data\Step Test\Step Test without ball')
-add_data('..\..\data\Step Test\18_03_2024\with_ball')
-add_data('..\..\data\Step Test\18_03_2024\without_ball')
-add_data('..\..\data\Step Test\18_03_2025_v2\with_ball')
-add_data('..\..\data\Step Test\18_03_2025_v2\without_ball')
-add_data('..\..\data\Step Test\04_04_2025')
-run('..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+% addpath('..\..\function');
+% add_data('..\..\data\Step Test\Step Test with ball')
+% add_data('..\..\data\Step Test\Step Test without ball')
+% add_data('..\..\data\Step Test\18_03_2024\with_ball')
+% add_data('..\..\data\Step Test\18_03_2024\without_ball')
+% add_data('..\..\data\Step Test\18_03_2025_v2\with_ball')
+% add_data('..\..\data\Step Test\18_03_2025_v2\without_ball')
+% add_data('..\..\data\Step Test\04_04_2025')
+% run('..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
 
 %per Mac
-% addpath('../../function');
-% add_data('../../data/Step Test/Step Test with ball')
-% add_data('../../data/Step Test/Step Test without ball')
-% add_data('../../data/Step Test/18_03_2024/with_ball')
-% add_data('../../data/Step Test/18_03_2024/without_ball')
-% add_data('../../data/Step Test/18_03_2025_v2/with_ball')
-% add_data('../../data/Step Test/18_03_2025_v2/without_ball')
-% add_data('../../data/Step Test/04_04_2025')
-%run('../../Model_Parameter.m')
+addpath('../../function');
+add_data('../../data/Step Test/Step Test with ball')
+add_data('../../data/Step Test/Step Test without ball')
+add_data('../../data/Step Test/18_03_2024/with_ball')
+add_data('../../data/Step Test/18_03_2024/without_ball')
+add_data('../../data/Step Test/18_03_2025_v2/with_ball')
+add_data('../../data/Step Test/18_03_2025_v2/without_ball')
+add_data('../../data/Step Test/04_04_2025')
+run('../../Model_Parameter.m')
 
 %% Numerical Integration
 t0 = 0;
@@ -62,11 +62,9 @@ title('Current')
 
 modello= zeros(1, length(Test_21V));
 for i = 1:length(Test_21V)
-    modello(1, i) = 21/Rtot*(1-exp(1)^(-(Rtot/Lc)*Test_21V(1, i)));
+    modello(1, i) = u/Rtot*(1-exp(1)^(-(Rtot/Lc)*Test_21V(1, i)));
 end
 plot(Test_21V(1, :)+1, modello(1, :))
-
-
 plot(Test_wb_21V(1, :), Test_wb_21V(3, :))
 
 legend('ideal FFD','real with ball', 'ideal exact', 'real without ball');

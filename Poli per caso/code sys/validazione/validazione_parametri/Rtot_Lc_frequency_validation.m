@@ -4,18 +4,18 @@ clc
 
 %%
 %per Windows 
-addpath('..\..\function')
-add_data('..\..\data\Sine Test\precedenti');
-add_data('..\..\data\Sine Test\18_03_2025');
-add_data('..\..\data\Sine Test\25_03_2025');
-run('..\..\Model_Parameter.m')
+% addpath('..\..\function')
+% add_data('..\..\data\Sine Test\precedenti');
+% add_data('..\..\data\Sine Test\18_03_2025');
+% add_data('..\..\data\Sine Test\25_03_2025');
+% run('..\..\Model_Parameter.m')
 
 %per Mac
-% addpath('../../function')
-% add_data('../../data/Sine Test/precedenti');
-% add_data('../../data/Sine Test/18_03_2025');
-% add_data('../../data/Sine Test/25_03_2025');
-%run('../../Model_Parameter.m')
+addpath('../../function')
+add_data('../../data/Sine Test/precedenti');
+add_data('../../data/Sine Test/18_03_2025');
+add_data('../../data/Sine Test/25_03_2025');
+run('../../Model_Parameter.m')
 
 %% Model Parameters
 

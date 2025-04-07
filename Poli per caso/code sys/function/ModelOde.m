@@ -7,7 +7,7 @@ function [tvec, x_out, y_out] = ModelOde(Ts, Tend, x0, u, theta)
 
     % Risoluzione ODE
     opts = odeset('RelTol',1e-6, 'AbsTol',1e-8);
-    [T, X] = ode45(@(t,x) dynWrapper(t, x, u, theta, y0), tvec, x0, opts);
+    [T, X] = ode15s(@(t,x) dynWrapper(t, x, u, theta, y0), tvec, x0, opts);
 
     % Valori finali
     x_out = X';
