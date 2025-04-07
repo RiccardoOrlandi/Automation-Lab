@@ -4,14 +4,14 @@ clc
 
 %%
 %per Windows 
-addpath('..\..\..\function')
-add_data_volt('..\..\..\data\test_controllore\controllore_el\controllore_lento\Sine_test\04_04_2025');
-run('..\..\..\Model_Parameter.m')
+% addpath('..\..\..\function')
+% add_data_volt('..\..\..\data\test_controllore\controllore_el\controllore_lento\Sine_test\04_04_2025');
+% run('..\..\..\Model_Parameter.m')
 
 %per Mac
-%addpath('../../../function')
-%add_data_volt('../../../data/test_controllore/controllore_el/controllore_lento/Sine_test/04_04_2025');
-%run('../../../Model_Parameter.m')
+addpath('../../../function')
+add_data_volt('../../../data/test_controllore/controllore_el/controllore_lento/Sine_test/04_04_2025');
+run('../../../Model_Parameter.m')
 %% Model Parameters
 
 kp = 0.15;

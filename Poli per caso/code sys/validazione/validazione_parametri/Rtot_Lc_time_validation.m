@@ -3,24 +3,24 @@ close all
 clc
 
 %per Windows 
-run('..\..\Model_Parameter.m')
-
-add_data('..\..\data\Step Test\Step Test without ball');
-add_data('..\..\data\Step Test\Step Test with ball');
-add_data('..\..\data\Step Test\18_03_2025_v2\without ball');
-add_data('..\..\data\Step Test\18_03_2025_v2\with ball');
-add_data('..\..\data\Step Test\18_03_2024\without_ball');
-add_data('..\..\data\Step Test\18_03_2024\with_ball');
+% run('..\..\Model_Parameter.m')
+% 
+% add_data('..\..\data\Step Test\Step Test without ball');
+% add_data('..\..\data\Step Test\Step Test with ball');
+% add_data('..\..\data\Step Test\18_03_2025_v2\without ball');
+% add_data('..\..\data\Step Test\18_03_2025_v2\with ball');
+% add_data('..\..\data\Step Test\18_03_2024\without_ball');
+% add_data('..\..\data\Step Test\18_03_2024\with_ball');
 
 %per Mac
-% run('../../Model_Parameter.m')
-% 
-% add_data('../../data/Step Test/Step Test without ball');
-% add_data('../../data/Step Test/Step Test with ball');
-% add_data('../../data/Step Test/18_03_2025_v2/without ball');
-% add_data('../../data/Step Test/18_03_2025_v2/with ball');
-% add_data('../../data/Step Test/18_03_2024/without_ball');
-% add_data('../../data/Step Test/18_03_2024/with_ball');
+run('../../Model_Parameter.m')
+
+add_data('../../data/Step Test/Step Test without ball');
+add_data('../../data/Step Test/Step Test with ball');
+add_data('../../data/Step Test/18_03_2025_v2/without ball');
+add_data('../../data/Step Test/18_03_2025_v2/with ball');
+add_data('../../data/Step Test/18_03_2024/without_ball');
+add_data('../../data/Step Test/18_03_2024/with_ball');
 
 %% mostrare diversi plot
 tend = 2;

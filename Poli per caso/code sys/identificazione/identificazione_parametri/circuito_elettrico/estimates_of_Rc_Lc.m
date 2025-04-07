@@ -5,16 +5,16 @@ close all;
 Rs = 1; % Ohm
 
 %per Windows 
-addpath('..\..\..\function');
-add_data('..\..\..\data\Step Test\Step Test without ball');
-add_data('..\..\..\data\Step Test\18_03_2024\without_ball');
-add_data('..\..\..\data\Step Test\18_03_2024\with_ball');
+% addpath('..\..\..\function');
+% add_data('..\..\..\data\Step Test\Step Test without ball');
+% add_data('..\..\..\data\Step Test\18_03_2024\without_ball');
+% add_data('..\..\..\data\Step Test\18_03_2024\with_ball');
 
 %per Mac
-% addpath('../../../function');
-% add_data('../../../data/Step Test/Step Test without ball');
-% add_data('../../../data/Step Test/18_03_2024/without_ball');
-% add_data('../../../data/Step Test/18_03_2024/with_ball');
+addpath('../../../function');
+add_data('../../../data/Step Test/Step Test without ball');
+add_data('../../../data/Step Test/18_03_2024/without_ball');
+add_data('../../../data/Step Test/18_03_2024/with_ball');
 
 % Estrazione dei dati e rimozione dell'offset
 % t1 = Test_wb_3V(1,:);
@@ -103,4 +103,8 @@ disp('Costanti di tempo Tau (s):');
 disp(taus);
 
 R_mean = mean([R_tot_estimates(1), R_tot_estimates(2),R_tot_estimates(3)]); % con 15V,18V,21V
+<<<<<<< HEAD:Poli per caso/code sys/identificazione/identificazione_parametri/circuito_elettrico/estimates_of_Rc_Lc.m
 L_mean = mean([L_estimates(1), L_estimates(2),L_estimates(3)]);
+=======
+L_mean = mean([L_estimates(1), L_estimates(2),L_estimates(3)]);
+>>>>>>> d7bf046bcb8d8109c3bff90ff3c3bf5de4f6894d:Poli per caso/code sys/estimates_of_Rc_Lc.m

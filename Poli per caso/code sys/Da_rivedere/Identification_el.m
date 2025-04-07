@@ -3,10 +3,16 @@ close all
 clear
 
 %%
+<<<<<<< HEAD:Poli per caso/code sys/Da_rivedere/Identification_el.m
 %per Windows
 run('..\Model_Parameter.m');
 addpath('..\function');
 add_data('..\data\Step Test\Step Test without ball');
+=======
+run('Model_Parameter.m');
+addpath('function');
+add_data('/data/Step Test/Step Test without ball');
+>>>>>>> d7bf046bcb8d8109c3bff90ff3c3bf5de4f6894d:Poli per caso/code sys/Identification_el.m
 
 %per Mac
 % run('../Model_Parameter.m');

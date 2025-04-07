@@ -3,22 +3,22 @@ close all
 clc
 
 %per Windows
-run('..\..\Model_Parameter.m')
-
-addpath('..\..\function')
-add_data('..\..\data\Step Test\Step Test with ball');
-add_data('..\..\data\Step Test\18_03_2025_v2\with ball');
-add_data('..\..\data\Step Test\18_03_2024\with_ball');
-add_data('..\..\data\Step Test\04_04_2025')
+% run('..\..\Model_Parameter.m')
+% 
+% addpath('..\..\function')
+% add_data('..\..\data\Step Test\Step Test with ball');
+% add_data('..\..\data\Step Test\18_03_2025_v2\with ball');
+% add_data('..\..\data\Step Test\18_03_2024\with_ball');
+% add_data('..\..\data\Step Test\04_04_2025')
 
 %per Mac
-% run('../../Model_Parameter.m')
-% 
-% addpath('../../function')
-% add_data('../../data/Step Test/Step Test with ball');
-% add_data('../../data/Step Tes/18_03_2025_v2/with ball');
-% add_data('../../data/Step Test/18_03_2024/with_ball');
-%add_data('../../data/Step Test/04_04_2025')
+run('../../Model_Parameter.m')
+
+addpath('../../function')
+add_data('../../data/Step Test/Step Test with ball');
+add_data('../../data/Step Test/18_03_2025_v2/with ball');
+add_data('../../data/Step Test/18_03_2024/with_ball');
+add_data('../../data/Step Test/04_04_2025')
 
 %% mostrare diversi plot
 Ts = 0.002;
@@ -245,7 +245,6 @@ indice_scalino = find(T21V_v4(2,:) > soglia, 1, 'first');
 
 % Simulazione del modello
 [tvec, x, y] = FFD(Ts, Tend-1, x0, u, theta);
-s
 % Trova l'indice dello scalino nei dati del modello
 indice_scalino2 = find(y(2,:) > soglia, 1, 'first');
 

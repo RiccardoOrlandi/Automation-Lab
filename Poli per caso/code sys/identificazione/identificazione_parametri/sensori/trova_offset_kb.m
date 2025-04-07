@@ -2,8 +2,10 @@ clear all
 close all
 clc
 
+
 %per Windows
 run('..\..\..\Model_Parameter.m')
+addpath('..\..\..\function')
 add_data_volt('..\..\..\data\Step Test\Step Test without ball');
 add_data_volt('..\..\..\data\Step Test\18_03_2024\without_ball');
 add_data_volt('..\..\..\data\Step Test\18_03_2025_v2\without ball');
@@ -16,6 +18,7 @@ add_data_volt('..\..\..\data\Step Test\18_03_2024\with_ball');
 
 %per Mac
 %run('../../../Model_Parameter.m')
+%addpath('../../../function')
 % add_data_volt('../../../data/Step Test/Step Test without ball');
 % add_data_volt('../../../data/Step Test/18_03_2024/without_ball');
 % add_data_volt('../../../data/Step Test/18_03_2025_v2/without ball');
@@ -25,6 +28,9 @@ add_data_volt('..\..\..\data\Step Test\18_03_2024\with_ball');
 % add_data_volt('../../../data/Step Test/Step Test with ball');
 % add_data_volt('../../../data/Step Test/18_03_2025_v2/with ball');
 % add_data_volt('../../../data/Step Test/18_03_2024/with_ball');
+
+
+
 
 %% OFFSET CORRENTE
 % Calcolo offset misura di corrente (valori senza palla e quando tensione
@@ -89,3 +95,4 @@ media3 = mean([media_22_5V, media_21_5V,media_23V_v , media_21V_v]);
 media = mean([media1, media2, media3]);
 
 Kb = y0 /  (media - offset_posizione);
+
