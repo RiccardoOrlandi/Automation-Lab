@@ -1,6 +1,12 @@
 clear all 
 close all
 
+%per Windows
+addpath('..\..\..\function')
+add_data('..\..\..\data/Step test/04_04_2025');
+run('..\..\..\Model_Parameter.m')
+
+%per Mac
 addpath('../../../function')
 add_data('../../../data/Step test/04_04_2025');
 run('../../../Model_Parameter.m')
