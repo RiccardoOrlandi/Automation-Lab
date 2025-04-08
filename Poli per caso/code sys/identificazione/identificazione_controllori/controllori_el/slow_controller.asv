@@ -24,14 +24,15 @@ kd = 0;
 controller = kp + ki/s+ kd*s;
 
 sys_cl = feedback(controller*sys, 1);
-eig(sys_cl)
+
+rlocus(sys_cl);
 
 figure()
 step(sys_cl)
 hold on
 step(sys)
 grid on
-legend('closed_loop', 'open_loop')
+legend('cl', 'ol')
 hold off
 
 figure()
@@ -45,7 +46,7 @@ hold off
 figure()
 hold on
 bode(sys)
-legend('Open_loop');
+legend('Anello aperto');
 grid on
 margin(sys)
 hold off
@@ -53,7 +54,7 @@ hold off
 figure()
 hold on
 bode(sys_cl)
-legend('Closed_loop');
+legend('Anello chiuso');
 grid on
 eig(sys_cl)
 
