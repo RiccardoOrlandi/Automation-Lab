@@ -4,10 +4,10 @@ close all
 
 %%
 %per Windows
-run('..\..\..\Model_Parameter.m')
+% run('..\..\..\Model_Parameter.m')
 
 %per Mac
-%run('../../../Model_Parameter.m')
+run('../../../Model_Parameter.m')
 
 %% controllore del circuito elettrico
 
