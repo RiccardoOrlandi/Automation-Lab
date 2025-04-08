@@ -4,7 +4,7 @@ clc
 
 %per Windows 
 % run('..\..\Model_Parameter.m')
-% 
+%addpath('..\..\function\') 
 % add_data('..\..\data\Step Test\Step Test without ball');
 % add_data('..\..\data\Step Test\Step Test with ball');
 % add_data('..\..\data\Step Test\18_03_2025_v2\without ball');
@@ -14,7 +14,7 @@ clc
 
 %per Mac
 run('../../Model_Parameter.m')
-
+addpath('../../function/')
 add_data('../../data/Step Test/Step Test without ball');
 add_data('../../data/Step Test/Step Test with ball');
 add_data('../../data/Step Test/18_03_2025_v2/without ball');
