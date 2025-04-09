@@ -13,7 +13,21 @@ run('../../../Model_Parameter.m')
 s = tf('s');
 polo = Rtot / Lc;
 tau = 1 / polo;
-sys = tf(1, [Lc Rtot]);
+Gsys = tf(1, [Lc Rtot]);
+%controllore veloce
+kp = 46.0161;
+ki = 2117.9265;
+kd = 0;
+
+% kp = 199.4;
+% ki = 4572.3;
+% kd = 0;
+
+controller = kp + ki/s+ kd*s;
+
+sys_cl = feedback(controller*Gsys, 1);
+%Funzione anello
+sys = sys_cl;
 
 disp('Funzione di trasferimento:')
 disp(sys)
