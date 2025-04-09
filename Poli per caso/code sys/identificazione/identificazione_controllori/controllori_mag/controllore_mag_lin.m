@@ -93,16 +93,16 @@ grid on
 title('tracking');
 
 
-% %% Controllore con integratore
-% num_unico = [2.3311e+03 9.5102e+04 5.9792e+05];
-% den_unico = [1 238.5202 0];
-% controller_stab2 = tf(num_unico, den_unico);
-% figure()
-% bode(G2*controller_stab2)
-% figure()
-% margin(G2*controller_stab2)
-% figure()
-% step(feedback(G2*controller_stab2,1))
+%% Controllore con integratore
+num_unico = [2.3311e+03 9.5102e+04 5.9792e+05];
+den_unico = [1 238.5202 0];
+controller_stab2 = tf(num_unico, den_unico);
+figure()
+margin(G2*controller_stab2)
+figure()
+rlocus(G2*controller_stab2)
+figure()
+step(feedback(G2*controller_stab2,1))
 
 %% prova piu lenta
 num = [916.9165 8.0682e+04];
