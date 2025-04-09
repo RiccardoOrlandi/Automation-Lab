@@ -8,5 +8,7 @@ grid on
 title(Title,'FontSize',14,'Interpreter','latex')
 xlabel(x_label,'FontSize',14,'Interpreter','latex')
 ylabel(y_label,'FontSize',14,'Interpreter','latex')
-% legend('q1','q2','q3','q4','FontSize',14,'Interpreter','latex')
+ylim([-0.1 0.1])
+% legend('q1','q2','q3','q4','FontSize',14,'Interpreter
+% ','latex')
 end

@@ -96,3 +96,9 @@ media = mean([media1, media2, media3]);
 
 Kb = y0 /  (media - offset_posizione);
 
+%% plot per report 
+plot_Latex(Test_with_15V_v2(1,:), Test_with_15V_v2(2,:),'s', 'V', 'Position with an input of 15V'); 
+plot_Latex(Test_wb_0V(1,:), Test_wb_0V(3,:),'s', 'A', 'Current with an input of 0V');
+
+
+
