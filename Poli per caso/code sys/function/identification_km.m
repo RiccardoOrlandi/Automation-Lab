@@ -21,25 +21,25 @@ options = optimoptions('fmincon', ...
 
 
 % Simulation using Forward Finite Differences
-theta(2,1) = k_mag_est;
-[t_FFD, x_FFD, ~ ] = FFD(Ts_FFD, Tend_FFD, x0, u, theta);
+% theta(2,1) = k_mag_est;
+% [t_FFD, x_FFD, ~ ] = FFD(Ts_FFD, Tend_FFD, x0, u, theta);
 
-figure()
-plot(t_FFD, x_FFD(1,:))
-hold on
-plot(test(1,:)-1, test(2, :))
-grid on
-title(['Position, ', titolo])
+% figure()
+% plot(t_FFD, x_FFD(1,:))
+% hold on
+% plot(test(1,:)-1, test(2, :))
+% grid on
+% title(['Position, ', titolo])
 % hold off
 
 %% da rimuovere
 theta(2,1) = 16e-6;
 [t_FFD, x_FFD, ~ ] = FFD(Ts_FFD, Tend_FFD, x0, u, theta);
 
-% figure()
-plot(t_FFD, x_FFD(1,:))
-% hold on
-plot(test(1,:)-1, test(2, :))
-% grid on
-% title(['Position, ', titolo])
-hold off
+% % figure()
+% plot(t_FFD, x_FFD(1,:))
+% % hold on
+% plot(test(1,:)-1, test(2, :))
+% % grid on
+% % title(['Position, ', titolo])
+% hold off
