@@ -76,3 +76,14 @@ controller =1.4665e07*(s+39.34)*(s+123.3)*(s+10.32)/(s*(s+5857)*(s+1.789e04));
 [Gnum, Gden] = tfdata(controller);
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
+%% Controller 4o
+controller = 1.8333e07*(s^2+411.7*s+4.281e04)*(s^2+132.6*s+5301)/(s*(s+3055)*(s+2908)*(s+2761));
+[Gnum, Gden] = tfdata(controller);
+num_mag_C = Gnum{1};
+den_mag_C = Gden{1};
+
+%% Controller 2 ordine controllato
+controller = 1336.6*(s+7.716)*(s+41.43)/(s*(s+312.6));
+[Gnum, Gden] = tfdata(controller);
+num_mag_C = Gnum{1};
+den_mag_C = Gden{1};
