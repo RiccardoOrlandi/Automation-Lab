@@ -122,7 +122,7 @@ G_close = feedback(G2*controller_stab,1);
 [Gnclose, Gdclose] = tfdata(G_close);
 Gnclose = Gnclose{1};
 Gdclose = Gdclose{1};
-num_ext = [0.0017 0.0347];
+num_ext = [0.0081249+23.37*0.0081249];
 den_ext = [1 0];
 controllor_track = tf(num_ext, den_ext);
 figure()
