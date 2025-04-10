@@ -1,4 +1,4 @@
-function G = mag_lin_corrente(u, theta)
+function G = mag_lin_corrente(Veq, theta)
 
 % u è la corrente
 % x1 è la posizione
@@ -13,10 +13,10 @@ function G = mag_lin_corrente(u, theta)
     g = 9.81;
 
 
-    ueq = u/Rtot;
+    ueq = Veq/Rtot;
     x2_eq = 0;
-    x1_eq = y0 - u0 * sqrt(k_mag/(m*g));
-    assignin('base', 'x1_eq0', x1_eq);
+    x1_eq = y0 - ueq * sqrt(k_mag/(m*g));
+    assignin('base', 'x1_eq', x1_eq);
 
 
     A = [0 1;
