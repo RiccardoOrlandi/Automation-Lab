@@ -10,7 +10,7 @@ run('..\..\..\Model_Parameter.m')
 %addpath('../../../function')
 %run('../../../Model_Parameter.m')
 
-u = 15;
+u = 12;
 n = 3;
 m = 1; 
 p = 2;
@@ -27,15 +27,13 @@ end
 %%
 %Trovo Kpp per il pole placement e L per l'osservatore di Luenberger
 
-desired_poles_pp = [-26.3174, -45.5443, -50];
+desired_poles_pp = [-20, -30, -40];
 Kpp = place(A, B, desired_poles_pp);
 
-desired_poles_obs = [-100, -110, -120];
+desired_poles_obs = [-200, -300, -400];
 L = place(A', C', desired_poles_obs)';
 
 A_ob = A - L*C;
 B_ob = [ B - L*D, L];
 C_ob = eye(n);
 D_ob = zeros(n, m+p);
-
-

@@ -15,6 +15,9 @@ function [G, A, B, C, D] = lin(u, theta)
     x2_eq = u/Rtot;
     x1_eq = y0 - x2_eq * sqrt(k_mag/(m*g));
     x3_eq = 0;
+    assignin('base', 'x1_eq0', x1_eq);
+    assignin('base', 'x2_eq0', x2_eq);
+    assignin('base', 'x3_eq0', x3_eq);
 
     A = [0 0 1;
         0 -Rtot/Lc 0;
