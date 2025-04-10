@@ -30,7 +30,7 @@ Gden = Gden{1};
 
 
 %% posizione iniziale simulink
-u0 = 15/Rtot;
+ueq = 15/Rtot;
 x2_eq = 0;
 % x1_eq = y0 - u0 * sqrt(k_mag/(m*g));
 
