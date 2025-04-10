@@ -52,12 +52,12 @@ controller = kp + ki/s+ kd*s;
 [Celnum, Celden] = tfdata(controller);
 Celnum = Celnum{1};
 Celden = Celden{1};
-% figure()
-% margin(Gel*controller)
-% grid on
-% figure()
-% step(feedback(Gel*controller, 1));
-% grid on
+figure()
+margin(Gel*controller)
+grid on
+figure()
+step(feedback(Gel*controller, 1));
+grid on
 
 G_el_close = feedback(Gel*controller, 1);
 G2 = G_el_close*G;
@@ -66,13 +66,10 @@ dist = 0.001;
 
 %% Controllore esterno
 %% Controllore 3o ordine (assestamento 0.3, sovraelongazione 25%, damping 0.64
-controller = 1.5764e05*(s+24.2)*(s+15.92)*(s+123.3)/(s*(s+1020)*(s+1205));
+controller_3 = 1.5764e05*(s+24.2)*(s+15.92)*(s+123.3)/(s*(s+1020)*(s+1205));
 [Gnum, Gden] = tfdata(controller);
-num_mag_C = Gnum{1};
-den_mag_C = Gden{1};
+num_mag_M = Gnum{1};
+den_mag_M = Gden{1};
 
 %% Controllore 3o ordine (assestamento 0.3, sovraelongazione 20%, damping 1
-controller =1.4665e07*(s+39.34)*(s+123.3)*(s+10.32)/(s*(s+5857)*(s+1.789e04));
-[Gnum, Gden] = tfdata(controller);
-num_mag_C = Gnum{1};
-den_mag_C = Gden{1};
+controller_3_1 =1.4665e07*(s+39.34)*(s+123.3)*(s+10.32)/(s*(s+5857)*(s+1.789e04));
