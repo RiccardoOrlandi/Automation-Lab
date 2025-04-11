@@ -10,7 +10,7 @@ run('..\..\..\Model_Parameter.m')
 %addpath('../../../function')
 %run('../../../Model_Parameter.m')
 
-u = 9.516;
+u = 9.515; %quando forza magnetica riferita al top scambiare 9.75 con 14.65
 n = 3;
 m = 1; 
 p = 2;
@@ -29,8 +29,8 @@ end
 % sigma(G)
 %%
 %Trovo Kpp per il pole placement e L per l'osservatore di Luenberger
-
-desired_poles_pp = [-50, -155, -200];
+i = sqrt(-1);
+desired_poles_pp = [-14-14*i, -14+14*i, -80];
 Kpp = place(A, B, desired_poles_pp);
 
 % sys_cl_pp = ss(A - B * Kpp, B, C, D);
@@ -38,7 +38,7 @@ Kpp = place(A, B, desired_poles_pp);
 % legend('after cl')
 % sigma(sys_cl_pp);
 
-desired_poles_obs = [-700, -750, -1000];
+desired_poles_obs = [-100, -105, -200];
 L = place(A', C', desired_poles_obs)';
 
 A_ob = A - L*C;
@@ -57,7 +57,7 @@ M_tilde = [ zeros(n, 1);
 
 disp(rank(ctrb(A_tilde, B_tilde)))
 
-en_desired_poles = [desired_poles_pp, -180,];
+en_desired_poles = [desired_poles_pp, -50];
 Ken = place(A_tilde, B_tilde, en_desired_poles);
 
 Ken_x = Ken(:, 1:n);
