@@ -49,20 +49,25 @@ u0 = -(x10-y0)/sqrt(k_mag/(m*g));
 s = tf('s');
 kp = 46.0161;
 ki = 2117.9265;
+kd = 0;
 Gel = 1/(s*Lc+Rtot);
-controller_el = kp + ki/s;
+controller_el = kp + ki/s+ kd*s;
+[Celnum, Celden] = tfdata(controller_el);
+Celnum = Celnum{1};
+Celden = Celden{1};
+% figure()
+% margin(Gel*controller)
+% grid on
+% figure()
+% step(feedback(Gel*controller, 1));
+% grid on
 
 G_el_close = feedback(Gel*controller_el, 1);
 G2 = G_el_close*G;
 
-%% Controllore elettrico 2
-s = tf('s');
-kp2 = 67.02;
-ki2 = 1400;
-controller_el2 = kp2 + ki2/s;
-G_el_close2 = feedback(Gel*controller_el2, 1);
-G2_2 = G_el_close2*G;
-%% Controllore interno VECCHIO
+dist = 0.001;
+
+%% Controllore esterno
 %% Controllore 3o ordine (assestamento 0.3, sovraelongazione 25%, damping 0.64
 controller = 1.5764e05*(s+24.2)*(s+15.92)*(s+123.3)/(s*(s+1020)*(s+1205));
 [Gnum, Gden] = tfdata(controller);
@@ -86,13 +91,7 @@ controller = 1336.6*(s+7.716)*(s+41.43)/(s*(s+312.6));
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
 
-
-%% Controllore interno NUOVO
-%% Controllore mag 
-controller2 = 1873.4*(s+39.78)*(s+4.402)/(s*(s+252.8));
-[Gnum, Gden] = tfdata(controller2);
-num_mag_C2 = Gnum{1};
-den_mag_C2 = Gden{1};
+%% Controllore
 
 %% Plot linearizzazione
 close all
@@ -105,10 +104,10 @@ grid on
 hold on
 dot_nl = k_mag/m*(ueq./(y0-x)).^2-g;
 plot(x, dot_nl, 'LineWidth', 1.5)
-plot(x, zeros(1, length(x)), 'LineStyle','--', 'color', 'green', 'LineWidth', 1.2)
-ylim([-10, 10])
-xlim([x1_eq-0.002, x1_eq+0.002])
+plot(x, 0, 'LineStyle',)
+ylim([-10, 50])
+xlim([0, 0.012])
 xlabel('posizione')
 ylabel('accellerazione')
-title('Linearizzazione in 4.4mm intorno di 2mm')
+title('Linearizzazione in 0.0044 [m]')
 legend('linearizzato', 'non linearizzato')
