@@ -6,62 +6,31 @@ clc
 %per Windows
 addpath('..\..\..\function');
 run('..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+run('..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
 
 %per Mac
 %addpath('../../../function');
 %run('../../../Model_Parameter.m')
 
 %% Linearizzazione all'equilibrio
-
-switch 0 % se metto 1 inserisco dei disturbi nel modello (esempio km diversa e punto equilibrio diverso, che significano
-         % linearizzazione diversa del modello)
-
-    case 0
-        Veq = 12;
-    case 1
-        V_dist = 13;
-        theta(2, 1) = 1e-5;
-end
+Veq = 12;
 
 G = mag_lin_corrente(Veq, theta);
 [Gnum, Gden] = tfdata(G);
 num_mag_M = Gnum{1};
 den_mag_M = Gden{1};
 
-% step = 0.001;
-% upper =
-% lower =
+upper = 12e-3;
+lower = 0;
 
-%% posizione iniziale simulink
-ueq = Veq/Rtot;
-x2_eq = 0;
-% x1_eq = y0 - u0 * sqrt(k_mag/(m*g));
+%% Controllore Elettrico 1 fast
+G_el_close = feedback(Gel*controller_el1, 1);
+G2_1 = G_el_close*G;
 
-% u0 = 14/Rtot;
-% g = 9.81;
-% x10 = y0 - u0 * sqrt(k_mag/(m*g));
-
-x10 = 3.51e-3; % inserire posizione iniziale della pallina
-x1_error = x10 - x1_eq;
-u0 = -(x10-y0)/sqrt(k_mag/(m*g));
-
-%% Controllore Elettrico
-s = tf('s');
-kp = 46.0161;
-ki = 2117.9265;
-Gel = 1/(s*Lc+Rtot);
-controller_el = kp + ki/s;
-
-G_el_close = feedback(Gel*controller_el, 1);
-G2 = G_el_close*G;
-
-%% Controllore elettrico 2
-s = tf('s');
-kp2 = 67.02;
-ki2 = 1400;
-controller_el2 = kp2 + ki2/s;
+%% Controllore elettrico 2 fast
 G_el_close2 = feedback(Gel*controller_el2, 1);
 G2_2 = G_el_close2*G;
+
 %% Controllore interno VECCHIO
 %% Controllore 3o ordine (assestamento 0.3, sovraelongazione 25%, damping 0.64
 controller = 1.5764e05*(s+24.2)*(s+15.92)*(s+123.3)/(s*(s+1020)*(s+1205));
@@ -95,7 +64,6 @@ num_mag_C2 = Gnum{1};
 den_mag_C2 = Gden{1};
 
 %% Plot linearizzazione
-close all
 x=-0.012:0.0001:0.012;
 dot = 2*k_mag*ueq^2/m*((y0-x1_eq)^(-3))*(x-x1_eq) + 2*k_mag/m*ueq/((y0 - x1_eq)^2)*(ueq-ueq);
 
