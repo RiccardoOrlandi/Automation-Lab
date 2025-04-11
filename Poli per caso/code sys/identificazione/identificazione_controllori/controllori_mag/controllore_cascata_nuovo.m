@@ -23,7 +23,7 @@ switch 0 % se metto 1 inserisco dei disturbi nel modello (esempio km diversa e p
         theta(2, 1) = 1e-5;
 end
 
-[G, A, B, C, D] = mag_lin_corrente(Veq, theta);
+G = mag_lin_corrente(Veq, theta);
 [Gnum, Gden] = tfdata(G);
 num_mag_M = Gnum{1};
 den_mag_M = Gden{1};
@@ -51,8 +51,8 @@ kp = 46.0161;
 ki = 2117.9265;
 kd = 0;
 Gel = 1/(s*Lc+Rtot);
-controller = kp + ki/s+ kd*s;
-[Celnum, Celden] = tfdata(controller);
+controller_el = kp + ki/s+ kd*s;
+[Celnum, Celden] = tfdata(controller_el);
 Celnum = Celnum{1};
 Celden = Celden{1};
 % figure()
@@ -62,7 +62,7 @@ Celden = Celden{1};
 % step(feedback(Gel*controller, 1));
 % grid on
 
-G_el_close = feedback(Gel*controller, 1);
+G_el_close = feedback(Gel*controller_el, 1);
 G2 = G_el_close*G;
 
 dist = 0.001;
