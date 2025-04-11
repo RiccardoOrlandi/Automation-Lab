@@ -23,7 +23,7 @@ switch 0 % se metto 1 inserisco dei disturbi nel modello (esempio km diversa e p
         theta(2, 1) = 1e-5;
 end
 
-[G, A, B, C, D] = mag_lin_corrente(Veq, theta);
+G = mag_lin_corrente(Veq, theta);
 [Gnum, Gden] = tfdata(G);
 num_mag_M = Gnum{1};
 den_mag_M = Gden{1};
@@ -96,7 +96,7 @@ den_mag_C = Gden{1};
 %% Plot linearizzazione
 close all
 x=-0.012:0.0001:0.012;
-dot = 2*k_mag*ueq^2/m*((y0-x1_eq)^(-3))*(x-x1_eq) + 2*k_mag/m*ueq/((y0 - x1_eq)^2)*(ueq-ueq);
+dot = 2*k_mag*ueq^2/m*((y0-x1_eq)^(-3))*x + 2*k_mag/m*ueq/((y0 - x1_eq)^2)*ueq;
 
 figure()
 plot(x,dot)
@@ -105,8 +105,12 @@ hold on
 dot_nl = k_mag/m*(ueq./(y0-x)).^2-g;
 plot(x, dot_nl)
 ylim([-10, 50])
-xlim([0, 0.012])
+xlim([-0.012, 0.012])
 xlabel('posizione')
 ylabel('accellerazione')
 title('Linearizzazione in 0.0044 [m]')
-legend('linearizzato', 'non linearizzato')
+
+%%
+
+y = 3*x^2+2*x+1;
+dot_y = 6*x+2;

@@ -1,4 +1,4 @@
-function G = mag_lin_corrente(Veq, theta)
+function [G, A, B, C, D] = mag_lin_corrente(Veq, theta)
 
 % u è la corrente
 % x1 è la posizione
