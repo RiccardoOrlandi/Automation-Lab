@@ -21,7 +21,9 @@ function [G, A, B, C, D] = lin(u, theta)
 
     A = [0 0 1;
         0 -Rtot/Lc 0;
-        2*k_mag*x2_eq^2/(m*(y0-x1_eq)^3) 2*k_mag*x2_eq/(m*(y0-x1_eq)^2) 0];
+        2*k_mag*x2_eq^2/(m*(y0-x1_eq)^3) 2*k_mag*x2_eq/(m*(y0-x1_eq)^2) 0]; %Quando si vuole provare con 
+    %la forza magnetica riferita alla cima della pallina sostituire y0 con
+    %0.0247
     B = [0; 1/Lc; 0];
     C = [1 0 0;
         0 1 0];
