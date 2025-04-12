@@ -4,11 +4,11 @@ close all
 
 %%
 %per Windows 
-addpath('..\..\..\function')
-run('..\..\..\Model_Parameter.m')
+addpath('..\..\..\..\..\function')
+run('..\..\..\..\..\Model_Parameter.m')
 %per Mac
-%addpath('../../../function')
-%run('../../../Model_Parameter.m')
+%addpath('../../../../../function')
+%run('../../../../../Model_Parameter.m')
 
 u = 9.515; %quando forza magnetica riferita al top scambiare 9.75 con 14.65
 n = 3;
