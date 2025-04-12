@@ -4,19 +4,15 @@ clc
 
 %%
 %per Windows
-<<<<<<<< HEAD:Poli per caso/code sys/identificazione/identificazione_controllori/controllori_mag/second_task/FB/controllore_cascata_nuovo.m
 addpath('..\..\..\..\..\function');
 run('..\..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
-========
-addpath('..\..\..\..\function');
-run('..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
-run('..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
->>>>>>>> 8e4b225fcfed4f3af421fd62f6471317b5366a7f:Poli per caso/code sys/identificazione/identificazione_controllori/controllori_mag/Controllo in cascata/controllo_un_anello.m
+run('..\..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
+
 
 %per Mac
 %addpath('../../../../../function');
 %run('../../../../../Model_Parameter.m')
-
+%run('../../../controllori_el\fast_controller.m') %richiamare i controllori elettrici
 %% Linearizzazione all'equilibrio
 Veq = 12;
 
