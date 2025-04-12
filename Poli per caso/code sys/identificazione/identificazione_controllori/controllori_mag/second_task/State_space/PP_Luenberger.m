@@ -10,12 +10,14 @@ run('..\..\..\..\..\Model_Parameter.m')
 %addpath('../../../../../function')
 %run('../../../../../Model_Parameter.m')
 
-u = 9.515; %quando forza magnetica riferita al top scambiare 9.75 con 14.65
+x1 = 0.006;
+%u = 9.515; %quando forza magnetica riferita al top scambiare 9.515 con 14.65
 n = 3;
 m = 1; 
 p = 2;
 
-[G, A, B, C, D] = lin(u, theta);
+[G, A, B, C, D] = lin(x1, theta);
+sys = ss(A, B, C, D);
 
 rank_c = rank(ctrb(A,B));
 rank_o = rank(obsv(A,C));
@@ -62,3 +64,10 @@ Ken = place(A_tilde, B_tilde, en_desired_poles);
 
 Ken_x = Ken(:, 1:n);
 Ken_eta = Ken(:, n+1:end);
+
+A_r = A - B*Kpp - L*C;
+B_r = L;
+C_r = Kpp;
+
+
+
