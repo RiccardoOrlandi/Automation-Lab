@@ -4,14 +4,15 @@ clc
 
 %%
 %per Windows
-addpath('..\..\..\..\function');
-run('..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
-run('..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
+addpath('..\..\..\..\..\function');
+run('..\..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+run('..\..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
+
 
 %per Mac
-%addpath('../../../function');
-%run('../../../Model_Parameter.m')
-
+%addpath('../../../../../function');
+%run('../../../../../Model_Parameter.m')
+%run('../../../controllori_el\fast_controller.m') %richiamare i controllori elettrici
 %% Linearizzazione all'equilibrio
 Veq = 12;
 

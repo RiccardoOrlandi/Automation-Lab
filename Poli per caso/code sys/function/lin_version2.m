@@ -1,4 +1,4 @@
-function [G, A, B, C, D] = lin(x1, theta)
+function [G, A, B, C, D] = lin_version2(u, theta)
 
 % x1 è la posizione
 % x2 è la corrente
@@ -12,18 +12,16 @@ function [G, A, B, C, D] = lin(x1, theta)
     Lc = theta(6, 1);
     g = 9.81;
 
-    x1_eq = x1;
-    x2_eq = sqrt(m*g*(y0 - x1_eq)^2/k_mag);
-    u_eq = Rtot * x2_eq; 
+    x2_eq = u/Rtot;
+    x1_eq = 0.0247 - x2_eq * sqrt(k_mag/(m*g));
     x3_eq = 0;
     assignin('base', 'x1_eq0', x1_eq);
     assignin('base', 'x2_eq0', x2_eq);
     assignin('base', 'x3_eq0', x3_eq);
-    assignin('base', 'u', u_eq);
 
     A = [0 0 1;
         0 -Rtot/Lc 0;
-        2*k_mag*x2_eq^2/(m*(y0-x1_eq)^3) 2*k_mag*x2_eq/(m*(y0-x1_eq)^2) 0]; %Quando si vuole provare con 
+        2*k_mag*x2_eq^2/(m*(0.0247-x1_eq)^3) 2*k_mag*x2_eq/(m*(0.0247-x1_eq)^2) 0]; %Quando si vuole provare con 
     %la forza magnetica riferita alla cima della pallina sostituire y0 con
     %0.0247
     B = [0; 1/Lc; 0];
