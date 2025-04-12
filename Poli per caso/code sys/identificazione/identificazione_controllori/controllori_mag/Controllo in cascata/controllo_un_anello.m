@@ -4,70 +4,39 @@ clc
 
 %%
 %per Windows
+<<<<<<<< HEAD:Poli per caso/code sys/identificazione/identificazione_controllori/controllori_mag/second_task/FB/controllore_cascata_nuovo.m
 addpath('..\..\..\..\..\function');
 run('..\..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+========
+addpath('..\..\..\..\function');
+run('..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+run('..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
+>>>>>>>> 8e4b225fcfed4f3af421fd62f6471317b5366a7f:Poli per caso/code sys/identificazione/identificazione_controllori/controllori_mag/Controllo in cascata/controllo_un_anello.m
 
 %per Mac
 %addpath('../../../../../function');
 %run('../../../../../Model_Parameter.m')
 
 %% Linearizzazione all'equilibrio
+Veq = 12;
 
-switch 0 % se metto 1 inserisco dei disturbi nel modello (esempio km diversa e punto equilibrio diverso, che significano
-         % linearizzazione diversa del modello)
-
-    case 0
-        Veq = 12;
-    case 1
-        V_dist = 13;
-        theta(2, 1) = 1e-5;
-end
-
-[G, A, B, C, D] = mag_lin_corrente(Veq, theta);
+G = mag_lin_corrente(Veq, theta);
 [Gnum, Gden] = tfdata(G);
 num_mag_M = Gnum{1};
 den_mag_M = Gden{1};
 
-% step = 0.001;
-% upper =
-% lower =
+upper = 12e-3;
+lower = 0;
 
-%% posizione iniziale simulink
-ueq = Veq/Rtot;
-x2_eq = 0;
-% x1_eq = y0 - u0 * sqrt(k_mag/(m*g));
+%% Controllore Elettrico 1 fast
+G_el_close = feedback(Gel*controller_el1, 1);
+G2_1 = G_el_close*G;
 
-% u0 = 14/Rtot;
-% g = 9.81;
-% x10 = y0 - u0 * sqrt(k_mag/(m*g));
+%% Controllore elettrico 2 fast
+G_el_close2 = feedback(Gel*controller_el2, 1);
+G2_2 = G_el_close2*G;
 
-x10 = 3.51e-3; % inserire posizione iniziale della pallina
-x1_error = x10 - x1_eq;
-u0 = -(x10-y0)/sqrt(k_mag/(m*g));
-
-%% Controllore Elettrico
-s = tf('s');
-kp = 46.0161;
-ki = 2117.9265;
-kd = 0;
-Gel = 1/(s*Lc+Rtot);
-controller = kp + ki/s+ kd*s;
-[Celnum, Celden] = tfdata(controller);
-Celnum = Celnum{1};
-Celden = Celden{1};
-% figure()
-% margin(Gel*controller)
-% grid on
-% figure()
-% step(feedback(Gel*controller, 1));
-% grid on
-
-G_el_close = feedback(Gel*controller, 1);
-G2 = G_el_close*G;
-
-dist = 0.001;
-
-%% Controllore esterno
+%% Controllore interno VECCHIO
 %% Controllore 3o ordine (assestamento 0.3, sovraelongazione 25%, damping 0.64
 controller = 1.5764e05*(s+24.2)*(s+15.92)*(s+123.3)/(s*(s+1020)*(s+1205));
 [Gnum, Gden] = tfdata(controller);
@@ -91,22 +60,28 @@ controller = 1336.6*(s+7.716)*(s+41.43)/(s*(s+312.6));
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
 
-%% Controllore
+
+%% Controllore interno NUOVO
+%% Controllore mag 
+controller2 = 1873.4*(s+39.78)*(s+4.402)/(s*(s+252.8));
+[Gnum, Gden] = tfdata(controller2);
+num_mag_C2 = Gnum{1};
+den_mag_C2 = Gden{1};
 
 %% Plot linearizzazione
-close all
 x=-0.012:0.0001:0.012;
 dot = 2*k_mag*ueq^2/m*((y0-x1_eq)^(-3))*(x-x1_eq) + 2*k_mag/m*ueq/((y0 - x1_eq)^2)*(ueq-ueq);
 
 figure()
-plot(x,dot)
+plot(x,dot, 'LineWidth', 1.5)
 grid on
 hold on
 dot_nl = k_mag/m*(ueq./(y0-x)).^2-g;
-plot(x, dot_nl)
-ylim([-10, 50])
-xlim([0, 0.012])
+plot(x, dot_nl, 'LineWidth', 1.5)
+plot(x, zeros(1, length(x)), 'LineStyle','--', 'color', 'green', 'LineWidth', 1.2)
+ylim([-10, 10])
+xlim([x1_eq-0.002, x1_eq+0.002])
 xlabel('posizione')
 ylabel('accellerazione')
-title('Linearizzazione in 0.0044 [m]')
+title('Linearizzazione in 4.4mm intorno di 2mm')
 legend('linearizzato', 'non linearizzato')

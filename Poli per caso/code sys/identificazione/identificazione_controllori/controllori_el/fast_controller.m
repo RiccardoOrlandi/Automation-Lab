@@ -9,51 +9,39 @@ run('..\..\..\Model_Parameter.m')
 %per Mac
 %run('../../../Model_Parameter.m')
 
-%% controllore del circuito elettrico
+%% Modello elettrico
 
 s = tf('s');
-polo = Rtot/Lc;
-tau = 1/polo;
-sys = tf(1, [Lc Rtot]);
+Gel = tf(1, [Lc Rtot]);
 
-Vref = 15;
 %% primo test: wc=130rad;pm=80,
+%%
 kp = 46.0161;
 ki = 2117.9265;
-kd = 0;
+controller_el1 = kp + ki/s;
 
-% kp = 199.4;
-% ki = 4572.3;
-% kd = 0;
 
-controller = kp + ki/s+ kd*s;
-
-sys_cl = feedback(controller*sys, 1);
-
-rlocus(sys_cl);
-
-figure()
-step(sys_cl)
-hold on
-step(sys)
-grid on
-legend('cl', 'ol')
-hold off
-
-figure()
-bode(sys)
-hold on
-grid on
-bode(controller*sys)
-
-poli = eig(sys_cl)
-over = exp(-0.99*pi/sqrt(1-0.99^2));
-margin(controller*sys)
+%% secondo test
+%%
+kp2 = 67.02;
+ki2 = 1400;
+controller_el2 = kp2 + ki2/s;
+%%
+kp2 = 29.924;
+ki2 = 37.79*29.924;
+controller_el2 = kp2 + ki2/s;
 
 
 %% Plot delle uscite
-out = sim('controller_electric.slx');
+%%
+Vref = 12;
+sim_controller = 'controller_electric';
+load_system(sim_controller);
+stop_sim = 0.2;
+set_param(sim_controller, 'StopTime', num2str(stop_sim));
+out = sim(sim_controller);
 
+%primo controllore
 back = out.back;
 clamp = out.clamp;
 no_sat = out.no_sat;
@@ -61,13 +49,31 @@ ref = out.ref;
 sat = out.sat;
 t = out.tout;
 
-figure()
+u_back = out.u_back;
+u_clamp = out.u_clamp;
+u_no_sat = out.u_no_sat;
+u_sat = out.u_sat;
 
+% secondo controllore
+back2 = out.back2;
+clamp2 = out.clamp2;
+no_sat2 = out.no_sat2;
+sat2 = out.sat2;
+
+u_back2 = out.u_back2;
+u_clamp2 = out.u_clamp2;
+u_no_sat2 = out.u_no_sat2;
+u_sat2 = out.u_sat2;
+
+
+figure()
+%controllore 1
+subplot(2, 2, 1)
 plot(t,back,'LineWidth',1.5)
 grid on
 xlim([0,0.15])
-% ylim([-0.8,1.2])
-title('Electric Controller','FontSize',14,'Interpreter','latex')
+ylim([0,ref(1)*1.2])
+title('Controller ver1','FontSize',14,'Interpreter','latex')
 xlabel('Time [s]','FontSize',14,'Interpreter','latex')
 ylabel('volt','FontSize',14,'Interpreter','latex')
 hold on
@@ -78,3 +84,53 @@ plot(t,ref,'LineWidth',1.5)
 plot(t,sat,'LineWidth',1.5)
 
 legend('back calculation','clamping','no sat','reference','sat','FontSize',14,'Interpreter','latex')
+
+subplot(2, 2, 3)
+plot(t,u_back,'LineWidth',1.5)
+grid on
+xlim([0,0.15])
+ylim([0,70])
+title('Control Variable ver1','FontSize',14,'Interpreter','latex')
+xlabel('Time [s]','FontSize',14,'Interpreter','latex')
+ylabel('volt','FontSize',14,'Interpreter','latex')
+hold on
+
+plot(t,u_clamp,'LineWidth',1.5)
+plot(t,u_no_sat,'LineWidth',1.5)
+plot(t,u_sat,'LineWidth',1.5)
+
+legend('back calculation','clamping','no sat','sat','FontSize',14,'Interpreter','latex')
+
+%secondo Controllore
+subplot(2, 2, 2)
+plot(t,back2,'LineWidth',1.5)
+grid on
+xlim([0,0.15])
+ylim([0,ref(1)*1.2])
+title('Controller ver2','FontSize',14,'Interpreter','latex')
+xlabel('Time [s]','FontSize',14,'Interpreter','latex')
+ylabel('volt','FontSize',14,'Interpreter','latex')
+hold on
+
+plot(t,clamp2,'LineWidth',1.5)
+plot(t,no_sat2,'LineWidth',1.5)
+plot(t,ref,'LineWidth',1.5)
+plot(t,sat2,'LineWidth',1.5)
+
+legend('back calculation','clamping','no sat','reference','sat','FontSize',14,'Interpreter','latex')
+
+subplot(2, 2, 4)
+plot(t,u_back2,'LineWidth',1.5)
+grid on
+xlim([0,0.15])
+ylim([0,70])
+title('Control Variable ver2','FontSize',14,'Interpreter','latex')
+xlabel('Time [s]','FontSize',14,'Interpreter','latex')
+ylabel('volt','FontSize',14,'Interpreter','latex')
+hold on
+
+plot(t,u_clamp2,'LineWidth',1.5)
+plot(t,u_no_sat2,'LineWidth',1.5)
+plot(t,u_sat2,'LineWidth',1.5)
+
+legend('back calculation','clamping','no sat','sat','FontSize',14,'Interpreter','latex')
