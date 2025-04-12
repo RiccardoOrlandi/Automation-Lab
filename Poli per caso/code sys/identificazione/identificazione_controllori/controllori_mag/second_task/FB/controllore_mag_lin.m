@@ -4,12 +4,12 @@ clc
 
 %%
 %per Windows
-addpath('..\..\..\function');
-run('..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+addpath('..\..\..\..\..\function');
+run('..\..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
 
 %per Mac
-%addpath('../../../function');
-%run('../../../Model_Parameter.m')
+%addpath('../../../../../function');
+%run('../../../../../Model_Parameter.m')
 
 %% Linearizzazione all'equilibrio
 
