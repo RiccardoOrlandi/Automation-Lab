@@ -14,30 +14,31 @@ run('..\..\..\Model_Parameter.m')
 s = tf('s');
 Gel = tf(1, [Lc Rtot]);
 
-%% primo test: wc=130rad;pm=80,
+%% Controllore 1
 %%
 kp = 46.0161;
 ki = 2117.9265;
 controller_el1 = kp + ki/s;
 
-
-%% secondo test
-%%
-kp2 = 67.02;
-ki2 = 1400;
-controller_el2 = kp2 + ki2/s;
+%% Controllore 2
 %%
 kp2 = 29.924;
 ki2 = 37.79*29.924;
 controller_el2 = kp2 + ki2/s;
 
+%% Controllore 3
+%%
+kp3 = 67.02;
+ki3 = 1400;
+controller_el3 = kp3 + ki3/s;
 
 %% Plot delle uscite
 %%
 Vref = 12;
+stop_sim = 0.2;
+
 sim_controller = 'controller_electric';
 load_system(sim_controller);
-stop_sim = 0.2;
 set_param(sim_controller, 'StopTime', num2str(stop_sim));
 out = sim(sim_controller);
 

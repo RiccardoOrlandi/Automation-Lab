@@ -23,46 +23,66 @@ den_mag_M = Gden{1};
 
 upper = 12e-3;
 lower = 0;
+Upper_bound_V = 23;
+Lower_bound_V = -23;
 
-%% Controllore Elettrico 1 fast VECCHIO
-G_el_close = feedback(Gel*controller_el1, 1);
+%% Controllore Elettrico 1 (Quello già testato)
+% controllore con più elongazione (margine di fase 82°, wc = 129rad/s)
+%                                 (poli = -75.2085 +- 7.4473i)
+G_el_close = feedback(Gel*controller_el1, 1); 
 G2_1 = G_el_close*G;
 
-%% Controllore elettrico 2 fast NUOVO
+%% Controllore elettrico 2
+% controllore più cauto           (margine di fase 83°, wc = 84.4rad/s)
+%                                 (poli = -53.5093 +- 13.6548i)
 G_el_close2 = feedback(Gel*controller_el2, 1);
 G2_2 = G_el_close2*G;
 
-%% Controllore interno VECCHIO
+%% Controllore elettrico 3
+% controllore con un polo veloce ma quello dominante più lento  
+%                                 (margine di fase 91.7°, wc = 180rad/s)
+%                                 (poli = -187, -20)
+G_el_close3 = feedback(Gel*controller_el3, 1);
+G2_3 = G_el_close3*G;
+
+%% Controllore interno 1
 %% Controllore 3o ordine (assestamento 0.3, sovraelongazione 25%, damping 0.64
+% pare funzionare ma rallenta molto simulink
+% inoltre l'input è particolarmente "nervoso" anche al riferimento
 controller = 1.5764e05*(s+24.2)*(s+15.92)*(s+123.3)/(s*(s+1020)*(s+1205));
 [Gnum, Gden] = tfdata(controller);
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
 
-%% Controllore 3o ordine (assestamento 0.3, sovraelongazione 20%, damping 1
-controller =1.4665e07*(s+39.34)*(s+123.3)*(s+10.32)/(s*(s+5857)*(s+1.789e04));
-[Gnum, Gden] = tfdata(controller);
-num_mag_C = Gnum{1};
-den_mag_C = Gden{1};
-
-%% Controller 4o
-controller = 1.8333e07*(s^2+411.7*s+4.281e04)*(s^2+132.6*s+5301)/(s*(s+3055)*(s+2908)*(s+2761));
-[Gnum, Gden] = tfdata(controller);
-num_mag_C = Gnum{1};
-den_mag_C = Gden{1};
-
-%% Controller 2 ordine controllato
+%% Controllore molto moderato
 controller = 1336.6*(s+7.716)*(s+41.43)/(s*(s+312.6));
 [Gnum, Gden] = tfdata(controller);
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
 
-%% Controllore interno NUOVO
-%% Controllore mag 
-controller2 = 1873.4*(s+39.78)*(s+4.402)/(s*(s+252.8));
+%% Controllore in linea con gli altri
+controller = 3215.7*(s+26.34)*(s+7.716)/(s*(s+452.5));
+[Gnum, Gden] = tfdata(controller);
+num_mag_C = Gnum{1};
+den_mag_C = Gden{1};
+%% Controllore interno 2
+%% Sembra valido, un po più tranquillo 
+controller2 = 3438.2*(s+20.07)*(s+5.024)/(s*(s+385.6));
 [Gnum, Gden] = tfdata(controller2);
 num_mag_C2 = Gnum{1};
 den_mag_C2 = Gden{1};
+
+
+%% Controllore interno 3
+%% Da alcuni problemi, non sempre stabilizza per colpa della saturazione
+controller3 = 1873.4*(s+39.78)*(s+4.402)/(s*(s+252.8));
+[Gnum, Gden] = tfdata(controller3);
+num_mag_C3 = Gnum{1};
+den_mag_C3 = Gden{1};
+
+
+
+
 
 %% Plot linearizzazione
 x=-0.012:0.0001:0.012;
