@@ -4,12 +4,12 @@ clc
 
 %%
 %per Windows
-addpath('..\..\..\function');
-run('..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
+% addpath('..\..\..\function');
+% run('..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
 
 %per Mac
-%addpath('../../../function');
-%run('../../../Model_Parameter.m')
+addpath('../../../function');
+run('../../../Model_Parameter.m')
 
 %% Linearizzazione all'equilibrio
 
@@ -64,4 +64,7 @@ G2 = G_el_close*G;
 
 dist = 0.001;
 
-%% Controllore esterno
+%% Controllore esterno 4o ordine,ta=0.04;Overshoot=12%
+  
+  C(s)=1.8333e07 (s^2 + 411.7*s + 4.281e04)*(s^2 + 132.6*s + 5301)/(s*(s+3055)*(s+2908)*(s+2761))
+              
