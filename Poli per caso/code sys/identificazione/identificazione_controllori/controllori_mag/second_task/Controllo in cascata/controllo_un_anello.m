@@ -55,6 +55,7 @@ num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
 
 %% Controllore molto moderato
+% ampia oscillazione
 controller = 1336.6*(s+7.716)*(s+41.43)/(s*(s+312.6));
 [Gnum, Gden] = tfdata(controller);
 num_mag_C = Gnum{1};
