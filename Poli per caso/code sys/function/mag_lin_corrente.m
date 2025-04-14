@@ -17,6 +17,7 @@ function G = mag_lin_corrente(Veq, theta)
     x2_eq = 0;
     x1_eq = y0 - ueq * sqrt(k_mag/(m*g));
     assignin('base', 'x1_eq', x1_eq);
+    assignin('base', 'ueq', ueq);
 
 
     A = [0 1;
