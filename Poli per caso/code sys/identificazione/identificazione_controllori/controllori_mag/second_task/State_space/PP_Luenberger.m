@@ -15,6 +15,8 @@ x1 = 0.006;
 n = 3;
 m = 1; 
 p = 2;
+Upper_bound_V = 23;
+Lower_bound_V = -23;
 
 [G, A, B, C, D] = lin(x1, theta);
 sys = ss(A, B, C, D);

@@ -61,11 +61,12 @@ controller = 1336.6*(s+7.716)*(s+41.43)/(s*(s+312.6));
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
 
-%% Controllore in linea con gli altri
+%% Controllore in linea con gli altri (Sembra valido, un po più veloce del controllore 2)
 controller = 3215.7*(s+26.34)*(s+7.716)/(s*(s+452.5));
 [Gnum, Gden] = tfdata(controller);
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
+
 %% Controllore interno 2
 %% Sembra valido, un po più tranquillo 
 controller2 = 3438.2*(s+20.07)*(s+5.024)/(s*(s+385.6));
