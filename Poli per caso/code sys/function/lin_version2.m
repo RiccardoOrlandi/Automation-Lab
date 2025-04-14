@@ -1,4 +1,4 @@
-function [G, A, B, C, D] = lin_version2(u, theta)
+function [G, A, B, C, D] = lin_version2(x1, theta)
 
 % x1 è la posizione
 % x2 è la corrente
@@ -12,12 +12,16 @@ function [G, A, B, C, D] = lin_version2(u, theta)
     Lc = theta(6, 1);
     g = 9.81;
 
-    x2_eq = u/Rtot;
-    x1_eq = 0.0247 - x2_eq * sqrt(k_mag/(m*g));
+
+    x1_eq = x1;
+    x2_eq = sqrt(m*g*(0.0247 - x1_eq)^2/k_mag);
+    u_eq = Rtot * x2_eq; 
     x3_eq = 0;
     assignin('base', 'x1_eq0', x1_eq);
     assignin('base', 'x2_eq0', x2_eq);
     assignin('base', 'x3_eq0', x3_eq);
+    assignin('base', 'u', u_eq);
+
 
     A = [0 0 1;
         0 -Rtot/Lc 0;
