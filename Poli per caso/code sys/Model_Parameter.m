@@ -10,3 +10,8 @@ Rtot = 9.7585;
 Lc = 0.3708; % H
 g = 9.81;
 theta = [k_aero, k_mag, m, y0, Rtot, Lc]';
+
+% sensori
+offset_corrente_volt = -0.0166; %[V]
+offset_posizione_volt = -0.0231; %[V]
+Kb = 0.0033; %[m/V] 
