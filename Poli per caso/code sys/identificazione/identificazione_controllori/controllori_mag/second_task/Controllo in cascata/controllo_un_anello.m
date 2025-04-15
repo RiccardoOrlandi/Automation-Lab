@@ -7,7 +7,7 @@ clc
 addpath('..\..\..\..\..\function');
 run('..\..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
 run('..\..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
-
+load("input_signal.mat")
 
 %per Mac
 %addpath('../../../../../function');
@@ -15,7 +15,7 @@ run('..\..\..\controllori_el\fast_controller.m') %richiamare i controllori elett
 %run('../../../controllori_el\fast_controller.m') %richiamare i controllori elettrici
 %% Linearizzazione all'equilibrio
 Veq = 12;
-
+[A, V0, U0] = mag_lin_corrente2(0, theta)
 G = mag_lin_corrente(Veq, theta);
 [Gnum, Gden] = tfdata(G);
 num_mag_M = Gnum{1};
