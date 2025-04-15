@@ -5,18 +5,16 @@ clc
 %%
 %per Windows
 addpath('..\..\..\..\..\function');
-run('..\..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
 run('..\..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
-
+run('..\..\..\..\..\Model_Parameter_version2.m') % In questa funzione sono contenuti tutti i paramentri del modello
 
 %per Mac
 %addpath('../../../../../function');
 %run('../../../../../Model_Parameter.m')
 %run('../../../controllori_el\fast_controller.m') %richiamare i controllori elettrici
 %% Linearizzazione all'equilibrio
-Veq = 12;
-
-G = mag_lin_corrente(Veq, theta);
+x1_eq = 0.0044;
+G = mag_lin_corrente2(x1_eq, theta);
 [Gnum, Gden] = tfdata(G);
 num_mag_M = Gnum{1};
 den_mag_M = Gden{1};
@@ -54,18 +52,21 @@ controller = 1.5764e05*(s+24.2)*(s+15.92)*(s+123.3)/(s*(s+1020)*(s+1205));
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
 
-%% con kmag elevata 1e-4
-controller = 1943.8*(s+24.11)*(s+7.716)/(s*(s+436));
-[Gnum, Gden] = tfdata(controller);
-num_mag_C = Gnum{1};
-den_mag_C = Gden{1};
-
 %% Controllore molto moderato
 % ampia oscillazione
 controller = 1336.6*(s+7.716)*(s+41.43)/(s*(s+312.6));
 [Gnum, Gden] = tfdata(controller);
 num_mag_C = Gnum{1};
 den_mag_C = Gden{1};
+
+%% con kmag elevata 1e-4
+controller = 1943.8*(s+24.11)*(s+7.716)/(s*(s+436));
+[Gnum, Gden] = tfdata(controller);
+num_mag_C = Gnum{1};
+den_mag_C = Gden{1};
+
+%% kmag intermedia 6e-5
+
 
 %% Controllore in linea con gli altri (Sembra valido, un po più veloce del controllore 2)
 controller = 3215.7*(s+26.34)*(s+7.716)/(s*(s+452.5));
