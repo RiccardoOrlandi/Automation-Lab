@@ -24,7 +24,7 @@ den_mag_M = Gden{1};
 upper = 12e-3;
 lower = 0;
 Upper_bound_V = 23;
-Lower_bound_V = -23;
+Lower_bound_V = 0;
 
 %% Controllore Elettrico 1 (Quello già testato)
 % controllore con più elongazione (margine di fase 82°, wc = 129rad/s)
