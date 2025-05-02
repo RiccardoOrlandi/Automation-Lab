@@ -27,8 +27,8 @@ function [G, A, B, C, D] = lin(x1, theta)
     %la forza magnetica riferita alla cima della pallina sostituire y0 con
     %0.0247
     B = [0; 1/Lc; 0];
-    C = [1 0 0;
-        0 1 0];
+    C = [1, 0, 0;
+        0, 1, 0];
     D = [0;0];
 
     % Funzione di trasferimento
