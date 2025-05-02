@@ -7,6 +7,7 @@ clc
 addpath('..\..\..\..\..\function');
 run('..\..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
 run('..\..\..\..\..\Model_Parameter_version2.m') % In questa funzione sono contenuti tutti i paramentri del modello
+add_data_volt('..\..\..\..\..\data\test_controllore\controllore_mag\15_04_2025')
 
 %per Mac
 %addpath('../../../../../function');
@@ -22,7 +23,7 @@ den_mag_M = Gden{1};
 upper = 12e-3;
 lower = 0;
 Upper_bound_V = 23;
-Lower_bound_V = -23;
+Lower_bound_V = 0;
 
 %% Controllore Elettrico 1 (Quello già testato)
 % controllore con più elongazione (margine di fase 82°, wc = 129rad/s)

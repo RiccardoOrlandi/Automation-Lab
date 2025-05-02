@@ -16,8 +16,8 @@ function [G, veq, ueq] = mag_lin_corrente2(x1_eq, theta)
     veq = ueq*Rtot;
     x2_eq = 0;
     
-    % assignin('base', 'Veq', Veq);
-    % assignin('base', 'ueq', ueq);
+    assignin('base', 'Veq', veq);
+    assignin('base', 'ueq', ueq);
 
 
     A = [0 1;
