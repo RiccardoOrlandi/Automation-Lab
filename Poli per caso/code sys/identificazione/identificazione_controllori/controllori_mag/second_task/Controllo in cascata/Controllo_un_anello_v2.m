@@ -6,7 +6,7 @@ clc
 %per Windows
 addpath('..\..\..\..\..\function');
 run('..\..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
-run('..\..\..\..\..\Model_Parameter_version2.m') % In questa funzione sono contenuti tutti i paramentri del modello
+run('..\..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
 add_data_volt('..\..\..\..\..\data\test_controllore\controllore_mag\15_04_2025')
 
 %per Mac

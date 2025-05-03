@@ -8,6 +8,7 @@ addpath('..\..\..\..\..\function');
 run('..\..\..\..\..\Model_Parameter.m') % In questa funzione sono contenuti tutti i paramentri del modello
 run('..\..\..\controllori_el\fast_controller.m') %richiamare i controllori elettrici
 load("input_signal.mat")
+add_data_volt('..\..\..\..\..\data\test_controllore\controllore_mag\15_04_2025')
 
 %per Mac
 %addpath('../../../../../function');
