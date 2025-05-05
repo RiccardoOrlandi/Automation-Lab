@@ -34,4 +34,6 @@ function sys = lin_MPC(x1, theta)
     % Funzione di trasferimento
     sys = ss(A, B, C, D);
     % G = tf(sys);
+    x = quadprog(H,f,A,b,Aeq,beq,lb,ub,x0,options);
+    
 end
