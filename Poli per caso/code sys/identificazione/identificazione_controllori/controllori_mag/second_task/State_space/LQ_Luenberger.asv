@@ -10,15 +10,15 @@ run('..\..\..\..\..\Model_Parameter.m')
 %addpath('../../../../../function')
 %run('../../../../../Model_Parameter.m')
 
-x1 = 0.003;
+x1 = 0.006;
 n = 3;
 m = 1; 
 p = 2;
 
 [G, A, B, C, D] = lin(x1, theta);
 %%
-Q  = diag([500,1,1e-6, 1]);
-R = 10e-6;
+Q  = diag([3,1,1.5e-6, 1]);
+R = 8.9934e-11;
 
 A_tilde = [ A,      zeros(n, 1);
             -C(1,:),     zeros(1, 1)];
@@ -26,7 +26,7 @@ B_tilde = [ B;
             0 ];
 
 I = eye(4);
-A_final = A_tilde +2*I;
+A_final = A_tilde +1*I;
 if rank(ctrb(A_final, B_tilde)) == 4
     disp('Il sistema allargato è completamente controllabile');
 else 
