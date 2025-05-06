@@ -10,7 +10,7 @@ run('..\..\..\..\..\Model_Parameter.m')
 %addpath('../../../../../function')
 %run('../../../../../Model_Parameter.m')
 
-x1 = 0.006;
+x1 = 0.003;
 %u = 9.515; %quando forza magnetica riferita al top scambiare 9.515 con 14.65
 n = 3;
 m = 1; 
@@ -61,7 +61,7 @@ M_tilde = [ zeros(n, 1);
 
 disp(rank(ctrb(A_tilde, B_tilde)))
 
-en_desired_poles = [desired_poles_pp, -3];
+en_desired_poles = [desired_poles_pp, -5];
 Ken = place(A_tilde, B_tilde, en_desired_poles);
 
 Ken_x = Ken(:, 1:n);
