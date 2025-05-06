@@ -40,8 +40,8 @@ else
 end
 
 K = lqr(A_final, B_tilde, Q, R);
-K_x = K(:, 1:3);
-K_eta = K(:, 4);
+Ken_x = K(:, 1:3);
+Ken_eta = K(:, 4);
 cl_poles = eig(A_final-B_tilde*K);
 
 L_poles = 5*cl_poles(1:3)';
