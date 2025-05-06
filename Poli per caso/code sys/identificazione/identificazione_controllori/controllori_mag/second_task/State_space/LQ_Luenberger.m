@@ -9,7 +9,8 @@ close all
 %per Mac
 addpath('../../../../../function')
 run('../../../../../Model_Parameter.m')
-
+Upper_bound_V = 23;
+Lower_bound_V = 0;
 x1 = 0.003;
 n = 3;
 m = 1; 

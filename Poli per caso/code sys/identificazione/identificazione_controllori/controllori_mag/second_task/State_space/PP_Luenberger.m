@@ -34,7 +34,7 @@ end
 %%
 %Trovo Kpp per il pole placement e L per l'osservatore di Luenberger
 i = sqrt(-1);
-desired_poles_pp = [-10, -40, -50];
+desired_poles_pp = [-40, -50, -70];
 Kpp = place(A, B, desired_poles_pp);
 
 % sys_cl_pp = ss(A - B * Kpp, B, C, D);
@@ -42,7 +42,7 @@ Kpp = place(A, B, desired_poles_pp);
 % legend('after cl')
 % sigma(sys_cl_pp);
 
-desired_poles_obs = [-15, -120, -150];
+desired_poles_obs = [-120, -150, -210];
 L = place(A', C', desired_poles_obs)';
 
 A_ob = A - L*C;
@@ -61,7 +61,7 @@ M_tilde = [ zeros(n, 1);
 
 disp(rank(ctrb(A_tilde, B_tilde)))
 
-en_desired_poles = [desired_poles_pp, -5];
+en_desired_poles = [desired_poles_pp, -3];
 Ken = place(A_tilde, B_tilde, en_desired_poles);
 
 Ken_x = Ken(:, 1:n);
