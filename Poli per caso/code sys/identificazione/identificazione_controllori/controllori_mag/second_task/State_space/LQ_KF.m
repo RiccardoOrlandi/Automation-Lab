@@ -27,7 +27,7 @@ p = 2;
 Q_lq  = diag([50, 10 ,0.1e-6, 100]);
 R_lq = 0.01;
 
-x_max = [0.012; 1; 3; 0.1];  % m, rad/s, A, errore
+x_max = [0.012; 3; 10000; 1];  % m, rad/s, A, errore
 u_max = 23;  % Volt
 
 Q_n = diag(1 ./ (x_max.^2))*Q_lq;  % penalizza in base al quadrato della grandezza
