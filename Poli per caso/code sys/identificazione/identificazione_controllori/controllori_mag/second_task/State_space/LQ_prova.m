@@ -11,7 +11,7 @@ addpath('../../../../../function')
 run('../../../../../Model_Parameter.m')
 Upper_bound_V = 23;
 Lower_bound_V = 0;
-x1 = 0.001;
+x1 = 0.003;
 n = 3;
 m = 1; 
 p = 2;
@@ -29,10 +29,10 @@ A_tilde = [ A,      zeros(n, 1);
 B_tilde = [ B;
             0 ];
 
-x_max = diag([0.0012, 3, 10000, 0.1]);
+x_max = diag([0.0012, 3, 1000, 0.1]);
 u_max = 23;
-Q_n = diag([0.0001, 0.001, 1, 0.01]);
-R_n = 0.1;
+Q_n = diag([0.001, 0.1, 1, 0.01]);
+R_n = 10;
 
 Q_lq = diag( (1 ./ x_max).^2 ) .* Q_n;
 R_lq = diag( (1 ./ u_max).^2 ) .* R_n;
@@ -49,7 +49,7 @@ else
     disp('Sistema non osservabile');
 end
 
-Ken = lqr(A_tilde + 4*eye(4), B_tilde, Q_lq, R_lq);
+Ken = lqr(A_tilde + 5*eye(4), B_tilde, Q_lq, R_lq);
 
 Ken_x = Ken(:, 1:n);
 Ken_eta = Ken(:, n+1:end);
