@@ -34,7 +34,7 @@ A_tilde = [ A,      zeros(n, 1);
 B_tilde = [ B;
             0 ];
 
-x_max = diag([0.012, 3, 1, 1]);
+x_max = diag([0.012, 3, 0.1, 1]);
 u_max = 23;
 Q_n = diag([0.005, 1, 500, 1]);
 R_n = 10;
@@ -54,7 +54,7 @@ else
     disp('Sistema non osservabile');
 end
 
-Ken = lqr(A_tilde + 5*eye(4), B_tilde, Q_lq, R_lq);
+Ken = lqr(A_tilde + 7*eye(4), B_tilde, Q_lq, R_lq);
 
 Ken_x = Ken(:, 1:n);
 Ken_eta = Ken(:, n+1:end);

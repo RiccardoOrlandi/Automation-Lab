@@ -49,7 +49,9 @@ end
 K = lqr(A_final, B_tilde, Q_n, R_n);
 Ken_x = K(:, 1:3);
 Ken_eta = K(:, 4);
-cl_poles = eig(A_final-B_tilde*K);
+
+%%
+cl_poles = eig(A_tilde +7*eye(4)-B_tilde*Ken);
 
 L_poles = 5*cl_poles(1:3)';
 L = place(A', C', L_poles)';
