@@ -4,22 +4,23 @@ close all
 
 %%
 %per Windows 
-% addpath('..\..\..\..\..\function')
-% run('..\..\..\..\..\Model_Parameter.m')
-% add_data('..\..\..\..\..\data\LQ')
-% add_data('..\..\..\..\..\data\Step Test\Step Test with ball')
-% add_data('..\..\..\..\..\data\Step Test\Step Test with ball');
-% add_data('..\..\..\..\..\data\Step Test\18_03_2025_v2\with ball');
-% add_data('..\..\..\..\..\data\Step Test\18_03_2024\with_ball');
-% add_data('..\..\..\..\..\data\Step Test\04_04_2025');
+addpath('..\..\..\..\..\..\function')
+run('..\..\..\..\..\..\Model_Parameter.m')
+add_data('..\..\..\..\..\..\data\LQ')
+add_data('..\..\..\..\..\..\data\Step Test\Step Test with ball')
+add_data('..\..\..\..\..\..\data\Step Test\Step Test with ball');
+add_data('..\..\..\..\..\..\data\Step Test\18_03_2025_v2\with ball');
+add_data('..\..\..\..\..\..\data\Step Test\18_03_2024\with_ball');
+add_data('..\..\..\..\..\..\data\Step Test\04_04_2025');
+
 %per Mac
-addpath('../../../../../function')
-run('../../../../../Model_Parameter.m')
-add_data('../../../../../data/Step Test/Step Test with ball')
-add_data('../../../../../data/Step Test/Step Test with ball');
-add_data('../../../../../data/Step Test/18_03_2025_v2/with ball');
-add_data('../.././../../data/Step Test/18_03_2024/with_ball');
-add_data('../../../../../data/Step Test/04_04_2025')
+% addpath('..\../../../../../function')
+% run('..\../../../../../Model_Parameter.m')
+% add_data('..\../../../../../data/Step Test/Step Test with ball')
+% add_data('../../../../../data/Step Test/Step Test with ball');
+% add_data('../../../../../data/Step Test/18_03_2025_v2/with ball');
+% add_data('../.././../../data/Step Test/18_03_2024/with_ball');
+% add_data('../../../../../data/Step Test/04_04_2025')
 Upper_bound_V = 23;
 Lower_bound_V = 0;
 x1 = 0.003;
@@ -65,8 +66,8 @@ Ken = lqr(A_tilde + 7*eye(4), B_tilde, Q_lq, R_lq);
 Ken_x = Ken(:, 1:n);
 Ken_eta = Ken(:, n+1:end);
 
-sim("controllo_SS_no_obs2023b.slx");
-
+% sim("controllo_SS_no_obs2023b.slx");
+% 
 %% Kalman Filter 
 % x1_mes = T21_6V(2, indice_scalino:indice_scalino+300);
 % x1_sim = y(2, indice_scalino2:indice_scalino2+300);
