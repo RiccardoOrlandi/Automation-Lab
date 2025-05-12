@@ -51,7 +51,7 @@ Ken_x = K(:, 1:3);
 Ken_eta = K(:, 4);
 
 %%
-cl_poles = eig(A_tilde +7*eye(4)-B_tilde*Ken);
+cl_poles = eig(A_tilde +7*eye(4)-B_tilde*K);
 
 L_poles = 5*cl_poles(1:3)';
 L = place(A', C', L_poles)';
