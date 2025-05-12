@@ -1,6 +1,6 @@
-% clear 
-% clc 
-% close all
+clear 
+clc 
+close all
 
 %%
 %per Windows 
@@ -15,12 +15,11 @@
 %per Mac
 addpath('../../../../../function')
 run('../../../../../Model_Parameter.m')
-add_data('../../../../../data/LQ')
 add_data('../../../../../data/Step Test/Step Test with ball')
 add_data('../../../../../data/Step Test/Step Test with ball');
 add_data('../../../../../data/Step Test/18_03_2025_v2/with ball');
 add_data('../.././../../data/Step Test/18_03_2024/with_ball');
-add_data('../../../../../data/Step Test/04_04_2025');
+add_data('../../../../../data/Step Test/04_04_2025')
 Upper_bound_V = 23;
 Lower_bound_V = 0;
 x1 = 0.003;
@@ -29,39 +28,44 @@ m = 1;
 p = 2;
 
 [G, A, B, C, D] = lin(x1, theta);
-%% LQ control
-Q_lq  = diag([50, 10 ,0.1e-6, 100]);
-R_lq = 0.01;
-
-x_max = [0.012; 3; 10000; 1];  % m, rad/s, A, errore
-u_max = 23;  % Volt
-
-Q_n = diag(1 ./ (x_max.^2))*Q_lq;  % penalizza in base al quadrato della grandezza
-R_n = 1 / (u_max^2)*R_lq;
-
+%%
+%The system is unstable and it has no zeros but the number of input is
+%lower than the number of output so it cannot be enlarged
+%We are interested in the position so we "reduce" the number of outputs
+C1 = [1 0 0];
+D1 = 0;
+%% System enlargment
 A_tilde = [ A,      zeros(n, 1);
-            -C(1,:),     zeros(1, 1)];
+            -C1,     zeros(1, 1)];
 B_tilde = [ B;
             0 ];
 
-I = eye(4);
-A_final = A_tilde + 1*I;
-if rank(ctrb(A_final, B_tilde)) == 4
+x_max = diag([0.012, 3, 0.1, 1]);
+u_max = 23;
+Q_n = diag([0.005, 1, 500, 1]);
+R_n = 10;
+
+Q_lq = diag( (1 ./ x_max).^2 ) .* Q_n;
+R_lq = diag( (1 ./ u_max).^2 ) .* R_n;
+
+if rank(ctrb(A_tilde, B_tilde)) == 4
     disp('Il sistema allargato è completamente controllabile');
 else 
     disp('Sistema non controllabile');
 end
 
-if rank(ctrb(A_final, sqrt(Q_lq))) == 4
+if rank(obsv(A_tilde, sqrt(Q_lq))) == 4
     disp('Il sistema allargato è completamente osservabile');
 else 
     disp('Sistema non osservabile');
 end
 
-K = lqr(A_final, B_tilde, Q_n, R_n);
-Ken_x = K(:, 1:3);
-Ken_eta = K(:, 4);
-cl_poles = eig(A_final-B_tilde*K);
+Ken = lqr(A_tilde + 7*eye(4), B_tilde, Q_lq, R_lq);
+
+Ken_x = Ken(:, 1:n);
+Ken_eta = Ken(:, n+1:end);
+
+sim("controllo_SS_no_obs2023b.slx");
 
 %% Kalman Filter 
 % x1_mes = T21_6V(2, indice_scalino:indice_scalino+300);
@@ -113,3 +117,16 @@ A_ob = A - L_kf*C;
 B_ob = [ B - L_kf*D, L_kf];
 C_ob = eye(n);
 D_ob = zeros(n, m+p);
+
+if rank(ctrb(A, sqrt(Q))) == 3
+    disp('Il sistema è completamente controllabile');
+else 
+    disp('Sistema non controllabile');
+end
+
+if rank(obsv(A, C)) == 3
+    disp('Il sistema è completamente osservabile');
+else 
+    disp('Sistema non osservabile');
+end
+

@@ -1,8 +1,0 @@
-- Saturazione a 0 volt non -23 (ritestare con la cascata se effettivamente non sale)
-- Usare una serie di scalini per tirarlo su
-
-- test buono è il secondo
-
-- test simulink bisogna farli con modello non lineare
-
-- per vedere le cose posso simulare usando i dati presi nel simulink
