@@ -65,7 +65,7 @@ Ken = lqr(A_tilde + 7*eye(4), B_tilde, Q_lq, R_lq);
 Ken_x = Ken(:, 1:n);
 Ken_eta = Ken(:, n+1:end);
 
-sim("controllo_SS_no_obs2023b.slx");
+%sim("controllo_SS_no_obs2023b.slx");
 
 %% Kalman Filter 
 % x1_mes = T21_6V(2, indice_scalino:indice_scalino+300);
