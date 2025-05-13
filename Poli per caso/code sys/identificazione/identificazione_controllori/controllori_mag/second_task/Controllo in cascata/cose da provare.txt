@@ -1,9 +1,0 @@
-- Controllare se a tensioni negative il magnete respinge o attrae
-	(fare un test con -23 volt per vedere se si solleva e magari avvicinare la pallina se si sente la repulsione)
-	nel caso quindi mettere saturazione 0/23V
-- Attenzione a non trattenere la pallina altrimenti si rischia di far saturare il PID che integra l'errore
-
-- Più anelli:
-	
-
-- Singolo anello:
