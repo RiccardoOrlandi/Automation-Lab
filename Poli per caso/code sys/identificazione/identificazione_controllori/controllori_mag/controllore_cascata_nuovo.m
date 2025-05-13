@@ -48,7 +48,8 @@ kp = 46.0161;
 ki = 2117.9265;
 kd = 0;
 Gel = 1/(s*Lc+Rtot);
-controller = kp + ki/s+ kd*s;
+%controller = kp + ki/s+ kd*s;
+controller =28.913*(s+34.87)/s;
 [Celnum, Celden] = tfdata(controller);
 Celnum = Celnum{1};
 Celden = Celden{1};
@@ -66,5 +67,5 @@ dist = 0.001;
 
 %% Controllore esterno 4o ordine,ta=0.04;Overshoot=12%
   
-  C(s)=1.8333e07 (s^2 + 411.7*s + 4.281e04)*(s^2 + 132.6*s + 5301)/(s*(s+3055)*(s+2908)*(s+2761))
+%  C(s)=1.8333e07 (s^2 + 411.7*s + 4.281e04)*(s^2 + 132.6*s + 5301)/(s*(s+3055)*(s+2908)*(s+2761))
               
