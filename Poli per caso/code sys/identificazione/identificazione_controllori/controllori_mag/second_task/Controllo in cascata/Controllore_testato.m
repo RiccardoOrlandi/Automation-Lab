@@ -39,20 +39,20 @@ controller2 = 3438.2*(s+20.07)*(s+5.024)/(s*(s+385.6));
 num_mag_C2 = Gnum{1};
 den_mag_C2 = Gden{1};
 
-%% Plot linearizzazione
-x=-0.012:0.0001:0.012;
-dot = 2*k_mag*ueq^2/m*((y0-x1_eq)^(-3))*(x-x1_eq) + 2*k_mag/m*ueq/((y0 - x1_eq)^2)*(ueq-ueq);
-
-figure()
-plot(x,dot, 'LineWidth', 1.5)
-grid on
-hold on
-dot_nl = k_mag/m*(ueq./(y0-x)).^2-g;
-plot(x, dot_nl, 'LineWidth', 1.5)
-plot(x, zeros(1, length(x)), 'LineStyle','--', 'color', 'green', 'LineWidth', 1.2)
-ylim([-10, 10])
-xlim([x1_eq-0.002, x1_eq+0.002])
-xlabel('posizione')
-ylabel('accellerazione')
-title('Linearizzazione in 4.4mm intorno di 2mm')
-legend('linearizzato', 'non linearizzato')
+% %% Plot linearizzazione
+% x=-0.012:0.0001:0.012;
+% dot = 2*k_mag*ueq^2/m*((y0-x1_eq)^(-3))*(x-x1_eq) + 2*k_mag/m*ueq/((y0 - x1_eq)^2)*(ueq-ueq);
+% 
+% figure()
+% plot(x,dot, 'LineWidth', 1.5)
+% grid on
+% hold on
+% dot_nl = k_mag/m*(ueq./(y0-x)).^2-g;
+% plot(x, dot_nl, 'LineWidth', 1.5)
+% plot(x, zeros(1, length(x)), 'LineStyle','--', 'color', 'green', 'LineWidth', 1.2)
+% ylim([-10, 10])
+% xlim([x1_eq-0.002, x1_eq+0.002])
+% xlabel('posizione')
+% ylabel('accellerazione')
+% title('Linearizzazione in 4.4mm intorno di 2mm')
+% legend('linearizzato', 'non linearizzato')
