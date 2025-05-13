@@ -5,8 +5,15 @@ close all
 addpath('..\..\..\..\..\function')
 
 run('Controllore_testato.m');
+close all
 validazione = 'Validazione_cascata';
 add_data_volt('Dati_acquisiti')
+
+controller_mag = tf(num_mag_C2, den_mag_C2);
+sys = feedback(controller_mag*G2_2, 1);
+figure()
+bode(sys)
+grid on
 
 
 model = 'Validazione_cascata';  % Assicurati che sia il nome giusto
