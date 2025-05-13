@@ -60,7 +60,7 @@ grid on
 hold off
 
 %%
-simIn = setVariable(simIn, 'amp', 0.0004);
+simIn = setVariable(simIn, 'amp', 0.001);
 simIn = setVariable(simIn, 'freq_rad', 10);
 out = sim(simIn);
 test = test_sin_10rad_phi2_2566_7_sec;
@@ -124,7 +124,7 @@ grid on
 hold off
 
 %%
-simIn = setVariable(simIn, 'amp', 0.0002);
+simIn = setVariable(simIn, 'amp', 0.00025);
 simIn = setVariable(simIn, 'freq_rad', 110);
 out = sim(simIn);
 test = test_sin_110rad_phi2_2566_7_sec_amp0_1mm;
