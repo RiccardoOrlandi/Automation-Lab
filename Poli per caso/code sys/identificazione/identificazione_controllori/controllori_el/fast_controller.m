@@ -4,16 +4,15 @@ close all
 
 %%
 %per Windows
-run('..\..\..\Model_Parameter.m')
+%run('..\..\..\Model_Parameter.m')
 
 %per Mac
-%run('../../../Model_Parameter.m')
+run('../../../Model_Parameter.m')
 
 %% Modello elettrico
 
 s = tf('s');
 Gel = tf(1, [Lc Rtot]);
-
 %% Controllore 1
 %%
 kp = 46.0161;
@@ -31,7 +30,8 @@ controller_el2 = kp2 + ki2/s;
 kp3 = 67.02;
 ki3 = 1400;
 controller_el3 = kp3 + ki3/s;
-
+%% Controllore 4
+ C=28.913*(s+34.87)/s
 %% Plot delle uscite
 %%
 Vref = 12;

@@ -1,6 +1,6 @@
-% clear 
-% clc 
-% close all
+clear 
+clc 
+close all
 
 %%
 %per Windows 
@@ -15,7 +15,6 @@
 %per Mac
 addpath('../../../../../function')
 run('../../../../../Model_Parameter.m')
-add_data('../../../../../data/LQ')
 add_data('../../../../../data/Step Test/Step Test with ball')
 add_data('../../../../../data/Step Test/Step Test with ball');
 add_data('../../../../../data/Step Test/18_03_2025_v2/with ball');
@@ -30,10 +29,10 @@ p = 2;
 
 [G, A, B, C, D] = lin(x1, theta);
 %% LQ control
-Q_lq  = diag([50, 10 ,0.1e-6, 100]);
-R_lq = 0.01;
+Q_lq  = diag([100, 10 ,100, 10]);
+R_lq = 10;
 
-x_max = [0.012; 3; 10000; 1];  % m, rad/s, A, errore
+x_max = [0.012; 3; 0.1; 1];  % m, rad/s, A, errore
 u_max = 23;  % Volt
 
 Q_n = diag(1 ./ (x_max.^2))*Q_lq;  % penalizza in base al quadrato della grandezza
@@ -45,7 +44,7 @@ B_tilde = [ B;
             0 ];
 
 I = eye(4);
-A_final = A_tilde + 1*I;
+A_final = A_tilde + 7*I;
 if rank(ctrb(A_final, B_tilde)) == 4
     disp('Il sistema allargato è completamente controllabile');
 else 
@@ -67,7 +66,7 @@ cl_poles = eig(A_final-B_tilde*K);
 % x1_mes = T21_6V(2, indice_scalino:indice_scalino+300);
 % x1_sim = y(2, indice_scalino2:indice_scalino2+300);
 t_end = Test_21V(1,end);
-out = sim("model_non_lineare2023b.slx");
+out = sim("model_non_lineare2019b.slx");
 x3_mes = gradient(Test_21V(2,:),Test_21V(1,:));
 residui = Test_21V(2,501:611) - out.x1_sim(501:611)';
 q11 = var(residui);
