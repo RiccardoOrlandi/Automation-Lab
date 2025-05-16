@@ -16,7 +16,7 @@ n = 3;
 m = 1; 
 p = 2;
 Upper_bound_V = 23;
-Lower_bound_V = -23;
+Lower_bound_V = 0;
 
 [G, A, B, C, D] = lin(x1, theta);
 sys = ss(A, B, C, D);
@@ -32,16 +32,17 @@ end
 % disp(tzero(G));
 %sigma(G)
 %%
-%Trovo Kpp per il pole placement e L per l'osservatore di Luenberger
-i = sqrt(-1);
-desired_poles_pp = [-40, -50, -70];
-Kpp = place(A, B, desired_poles_pp);
+% %Trovo Kpp per il pole placement e L per l'osservatore di Luenberger
+% i = sqrt(-1);
+% desired_poles_pp = [-40, -50, -70];
+% Kpp = place(A, B, desired_poles_pp);
 
 % sys_cl_pp = ss(A - B * Kpp, B, C, D);
 % figure(3);
 % legend('after cl')
 % sigma(sys_cl_pp);
 
+%% Observer
 desired_poles_obs = [-200, -250, -280];
 L = place(A', C', desired_poles_obs)';
 
@@ -52,22 +53,22 @@ D_ob = zeros(n, m+p);
 
 %%
 
-A_tilde = [ A,      zeros(n, 1);
-            -C(1,:),     zeros(1, 1)];
-B_tilde = [ B;
-            0 ];
-M_tilde = [ zeros(n, 1);
-            eye(1) ];
-
-disp(rank(ctrb(A_tilde, B_tilde)))
-
-en_desired_poles = [desired_poles_pp, -7];
-Ken = place(A_tilde, B_tilde, en_desired_poles);
-
-Ken_x = Ken(:, 1:n);
-Ken_eta = Ken(:, n+1:end);
-    
-
-% Guadagni desiderati (dati da specifica: esempio polo a -2, -2, -3)
-    %[-40, -50, -70]
-    Kpp = place([0 1 0; 0 0 1; 0 0 0], [0; 0; 1], [-40, -50, -70]);
+% A_tilde = [ A,      zeros(n, 1);
+%             -C(1,:),     zeros(1, 1)];
+% B_tilde = [ B;
+%             0 ];
+% M_tilde = [ zeros(n, 1);
+%             eye(1) ];
+% 
+% disp(rank(ctrb(A_tilde, B_tilde)))
+% 
+% en_desired_poles = [desired_poles_pp, -7];
+% Ken = place(A_tilde, B_tilde, en_desired_poles);
+% 
+% Ken_x = Ken(:, 1:n);
+% Ken_eta = Ken(:, n+1:end);
+% 
+% 
+% % Guadagni desiderati (dati da specifica: esempio polo a -2, -2, -3)
+%     %[-40, -50, -70]
+%     Kpp = place([0 1 0; 0 0 1; 0 0 0], [0; 0; 1], [-40, -50, -70]);
