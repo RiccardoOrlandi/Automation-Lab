@@ -13,7 +13,7 @@ run('..\..\..\..\..\Model_Parameter.m')
 x1 = 0.003;
 %u = 9.515; %quando forza magnetica riferita al top scambiare 9.515 con 14.65
 n = 3;
-m = 1; 
+q = 1; 
 p = 2;
 Upper_bound_V = 23;
 Lower_bound_V = 0;
@@ -49,7 +49,7 @@ L = place(A', C', desired_poles_obs)';
 A_ob = A - L*C;
 B_ob = [ B - L*D, L];
 C_ob = eye(n);
-D_ob = zeros(n, m+p);
+D_ob = zeros(n, q+p);
 
 %%
 
