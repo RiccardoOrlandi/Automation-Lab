@@ -68,3 +68,20 @@ Ken = place(A_tilde, B_tilde, en_desired_poles);
 
 Ken_x = Ken(:, 1:n);
 Ken_eta = Ken(:, n+1:end);
+
+syms s
+K = Ken_x*C_ob*((s*eye(3)-A_ob)\B_ob);
+K_x1 = K(1,1);
+K_x2 = K(1,2);
+K_x3 = K(1,3);
+
+H = C*((s*eye(3)-A)\B);
+
+num_pre = -Ken_eta*H(1,:);
+den_pre = s*(1 + K_x1+K_x3*H(2,:))-H(1,:)*(Ken_eta-s*K_x2);
+G_cl = den_pre \ num_pre;
+[num_sym, den_sym] = numden(G_cl);
+num = sym2poly(num_sym);
+den = sym2poly(den_sym);
+G_tf = tf(num, den);
+bode(G_tf)

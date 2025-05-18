@@ -38,18 +38,5 @@ title('Time validation Pole placement with observer');
 legend('Simulated position', 'Measured position');
 hold off
 
-%%
-T_end_2 = Obs_PP_Sine_1radS(1, end);
-out2 = sim("controllo_SS2023b.slx");
-%index2 = Obs_PP_Sine_1radS(1,end)/0.002;
-u = 0.004 + 0.0005*sin(Obs_PP_Sine_1radS(1,:));
-figure()
-plot(Obs_PP_Sine_1radS(1,:), out2.pos_sim_obs');
-hold on
-plot(Obs_PP_Sine_1radS, u);
-hold on
-plot(Obs_PP_Sine_1radS(1,:), Obs_PP_Sine_1radS(2,:));
-title('Time validation Pole placement with observer');
-legend('Simulated position','ingresso','Measured position');
-hold off
+
 

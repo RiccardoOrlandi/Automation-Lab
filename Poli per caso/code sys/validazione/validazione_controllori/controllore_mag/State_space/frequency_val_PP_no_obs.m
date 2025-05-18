@@ -38,20 +38,6 @@ end
 i = sqrt(-1);
 desired_poles_pp = [-40, -50, -70];
 Kpp = place(A, B, desired_poles_pp);
-
-% sys_cl_pp = ss(A - B * Kpp, B, C, D);
-% figure(3);
-% legend('after cl')
-% sigma(sys_cl_pp);
-
-desired_poles_obs = [-400, -500, -700];
-L = place(A', C', desired_poles_obs)';
-
-A_ob = A - L*C;
-B_ob = [ B, L];
-C_ob = eye(n);
-D_ob = zeros(n, m+p);
-
 %%
 
 A_tilde = [ A,      zeros(n, 1);
@@ -68,3 +54,18 @@ Ken = place(A_tilde, B_tilde, en_desired_poles);
 
 Ken_x = Ken(:, 1:n);
 Ken_eta = Ken(:, n+1:end);
+                    
+syms s
+
+F = ((s*eye(3)-A)\B);
+H = C*F;
+
+num_pre = -H(1,:)*Ken_eta;
+den_pre = s*(1+Ken_x*F)-Ken_eta*H(1,:);
+
+G_cl = den_pre \ num_pre;
+[num_sym, den_sym] = numden(G_cl);
+num = sym2poly(num_sym);
+den = sym2poly(den_sym);
+G_tf = tf(num, den);
+bode(G_tf)
