@@ -66,7 +66,7 @@ cl_poles = eig(A_final-B_tilde*K);
 % x1_mes = T21_6V(2, indice_scalino:indice_scalino+300);
 % x1_sim = y(2, indice_scalino2:indice_scalino2+300);
 t_end = Test_21V(1,end);
-out = sim("model_non_lineare2023b.slx");
+out = sim("model_non_lineare2023b2.slx");
 x3_mes = gradient(Test_21V(2,:),Test_21V(1,:));
 residui = Test_21V(2,501:611) - out.x1_sim(501:611)';
 q11 = var(residui);
@@ -101,12 +101,13 @@ var_y2 = var(y2_regime);
 % Matrice R stimata (diagonale)
 %R = diag([var_y1, var_y2]); %2x2
 R = var_y1;
+R_ds = 20^2/(12*2^12);
 
 disp('Matrice di covarianza del rumore di misura R:')
 disp(R)
 
-L_kf = lqr(A.', C.', Q, R).';
-eig(A-L_kf*C);
+L_kf = lqr(A.', C.', Q, R_ds).';
+ob_ploes = eig(A-L_kf*C);
 
 A_ob = A - L_kf*C;
 B_ob = [ B - L_kf*D, L_kf];
@@ -134,3 +135,4 @@ num = sym2poly(num_sym);
 den = sym2poly(den_sym);
 G_tf = tf(num, den);
 bode(G_tf)
+

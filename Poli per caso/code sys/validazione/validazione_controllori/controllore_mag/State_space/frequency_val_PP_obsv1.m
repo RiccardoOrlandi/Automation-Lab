@@ -130,4 +130,4 @@ omega = 1;
 [mag2, phase2] = bode(G_tf, omega);
 
 results = [results num2str(omega) '        ' num2str((mag1-mag2)/mag2*100) '         ' ...
-    num2str((phase2-phase1)/phase2*100) newline];
+    num2str((phase2-phase1)/phase2*100) newline];ù
