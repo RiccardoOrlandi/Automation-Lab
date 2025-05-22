@@ -31,7 +31,7 @@ kp3 = 67.02;
 ki3 = 1400;
 controller_el3 = kp3 + ki3/s;
 %% Controllore 4
- C=28.913*(s+34.87)/s
+ C=28.913*(s+34.87)/s;
 %% Plot delle uscite
 %%
 Vref = 12;

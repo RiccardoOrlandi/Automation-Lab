@@ -25,6 +25,9 @@ lower = 0;
 Upper_bound_V = 23;
 Lower_bound_V = 0;
 
+%% Controllore 1
+G_el_close1 = feedback(Gel*controller_el1, 1);
+G2_1 = G_el_close1*G;
 %% Controllore elettrico 2
 % controllore più cauto           (margine di fase 83°, wc = 84.4rad/s)
 %                                 (poli = -53.5093 +- 13.6548i)
