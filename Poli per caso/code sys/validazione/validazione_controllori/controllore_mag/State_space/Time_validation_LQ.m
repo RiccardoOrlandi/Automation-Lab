@@ -13,10 +13,10 @@ add_data_volt('..\..\..\..\data\LQ\no_obs')
 %% No obs
 
 T_end = LQ_Step_3mm(1,end);
-out = sim("controllo_SS_no_obs2023b.slx");
+output = sim("validazione_no_obs.slx");
 index = T_end/0.002;
 figure()
-plot(LQ_Step_3mm(1,1:index), out.pos_sim(1:index)');
+plot(LQ_Step_3mm(1,1:index), output.pos_sim(1:index)');
 hold on
 plot(LQ_Step_3mm(1,1:index), LQ_Step_3mm(2,1:index));
 title('Time validation LQ without observer');

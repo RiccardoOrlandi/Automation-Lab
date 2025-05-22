@@ -94,7 +94,7 @@ Q2 = diag([q11,q22,q33]);
 % disp(Q)
 
 t_end = T21V_v2(1,end);
-out3 = sim("model_non_lineare2019b.slx");
+out3 = sim("model_non_lineare2023b.slx");
 x3_mes = gradient(T21V_v2(2,:),T21V_v2(1,:));
 residui = T21V_v2(2,501:611) - out3.x3_sim(501:611)';
 q11 = var(residui);
@@ -129,7 +129,7 @@ Q5 = diag([q11,q22,q33]);
 
 
 t_end = T21V_v2(1,end);
-out6 = sim("model_non_lineare2019b.slx");
+out6 = sim("model_non_lineare2023b.slx");
 x3_mes = gradient(T21V_v2(2,:),T21V_v2(1,:));
 residui = T21V_v2(2,501-0.05/0.002:611-0.05/0.002) - out6.x3_sim(501:611)';
 q11 = var(residui);

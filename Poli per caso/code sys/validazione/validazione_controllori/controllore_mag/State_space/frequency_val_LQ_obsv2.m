@@ -135,4 +135,4 @@ num = sym2poly(num_sym);
 den = sym2poly(den_sym);
 G_tf = tf(num, den);
 bode(G_tf)
-
+margin(G_tf)
