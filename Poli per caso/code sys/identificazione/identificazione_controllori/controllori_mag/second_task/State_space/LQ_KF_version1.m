@@ -222,7 +222,7 @@ y1_bar_4 = mean(y1_regime_4);
 var_y1_4 = sum((y1_regime_4 - y1_bar_4).^2)/(length(y1_regime_4)-1);
 %var_y1 = var(y1_regime);  % '1' = usa N nel denominatore, stimatore ML
 var_y2_4 = var(y2_regime_4);
-Q_prova = diag([0.000099, 0.99, 0]);
+Q_prova = diag([1200, 100, 0.005]);
 
 % Matrice R stimata (diagonale)
 %R = diag([var_y1, var_y2]); %2x2
