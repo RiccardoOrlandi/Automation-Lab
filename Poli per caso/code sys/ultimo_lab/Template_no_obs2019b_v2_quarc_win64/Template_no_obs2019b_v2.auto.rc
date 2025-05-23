@@ -1,0 +1,2 @@
+#include <winuser.rh>
+1 RT_MANIFEST "Template_no_obs2019b_v2.auto.manifest"

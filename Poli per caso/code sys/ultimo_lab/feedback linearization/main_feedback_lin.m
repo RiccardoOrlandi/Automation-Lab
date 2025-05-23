@@ -1,0 +1,44 @@
+clear 
+clc 
+close all
+
+%%
+%per Windows 
+addpath('..\..\..\..\..\function')
+run('..\..\..\..\..\Model_Parameter.m')
+%per Mac
+%addpath('../../../../../function')
+%run('../../../../../Model_Parameter.m')
+
+
+%% Observer
+x1 = 0.003;
+n = 3;
+q = 1; 
+p = 2;
+Upper_bound_V = 23;
+Lower_bound_V = 0;
+
+[G, A, B, C, D] = lin(x1, theta);
+sys = ss(A, B, C, D);
+
+rank_c = rank(ctrb(A,B));
+rank_o = rank(obsv(A,C));
+
+if rank_c == 3 && rank_o == 3
+    disp('Il sistema è completamente controllabile e raggiungibile');
+end
+
+desired_poles_obs = [-200, -250, -280];
+L = place(A', C', desired_poles_obs)';
+
+A_ob = A - L*C;
+B_ob = [ B - L*D, L];
+C_ob = eye(n);
+D_ob = zeros(n, q+p);
+
+%% parametri modello
+Rtot_mod = 9.7585; % R = 9.7585
+Lc_mod = 0.3708; % Lc = 0.3708
+k_mag_mod = 2.4405e-05; % k_mag = 2.4405e-05
+
