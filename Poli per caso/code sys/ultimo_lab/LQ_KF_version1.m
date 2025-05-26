@@ -13,13 +13,14 @@ close all
 % add_data('..\..\..\..\..\data\Step Test\18_03_2024\with_ball');
 % add_data('..\..\..\..\..\data\Step Test\04_04_2025');
 %per Mac
-addpath('../../../../../function')
-run('../../../../../Model_Parameter.m')
-add_data('../../../../../data/Step Test/Step Test with ball')
-add_data('../../../../../data/Step Test/Step Test with ball');
-add_data('../../../../../data/Step Test/18_03_2025_v2/with ball');
-add_data('../.././../../data/Step Test/18_03_2024/with_ball');
-add_data('../../../../../data/Step Test/04_04_2025');
+addpath('../function')
+run('../Model_Parameter.m')
+add_data('../data/Step Test/Step Test with ball')
+add_data('../data/Step Test/Step Test with ball');
+add_data('../data/Step Test/18_03_2025_v2/with ball');
+add_data('../data/Step Test/18_03_2024/with_ball');
+add_data('../data/Step Test/04_04_2025');
+
 Upper_bound_V = 23;
 Lower_bound_V = 0;
 x1 = 0.003;
@@ -60,13 +61,13 @@ end
 K = lqr(A_final, B_tilde, Q_n, R_n);
 Ken_x = K(:, 1:3);
 Ken_eta = K(:, 4);
-cl_poles = eig(A_final-B_tilde*K);
+cl_poles = eig(A_tilde-B_tilde*K);
 
-%% Kalman Filter 
+% %% Kalman Filter 
 % % x1_mes = T21_6V(2, indice_scalino:indice_scalino+300);
 % % x1_sim = y(2, indice_scalino2:indice_scalino2+300);
 % t_end = Test_21V(1,end);
-% out1 = sim("model_non_lineare2019b.slx");
+% out1 = sim("model_non_lineare2023b.slx");
 % x3_mes = gradient(Test_21V(2,:),Test_21V(1,:));
 % residui = Test_21V(2,501-0.05/0.002:611-0.05/0.002) - out1.x1_sim(501:611)';
 % q11 = var(residui);
@@ -80,7 +81,7 @@ cl_poles = eig(A_final-B_tilde*K);
 % % disp(Q)
 % 
 % t_end = T22_5V(1,end);
-% out2 = sim("model_non_lineare2019b.slx");
+% out2 = sim("model_non_lineare2023b.slx");
 % x3_mes = gradient(T22_5V(2,:),T22_5V(1,:));
 % residui = T22_5V(2,501:611) - out2.x1_sim(501:611)';
 % q11 = var(residui);
@@ -94,7 +95,7 @@ cl_poles = eig(A_final-B_tilde*K);
 % % disp(Q)
 % 
 % t_end = T21V_v2(1,end);
-% out3 = sim("model_non_lineare2019b.slx");
+% out3 = sim("model_non_lineare2023b.slx");
 % x3_mes = gradient(T21V_v2(2,:),T21V_v2(1,:));
 % residui = T21V_v2(2,501:611) - out3.x3_sim(501:611)';
 % q11 = var(residui);
@@ -106,7 +107,7 @@ cl_poles = eig(A_final-B_tilde*K);
 % 
 % 
 % t_end = Test_21V(1,end);
-% out4 = sim("model_non_lineare2019b.slx");
+% out4 = sim("model_non_lineare2023b.slx");
 % x3_mes = gradient(Test_21V(2,:),Test_21V(1,:));
 % residui = Test_21V(2,501-0.05/0.002:611-0.05/0.002) - out4.x1_sim(501:611)';
 % q11 = var(residui);
@@ -117,7 +118,7 @@ cl_poles = eig(A_final-B_tilde*K);
 % Q4 = diag([q11,q22,q33]);
 % 
 % t_end = T22_5V(1,end);
-% out5 = sim("model_non_lineare2019b.slx");
+% out5 = sim("model_non_lineare2023b.slx");
 % x3_mes = gradient(T22_5V(2,:),T22_5V(1,:));
 % residui = T22_5V(2,501-0.05/0.002:611-0.05/0.002) - out5.x1_sim(501:611)';
 % q11 = var(residui);
@@ -129,7 +130,7 @@ cl_poles = eig(A_final-B_tilde*K);
 % 
 % 
 % t_end = T21V_v2(1,end);
-% out6 = sim("model_non_lineare2019b.slx");
+% out6 = sim("model_non_lineare2023b.slx");
 % x3_mes = gradient(T21V_v2(2,:),T21V_v2(1,:));
 % residui = T21V_v2(2,501-0.05/0.002:611-0.05/0.002) - out6.x3_sim(501:611)';
 % q11 = var(residui);
@@ -222,12 +223,14 @@ cl_poles = eig(A_final-B_tilde*K);
 % var_y1_4 = sum((y1_regime_4 - y1_bar_4).^2)/(length(y1_regime_4)-1);
 % %var_y1 = var(y1_regime);  % '1' = usa N nel denominatore, stimatore ML
 % var_y2_4 = var(y2_regime_4);
-Q_prova = diag([0.0000256, 0.0944492, 0]);
+% Q_prova = diag([0.00256, 0.054, 0]);
+Q_prova = diag([0.00001, 0.4, 0]);
 
 % Matrice R stimata (diagonale)
 %R = diag([var_y1, var_y2]); %2x2
 % R4 = var_y2_4;
-R_ds = 4e-8;
+% R_ds = 8e-7;
+R_ds = 2e-5;
                           
 L_kf = lqr(A.', C.', Q_prova, R_ds).';
 poli_obs = eig(A-L_kf*C);

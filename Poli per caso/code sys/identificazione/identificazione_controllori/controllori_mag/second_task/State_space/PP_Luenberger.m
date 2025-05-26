@@ -68,3 +68,6 @@ Ken = place(A_tilde, B_tilde, en_desired_poles);
 
 Ken_x = Ken(:, 1:n);
 Ken_eta = Ken(:, n+1:end);
+
+cl_poles = eig(A_tilde-B_tilde*Ken);
+cl_close_obs = eig(A_ob);

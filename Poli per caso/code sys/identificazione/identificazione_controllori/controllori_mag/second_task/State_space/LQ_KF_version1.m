@@ -60,7 +60,7 @@ end
 K = lqr(A_final, B_tilde, Q_n, R_n);
 Ken_x = K(:, 1:3);
 Ken_eta = K(:, 4);
-cl_poles = eig(A_final-B_tilde*K);
+cl_poles = eig(A_tilde-B_tilde*K);
 
 % %% Kalman Filter 
 % % x1_mes = T21_6V(2, indice_scalino:indice_scalino+300);
@@ -222,12 +222,14 @@ cl_poles = eig(A_final-B_tilde*K);
 % var_y1_4 = sum((y1_regime_4 - y1_bar_4).^2)/(length(y1_regime_4)-1);
 % %var_y1 = var(y1_regime);  % '1' = usa N nel denominatore, stimatore ML
 % var_y2_4 = var(y2_regime_4);
-Q_prova = diag([0.00256, 0.054, 0]);
-% 
-% % Matrice R stimata (diagonale)
-% %R = diag([var_y1, var_y2]); %2x2
+% Q_prova = diag([0.00256, 0.054, 0]);
+Q_prova = diag([0.00001, 0.4, 0]);
+
+% Matrice R stimata (diagonale)
+%R = diag([var_y1, var_y2]); %2x2
 % R4 = var_y2_4;
-R_ds = 0.0000008
+% R_ds = 8e-7;
+R_ds = 2e-5;
                           
 L_kf = lqr(A.', C.', Q_prova, R_ds).';
 poli_obs = eig(A-L_kf*C);
