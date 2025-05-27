@@ -38,7 +38,7 @@ C_ob = eye(n);
 D_ob = zeros(n, q+p);
 
 %% parametri modello
-Rtot_mod = 9.7585; % R = 9.7585
+Rtot_mod = 7.7585; % R = 9.7585
 Lc_mod = 0.3708; % Lc = 0.3708
-k_mag_mod = 2.4405e-05; % k_mag = 2.4405e-05
+k_mag_mod = 3.4405e-05; % k_mag = 2.4405e-05
 

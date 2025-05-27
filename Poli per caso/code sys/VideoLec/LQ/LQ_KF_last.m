@@ -13,13 +13,13 @@ close all
 % add_data('..\..\..\..\..\data\Step Test\18_03_2024\with_ball');
 % add_data('..\..\..\..\..\data\Step Test\04_04_2025');
 %per Mac
-addpath('../function')
-run('../Model_Parameter.m')
-add_data('../data/Step Test/Step Test with ball')
-add_data('../data/Step Test/Step Test with ball');
-add_data('../data/Step Test/18_03_2025_v2/with ball');
-add_data('../data/Step Test/18_03_2024/with_ball');
-add_data('../data/Step Test/04_04_2025');
+addpath('../../function')
+run('../../Model_Parameter.m')
+add_data('../../data/Step Test/Step Test with ball')
+add_data('../../data/Step Test/Step Test with ball');
+add_data('../../data/Step Test/18_03_2025_v2/with ball');
+add_data('../../data/Step Test/18_03_2024/with_ball');
+add_data('../../data/Step Test/04_04_2025');
 
 Upper_bound_V = 23;
 Lower_bound_V = 0;
