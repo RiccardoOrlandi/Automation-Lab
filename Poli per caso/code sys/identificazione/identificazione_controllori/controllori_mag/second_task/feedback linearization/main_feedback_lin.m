@@ -38,7 +38,31 @@ C_ob = eye(n);
 D_ob = zeros(n, q+p);
 
 %% parametri modello
-Rtot_mod = 9.7585; % R = 9.7585
-Lc_mod = 0.3708; % Lc = 0.3708
-k_mag_mod = 2.4405e-05; % k_mag = 2.4405e-05
+Rtot_mod = 7.0585; % R = 9.7585
+Lc_mod = 0.4708; % Lc = 0.3708
+k_mag_mod = 3.2405e-05; % k_mag = 2.4405e-05
+
+%% PLOT RESULT
+
+out = sim('feedback_lin_Test');
+ref = out.ref;
+FL = out.FL;
+FL_RLS = out.FL_RLS;
+FL_RLS_PI = out.FL_RLS_PI;
+t = out.tout;
+
+%%
+figure()
+plot_Latex(t, ref, 'Time [s]', 'Position [m]', 'Feedback Linearization Comparison', [-0.001, 0.004]);
+
+hold on
+plot_Latex(t, FL_RLS, 'Time [s]', 'Position [m]', 'Feedback Linearization Comparison', [-0.001, 0.004]);
+h = plot_Latex(t, FL_RLS_PI, 'Time [s]', 'Position [m]', 'Feedback Linearization Comparison', [0, 0.004]);
+h.Color = 'b';
+plot_Latex(t, FL, 'Time [s]', 'Position [m]', 'Feedback Linearization Comparison', [0, 0.004]);
+
+
+hold off
+grid on
+legend('ref', 'FL RLS', 'FL RLS I','FL')
 
