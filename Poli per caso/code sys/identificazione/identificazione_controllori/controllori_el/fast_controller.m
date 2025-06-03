@@ -135,3 +135,37 @@ plot(t,u_no_sat2,'LineWidth',1.5)
 plot(t,u_sat2,'LineWidth',1.5)
 
 legend('back calculation','clamping','no sat','sat','FontSize',14,'Interpreter','latex')
+%%
+figure()
+%controllore 1
+subplot(2, 1, 1)
+plot(t,back,'LineWidth',1.5)
+grid on
+xlim([0,0.15])
+ylim([0,ref(1)*1.3])
+title('Output','FontSize',14,'Interpreter','latex')
+xlabel('Time [s]','FontSize',14,'Interpreter','latex')
+ylabel('Current [A]','FontSize',14,'Interpreter','latex')
+hold on
+
+plot(t,clamp,'LineWidth',1.5)
+plot(t,no_sat,'LineWidth',1.5)
+plot(t,ref,'LineWidth',1.5)
+plot(t,sat,'LineWidth',1.5)
+
+legend('Back-Calculation','Clamping','No Saturation','Reference','Saturation','FontSize',14,'Interpreter','latex')
+subplot(2, 1, 2)
+plot(t,u_back,'LineWidth',1.5)
+grid on
+xlim([0,0.15])
+ylim([0,70])
+title('Control Variable','FontSize',14,'Interpreter','latex')
+xlabel('Time [s]','FontSize',14,'Interpreter','latex')
+ylabel('Tension [V]','FontSize',14,'Interpreter','latex')
+hold on
+
+plot(t,u_clamp,'LineWidth',1.5)
+plot(t,u_no_sat,'LineWidth',1.5)
+plot(t,u_sat,'LineWidth',1.5)
+
+legend('Back-Calculation','Clamping','No Saturation','Saturation','FontSize',14,'Interpreter','latex')

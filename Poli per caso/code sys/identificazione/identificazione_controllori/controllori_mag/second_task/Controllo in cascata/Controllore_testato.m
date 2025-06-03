@@ -59,3 +59,4 @@ den_mag_C2 = Gden{1};
 % ylabel('accellerazione')
 % title('Linearizzazione in 4.4mm intorno di 2mm')
 % legend('linearizzato', 'non linearizzato')
+bode(feedback(G2_2*controller2, 1))
