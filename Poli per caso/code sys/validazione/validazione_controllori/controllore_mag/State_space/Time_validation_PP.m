@@ -15,7 +15,7 @@ add_data_volt('..\..\..\..\data\PP\obs')
 %% No obs
 
 T_end = Step_4mm_Sine_0_5mm_1radS_filtro_vel_pos_cur(1,end);
-out = sim("controllo_SS_no_obs2023b.slx");
+out = sim("validazione_no_obs.slx");
 index = 27/0.002;
 figure()
 plot(Step_4mm_Sine_0_5mm_1radS_filtro_vel_pos_cur(1,1:index), out.pos_sim(1:index)');
@@ -28,7 +28,7 @@ hold off
 %% Obs
 
 T_end_2 = Obs_PP_Step_3mm_6mm_5mm_polo5(1, end);
-out2 = sim("controllo_SS2023b.slx");
+out2 = sim("validazione_obs.slx");
 index2 = 40/0.002;
 figure()
 plot(Obs_PP_Step_3mm_6mm_5mm_polo5(1,1:index2), out2.pos_sim_obs(1:index2)');

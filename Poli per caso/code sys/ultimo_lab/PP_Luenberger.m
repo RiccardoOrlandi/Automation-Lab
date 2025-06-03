@@ -63,7 +63,7 @@ M_tilde = [ zeros(n, 1);
 
 disp(rank(ctrb(A_tilde, B_tilde)))
 
-en_desired_poles = [desired_poles_pp, -7];
+en_desired_poles = [desired_poles_pp, -5];
 Ken = place(A_tilde, B_tilde, en_desired_poles);
 
 Ken_x = Ken(:, 1:n);
